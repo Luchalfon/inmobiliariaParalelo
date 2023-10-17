@@ -187,5 +187,104 @@ public class PropiedadData {
         }
 
     }
+   public List<Propiedad> obtenerPropiedadesPorPropietario(int id_Propietario) {
+
+        ArrayList<Propiedad> propiedades = new ArrayList<>();
+
+        String sql = "SELECT propiedadinmueble.id_Propiedad,propiedadinmueble.direccion,propiedadinmueble.precioTazado,propiedadinmueble.tipoDeLocal FROM propiedadinmueble WHERE propiedadinmueble.estado=1 AND propiedadinmueble.id_Propietario= ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, id_Propietario);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+
+                Propiedad propiedad = new Propiedad();
+                propiedad.setId_propiedad(rs.getInt("id_propiedad"));
+                propiedad.setDireccion(rs.getString("direccion"));
+                propiedad.setPrecio(rs.getFloat("precioTazado"));
+                propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
+                
+               
+                propiedades.add(propiedad);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al Acceder a la tabla Inscripción");
+        }
+        return propiedades;
+    }    
     
+public List<Propiedad> obtenerPropiedadesPorZona(String zona) {
+
+        ArrayList<Propiedad> propiedades = new ArrayList<>();
+
+        String sql = "SELECT zona,id_Propiedad,direccion,precioTazado,tipoDeLocal FROM propiedadinmueble WHERE estado=1 AND zona= ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, zona);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+
+                Propiedad propiedad = new Propiedad();
+                propiedad.setTipoPropiedad(rs.getString("zona"));
+                propiedad.setId_propiedad(rs.getInt("id_Propiedad"));
+                propiedad.setDireccion(rs.getString("direccion"));
+                propiedad.setPrecio(rs.getFloat("precioTazado"));
+                propiedad.setZona(rs.getString("tipoDeLocal"));
+                
+                
+               
+                propiedades.add(propiedad);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al Acceder a la tabla Propiedad");
+        }
+        return propiedades;
+    }       
+
+
+
+
+public List<Propiedad> obtenerPropiedadesPorTipo(String tipo) {
+
+        ArrayList<Propiedad> propiedades = new ArrayList<>();
+
+        String sql = "SELECT tipoDeLocal,id_Propiedad,direccion,precioTazado,zona FROM propiedadinmueble WHERE estado=1 AND tipoDeLocal= ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setString(1, tipo);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+
+                Propiedad propiedad = new Propiedad();
+                propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
+                propiedad.setId_propiedad(rs.getInt("id_Propiedad"));
+                propiedad.setDireccion(rs.getString("direccion"));
+                propiedad.setPrecio(rs.getFloat("precioTazado"));
+                propiedad.setZona(rs.getString("zona"));
+                
+                
+               
+                propiedades.add(propiedad);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al Acceder a la tabla Propiedad");
+        }
+        return propiedades;
+    }       
+
+
+
+ 
 }

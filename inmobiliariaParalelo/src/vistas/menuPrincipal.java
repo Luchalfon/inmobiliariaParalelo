@@ -42,6 +42,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         jMenuItem5 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem8 = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
@@ -160,7 +161,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         jMenu4.setPreferredSize(new java.awt.Dimension(150, 55));
 
         jMenuItem6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jMenuItem6.setText("Alumnos por Materia");
+        jMenuItem6.setText("Consulta propiedades");
         jMenuItem6.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,6 +169,14 @@ public class menuPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu4.add(jMenuItem6);
+
+        jMenuItem8.setText("consulta Varias propiedades");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem8);
 
         jMenuBar1.add(jMenu4);
 
@@ -252,10 +261,10 @@ public class menuPrincipal extends javax.swing.JFrame {
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         escritorio.removeAll();
         escritorio.repaint();
-        //consultaVista cv= new consultaVista();
-        //cv.setVisible(true);
-        // escritorio.add(cv);
-        // escritorio.moveToFront(cv);
+        consultaPropiedades cpro= new consultaPropiedades();
+        cpro.setVisible(true);
+         escritorio.add(cpro);
+         escritorio.moveToFront(cpro);
 
 
     }//GEN-LAST:event_jMenuItem6ActionPerformed
@@ -285,6 +294,17 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorio.moveToFront(iv);
 
     }//GEN-LAST:event_jMenuItem4ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+
+ escritorio.removeAll();
+        escritorio.repaint();
+        consultaVariasPropiedades cvp = new consultaVariasPropiedades();
+        cvp.setVisible(true);
+        escritorio.add(cvp);
+        escritorio.moveToFront(cvp);
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -339,5 +359,6 @@ public class menuPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
     // End of variables declaration//GEN-END:variables
 }
