@@ -387,6 +387,9 @@ this.dispose();
         modificar.setEnabled(false);
         eliminar.setEnabled(false);
         firmar.setEnabled(true);
+        
+        jdFecha1.setDate(null);
+        jdFecha2.setDate(null);
         textMarca.setText("");
         textDni.setText("");
         textId.setText("");
@@ -464,13 +467,14 @@ this.dispose();
 
     public Contrato crearContrato() {
 
-        char marca = textVendedor.getText().charAt(0);
-        String vendendor = textVigencia.getText();
-        String vigencia = textGarante.getText();
-        String garante = textDni.getText();
-        String dniGarante = textMarca.getText();
+        char marca = textMarca.getText().charAt(0);
+        String vendendor = textVendedor.getText();
+        String vigencia = textVigencia.getText();
+        String garante = textGarante.getText();
+        String dniGarante = textDni.getText();
         String telGarante = textTel.getText();
         boolean estado = true;
+        
          java.sql.Date date1 = java.sql.Date.valueOf(fechaFormateadaFinal);//convierto a sql date
          java.sql.Date date2 = java.sql.Date.valueOf(fechaFormateadaInicio);//convierto a sql date
          SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");// formato a fecha
