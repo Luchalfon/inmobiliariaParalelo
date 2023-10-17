@@ -3,17 +3,22 @@ package vistas;
 import Entidades.Contrato;
 import Entidades.Inquilino;
 import Entidades.Propiedad;
+import accesoADatos.ContratoData;
 import accesoADatos.InquilinoData;
 import accesoADatos.PropiedadData;
 import java.awt.Dimension;
 import java.awt.Toolkit;
-import java.sql.*;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
+
 import java.util.List;
+import java.sql.Date;
+import java.time.LocalDate;
+import javax.swing.JTextField;
+
 
 /**
  *
@@ -54,7 +59,9 @@ public class contratoVista extends javax.swing.JInternalFrame {
     private Contrato contrato1;
     private Date fechainicial;
     private Date fechafinal;
-    private String fechahoy;
+    private String fechahoy,fechaIni,fechaFin;
+    java.sql.Date date1,date2,dateHoy;
+    
 
   
     @SuppressWarnings("unchecked")
@@ -91,6 +98,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
         salir = new javax.swing.JButton();
         jdFecha1 = new com.toedter.calendar.JDateChooser();
         jdFecha2 = new com.toedter.calendar.JDateChooser();
+        fecha1 = new javax.swing.JTextField();
+        fecha2 = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(1080, 630));
 
@@ -185,6 +194,10 @@ public class contratoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jdFecha1.setDateFormatString("yyyy-MM-dd");
+
+        jdFecha2.setDateFormatString("yyyy-MM-dd");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -220,19 +233,23 @@ public class contratoVista extends javax.swing.JInternalFrame {
                                 .addComponent(textMarca))
                             .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jdFecha1, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
                             .addComponent(jdFecha2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(fecha1)
+                            .addComponent(fecha2, javax.swing.GroupLayout.DEFAULT_SIZE, 93, Short.MAX_VALUE))
+                        .addGap(60, 60, 60))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(423, 423, 423)
                 .addComponent(jLabel13)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(25, Short.MAX_VALUE)
                 .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
                 .addComponent(firmar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -261,8 +278,13 @@ public class contratoVista extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(comboPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(comboPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jdFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -297,9 +319,10 @@ public class contratoVista extends javax.swing.JInternalFrame {
                             .addComponent(textMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                        .addComponent(fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(fecha2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firmar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -317,17 +340,20 @@ public class contratoVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         if (jdFecha1.getDate() != null) {
             // Obtener la fecha seleccionada del componente jdFecha y convertirla a Instant
-            Instant instant = jdFecha1.getDate().toInstant();
-
+           Instant instant = jdFecha1.getDate().toInstant();
+          // fechainicial=(Date) jdFecha1.getDate();
+           
             // Convertir Instant a Date utilizando la zona horaria del sistema por defecto
-            fechainicial = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
+            fechainicial = (Date) Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
 
             // Formatear la fecha al formato deseado ("aaaa-MM-dd")
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            fechaFormateadaInicio = sdf.format(fechainicial);
+             fechaFormateadaInicio = sdf.format(fechainicial);
+            
+           // date2 = java.sql.Date.valueOf(fechaFormateadaInicio);
 
             // Establecer el texto del componente jlFecha con la fecha formateada
-            //jlFecha1.setText(fechaFormateada);
+          
         }
 
 
@@ -339,16 +365,18 @@ public class contratoVista extends javax.swing.JInternalFrame {
         if (jdFecha2.getDate() != null) {
             // Obtener la fecha seleccionada del componente jdFecha y convertirla a Instant
             Instant instant = jdFecha2.getDate().toInstant();
-
+            // fechafinal=(Date) jdFecha2.getDate();
             // Convertir Instant a Date utilizando la zona horaria del sistema por defecto
-            fechafinal = Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
+            fechafinal = (Date) Date.from(instant.atZone(ZoneId.systemDefault()).toInstant());
 
             // Formatear la fecha al formato deseado ("aaaa-MM-dd")
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+           SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             fechaFormateadaFinal = sdf.format(fechafinal);
-
+            
             // Establecer el texto del componente jlFecha con la fecha formateada
-            //jlFecha2.setText(fechaFormateada);
+            
+          //java.sql.Date FechaNacimiento = java.sql.Date.valueOf(Fecha);
+           // date1 = java.sql.Date.valueOf(fechaFormateadaFinal);
         }
 
 
@@ -356,8 +384,13 @@ public class contratoVista extends javax.swing.JInternalFrame {
 
     private void firmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firmarActionPerformed
         //aca guardamos firmar contrato
-        fechaHoy = new Date();
-        crearContrato();
+        dateHoy = Date.valueOf(LocalDate.now());
+      fechaIni=((JTextField)jdFecha1.getDateEditor().getUiComponent()).getText();
+      fechaFin=((JTextField)jdFecha2.getDateEditor().getUiComponent()).getText();
+         crearContrato();
+         ContratoData conData=new ContratoData();
+         conData.guardarContrato(contrato1);
+         
         
         
 // TODO add your handling code here:
@@ -410,6 +443,8 @@ this.dispose();
     private javax.swing.JComboBox<Inquilino> comboInquilino;
     private javax.swing.JComboBox<Propiedad> comboPropiedad;
     private javax.swing.JButton eliminar;
+    private javax.swing.JTextField fecha1;
+    private javax.swing.JTextField fecha2;
     private javax.swing.JButton firmar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -463,20 +498,22 @@ this.dispose();
     }
 
     public Contrato crearContrato() {
-
-        char marca = textVendedor.getText().charAt(0);
-        String vendendor = textVigencia.getText();
-        String vigencia = textGarante.getText();
-        String garante = textDni.getText();
-        String dniGarante = textMarca.getText();
+        
+        char marca = textMarca.getText().charAt(0);
+        String vendendor = textVendedor.getText();
+        String vigencia = textVigencia.getText();
+        String garante = textGarante.getText();
+        String dniGarante = textDni.getText();
         String telGarante = textTel.getText();
-        boolean estado = true;
-         java.sql.Date date1 = java.sql.Date.valueOf(fechaFormateadaFinal);//convierto a sql date
-         java.sql.Date date2 = java.sql.Date.valueOf(fechaFormateadaInicio);//convierto a sql date
-         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");// formato a fecha
-         String formattedDate = simpleDateFormat.format(fechaHoy);//paso a String
-         java.sql.Date datehoy = java.sql.Date.valueOf(formattedDate);//convierto a sql date
-        contrato1 = new Contrato(inquilinoSelec, date1, date2, datehoy, marca, propiedadSelec, vendendor, estado, vigencia, garante, dniGarante, telGarante);
+        boolean estado1 = true;
+         //java.sql.Date date1 = java.sql.Date.valueOf(fechaFormateadaFinal);//convierto a sql date
+         //java.sql.Date date2 = java.sql.Date.valueOf(fechaFormateadaInicio);//convierto a sql date
+         //SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");// formato a fecha
+         //String formattedDate = simpleDateFormat.format(fechaHoy);//paso a String
+        // java.sql.Date datehoy = java.sql.Date.valueOf(formattedDate);//convierto a sql date
+        contrato1 = new Contrato(inquilinoSelec,Date.valueOf(fechaFin),Date.valueOf(fechaIni), dateHoy, marca, propiedadSelec, vendendor, estado1, vigencia, garante, dniGarante, telGarante);
+        System.out.println(fechaFin);
+        System.out.println(fechaIni);
         System.out.println(contrato1);
         return contrato1;
     }

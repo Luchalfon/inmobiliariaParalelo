@@ -20,7 +20,7 @@ import javax.swing.JOptionPane;
 public class ContratoData {
 
     private Connection con = null;
-    private ContratoData cd = new ContratoData();
+ 
 
     public ContratoData() {
 
