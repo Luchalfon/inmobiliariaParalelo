@@ -55,7 +55,7 @@ public class consultaVariasPropiedades extends javax.swing.JInternalFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Propiedad"));
         jPanel1.setPreferredSize(new java.awt.Dimension(575, 177));
 
-        comboPropiedad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Local", "Zona", "Superficie Minima", "Precio" }));
+        comboPropiedad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Propiedad", "Zona", "Superficie Minima", "Precio" }));
         comboPropiedad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboPropiedadActionPerformed(evt);
@@ -79,7 +79,7 @@ public class consultaVariasPropiedades extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(98, Short.MAX_VALUE)
+                .addContainerGap(96, Short.MAX_VALUE)
                 .addComponent(comboPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(99, 99, 99))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -94,7 +94,7 @@ public class consultaVariasPropiedades extends javax.swing.JInternalFrame {
                 .addComponent(comboPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(32, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultados"));
