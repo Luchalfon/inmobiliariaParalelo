@@ -454,7 +454,7 @@ this.dispose();
         
         char marca = textMarca.getText().charAt(0);
         String vendendor = textVendedor.getText();
-        String vigencia = textVigencia.getText();
+        boolean vigencia = Boolean.parseBoolean(textVigencia.getText());
         String garante = textGarante.getText();
         String dniGarante = textDni.getText();
         String telGarante = textTel.getText();

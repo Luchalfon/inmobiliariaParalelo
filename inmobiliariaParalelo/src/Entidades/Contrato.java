@@ -14,12 +14,12 @@ public class Contrato {
     private Propiedad propiedad;
     private String vendedor;
     private boolean estado;
-    private String vigencia;
+    private boolean vigencia;
     private String nombreGarante;
     private String dniGarante;
     private String telGarante;
 
-    public Contrato(Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor, boolean estado, String vigencia, String nombreGarante, String dniGarante, String telGarante) {
+    public Contrato(Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor, boolean estado, boolean vigencia, String nombreGarante, String dniGarante, String telGarante) {
         this.inquilino = inquilino;
         this.fecha_Final = fecha_Final;
         this.fecha_Inicio = fecha_Inicio;
@@ -36,7 +36,7 @@ public class Contrato {
 
     
 
-    public Contrato(int id_contrato, Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor,String vigencia,String nombreGarante,String dniGarante,String telGarante) {
+    public Contrato(int id_contrato, Inquilino inquilino, Date fecha_Final, Date fecha_Inicio, Date Fecha_Realizacion, char marca, Propiedad propiedad, String vendedor,boolean vigencia,String nombreGarante,String dniGarante,String telGarante) {
         this.id_contrato = id_contrato;
         this.inquilino = inquilino;
         this.fecha_Final = fecha_Final;
@@ -126,11 +126,11 @@ public class Contrato {
         this.estado = estado;
     }
 
-    public String getVigencia() {
+    public boolean getVigencia() {
         return vigencia;
     }
 
-    public void setVigencia(String vigencia) {
+    public void setVigencia(boolean vigencia) {
         this.vigencia = vigencia;
     }
 

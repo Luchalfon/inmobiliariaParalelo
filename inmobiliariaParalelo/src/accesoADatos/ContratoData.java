@@ -41,7 +41,7 @@ public class ContratoData {
             ps.setString(6, String.valueOf(contrato.getMarca()));
             ps.setString(7, contrato.getVendedor());
             ps.setBoolean(8, contrato.getEstado());
-            ps.setString(9, contrato.getVigencia());
+            ps.setBoolean(9, contrato.getVigencia());
             ps.setString(10, contrato.getNombreGarante());
             ps.setString(11, contrato.getDniGarante());
             ps.setString(12, contrato.getTelGarante());
