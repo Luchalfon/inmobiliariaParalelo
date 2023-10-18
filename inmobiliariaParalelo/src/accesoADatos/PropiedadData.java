@@ -221,7 +221,7 @@ public List<Propiedad> obtenerPropiedadesPorZona(String zona) {
 
         ArrayList<Propiedad> propiedades = new ArrayList<>();
 
-        String sql = "SELECT zona,id_Propiedad,direccion,precioTazado,tipoDeLocal FROM propiedadinmueble WHERE estado=1 AND zona= ?";
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND zona= ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -231,13 +231,12 @@ public List<Propiedad> obtenerPropiedadesPorZona(String zona) {
             {
 
                 Propiedad propiedad = new Propiedad();
-                propiedad.setTipoPropiedad(rs.getString("zona"));
                 propiedad.setId_propiedad(rs.getInt("id_Propiedad"));
+                propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
                 propiedad.setDireccion(rs.getString("direccion"));
                 propiedad.setPrecio(rs.getFloat("precioTazado"));
-                propiedad.setZona(rs.getString("tipoDeLocal"));
-                
-                
+                propiedad.setZona(rs.getString("zona"));
+                propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                
                 propiedades.add(propiedad);
             }
@@ -256,7 +255,7 @@ public List<Propiedad> obtenerPropiedadesPorTipo(String tipo) {
 
         ArrayList<Propiedad> propiedades = new ArrayList<>();
 
-        String sql = "SELECT tipoDeLocal,id_Propiedad,direccion,precioTazado,zona FROM propiedadinmueble WHERE estado=1 AND tipoDeLocal= ?";
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND tipoDeLocal= ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -266,12 +265,12 @@ public List<Propiedad> obtenerPropiedadesPorTipo(String tipo) {
             {
 
                 Propiedad propiedad = new Propiedad();
-                propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
                 propiedad.setId_propiedad(rs.getInt("id_Propiedad"));
+                propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
                 propiedad.setDireccion(rs.getString("direccion"));
                 propiedad.setPrecio(rs.getFloat("precioTazado"));
                 propiedad.setZona(rs.getString("zona"));
-                
+                propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                 
                
                 propiedades.add(propiedad);
@@ -284,6 +283,69 @@ public List<Propiedad> obtenerPropiedadesPorTipo(String tipo) {
         return propiedades;
     }       
 
+public List<Propiedad> obtenerPropiedadesPorSup(int superf) {
+
+        ArrayList<Propiedad> propiedades = new ArrayList<>();
+
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND superficieMinima > ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, superf);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+
+                Propiedad propiedad = new Propiedad();
+                propiedad.setId_propiedad(rs.getInt("id_Propiedad"));
+                propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
+                propiedad.setDireccion(rs.getString("direccion"));
+                propiedad.setPrecio(rs.getFloat("precioTazado"));
+                propiedad.setZona(rs.getString("zona"));
+                propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
+                
+               
+                propiedades.add(propiedad);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al Acceder a la tabla Propiedad");
+        }
+        return propiedades;
+    }       
+
+public List<Propiedad> obtenerPropiedadesPorPrecio(float precio) {
+
+        ArrayList<Propiedad> propiedades = new ArrayList<>();
+
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND precioTazado < ?";
+        
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setFloat(1, precio);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next())
+            {
+
+                Propiedad propiedad = new Propiedad();
+                propiedad.setId_propiedad(rs.getInt("id_Propiedad"));
+                propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
+                propiedad.setDireccion(rs.getString("direccion"));
+                propiedad.setPrecio(rs.getFloat("precioTazado"));
+                propiedad.setZona(rs.getString("zona"));
+                propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
+                
+               
+                propiedades.add(propiedad);
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al Acceder a la tabla Propiedad");
+        }
+        return propiedades;
+    }       
 
 
  

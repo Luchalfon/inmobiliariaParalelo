@@ -12,12 +12,13 @@ import javax.swing.table.DefaultTableModel;
 
 public class consultaVariasPropiedades extends javax.swing.JInternalFrame {
 
-     private DefaultTableModel modelos = new DefaultTableModel();
-     private DefaultTableModel modelo1 = new DefaultTableModel();
-     private DefaultTableModel modelo2 = new DefaultTableModel();
-     private DefaultTableModel modelo3 = new DefaultTableModel();
+     private DefaultTableModel modelo = new DefaultTableModel();
+//     private DefaultTableModel modelo1 = new DefaultTableModel();
+//     private DefaultTableModel modelo2 = new DefaultTableModel();
+//     private DefaultTableModel modelo3 = new DefaultTableModel();
      public consultaVariasPropiedades() {
      initComponents();
+     armarCabecera();
         
           // Obtén las dimensiones de la pantalla
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -199,19 +200,28 @@ seleccion=comboPropiedad.getSelectedIndex();
 switch ( seleccion){
         case 0:
             //hacer un if asi no calga de nuevo el modelo      
-            armarCabeceraTipo();
             tipo= JOptionPane.showInputDialog("Ingrese el Tipo de Propiedad:");
             llenarTablaTipo();
             
            break;
         case 1:
             
-            modelo1.setRowCount(0);
-            armarCabeceraZona();
-            zona=JOptionPane.showInputDialog("Ingrese la Zona de la porpiedad Propiedad deseada: ");
+            modelo.setRowCount(0);
+            zona=JOptionPane.showInputDialog("Ingrese la Zona de la Propiedad deseada: ");
             llenarTablaZona();
    
+            break;
+        case 2:
+            modelo.setRowCount(0);
+            superf=Integer.parseInt(JOptionPane.showInputDialog("Ingrese la superficie minima de la Propiedad deseada: "));
+            llenarTablaSuper();
             
+            break;
+        case 3:
+            modelo.setRowCount(0);
+            precio=Float.parseFloat(JOptionPane.showInputDialog("Ingrese el precio de la Propiedad deseada: "));
+            llenarTablaPrecio(); 
+            break;
     }
 
 
@@ -230,53 +240,22 @@ switch ( seleccion){
     private javax.swing.JTable tablaBusqueda;
     // End of variables declaration//GEN-END:variables
 
-private void armarCabeceraTipo() {
-        modelos.addColumn("Tipo de Inmueble");    
-        modelos.addColumn("Legajo Propiedad");
-        modelos.addColumn("Direccion");
-        modelos.addColumn("Precio");
-         modelos.addColumn("Zona"); 
-        
+private void armarCabecera() {
+           
+        modelo.addColumn("Legajo Propiedad");
+        modelo.addColumn("Tipo de Inmueble");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Precio");
+        modelo.addColumn("Zona"); 
+        modelo.addColumn("Superficie");
 
-        tablaBusqueda.setModel(modelos);
+        tablaBusqueda.setModel(modelo);
     }
-private void armarCabeceraZona() {
-        modelo1.addColumn("Zona");    
-        modelo1.addColumn("Legajo Propiedad");
-        modelo1.addColumn("Direccion");
-        modelo1.addColumn("Precio");
-        modelo1.addColumn("Tipo de Inmueble");  
-        
-
-        tablaBusqueda.setModel(modelo1);
-    }
-private void armarCabeceraSuper() {
-        modelo2.addColumn("Superficie M2");    
-        modelo2.addColumn("Legajo Propiedad");
-        modelo2.addColumn("Direccion");
-        modelo2.addColumn("Precio");
-        modelo2.addColumn("Tipo de Inmueble");  
-        
-
-        tablaBusqueda.setModel(modelo2);
-    }
-
-private void armarCabeceraPrecio() {
-        modelo3.addColumn("Precio");  
-        modelo3.addColumn("Legajo Propiedad");
-        modelo3.addColumn("Direccion");
-        modelo3.addColumn("Superficie M2");   
-        modelo3.addColumn("Tipo de Inmueble");  
-        
-
-        tablaBusqueda.setModel(modelo3);
-    }
-
 
 private void llenarTablaTipo() {
         PropiedadData proData = new PropiedadData();
         for (Propiedad propi : proData.obtenerPropiedadesPorTipo(tipo)) {
-            modelos.addRow(new Object[]{propi.getTipoPropiedad(),propi.getId_propiedad(),propi.getDireccion(),propi.getPrecio(),propi.getTipoPropiedad()});
+            modelo.addRow(new Object[]{propi.getId_propiedad(),propi.getTipoPropiedad(),propi.getDireccion(),propi.getPrecio(),propi.getZona(),propi.getSuperficieMinima()});
 
         }
 
@@ -285,16 +264,16 @@ private void llenarTablaTipo() {
 private void llenarTablaZona() {
         PropiedadData proData = new PropiedadData();
         for (Propiedad propi1 : proData.obtenerPropiedadesPorZona(zona)) {
-            modelo1.addRow(new Object[]{propi1.getZona(),propi1.getId_propiedad(),propi1.getDireccion(),propi1.getPrecio(),propi1.getTipoPropiedad()});
+           modelo.addRow(new Object[]{propi1.getId_propiedad(),propi1.getTipoPropiedad(),propi1.getDireccion(),propi1.getPrecio(),propi1.getZona(),propi1.getSuperficieMinima()});
 
         }
 
     }
-/*
+
 private void llenarTablaSuper() {
         PropiedadData proData = new PropiedadData();
-        for (Propiedad propi : proData.obtenerPropiedadesPorPropietario(idProSelect)) {
-            modelo.addRow(new Object[]{propi.getId_propiedad(),propi.getDireccion(),propi.getPrecio(),propi.getTipoPropiedad()});
+        for (Propiedad propi1 : proData.obtenerPropiedadesPorSup(superf)) {
+            modelo.addRow(new Object[]{propi1.getId_propiedad(),propi1.getTipoPropiedad(),propi1.getDireccion(),propi1.getPrecio(),propi1.getZona(),propi1.getSuperficieMinima()});
 
         }
 
@@ -302,11 +281,11 @@ private void llenarTablaSuper() {
 
 private void llenarTablaPrecio() {
         PropiedadData proData = new PropiedadData();
-        for (Propiedad propi : proData.obtenerPropiedadesPorPropietario(idProSelect)) {
-            modelo.addRow(new Object[]{propi.getId_propiedad(),propi.getDireccion(),propi.getPrecio(),propi.getTipoPropiedad()});
+        for (Propiedad propi1 : proData.obtenerPropiedadesPorPrecio(precio)) {
+            modelo.addRow(new Object[]{propi1.getId_propiedad(),propi1.getTipoPropiedad(),propi1.getDireccion(),propi1.getPrecio(),propi1.getZona(),propi1.getSuperficieMinima()});
 
         }
 
     }
-*/
+
 }
