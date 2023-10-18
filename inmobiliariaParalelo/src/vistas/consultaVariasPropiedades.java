@@ -3,6 +3,8 @@ package vistas;
 
 import Entidades.Propiedad;
 import accesoADatos.PropiedadData;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 import java.sql.Connection;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -11,17 +13,28 @@ import javax.swing.table.DefaultTableModel;
 public class consultaVariasPropiedades extends javax.swing.JInternalFrame {
 
      private DefaultTableModel modelos = new DefaultTableModel();
-      private DefaultTableModel modelo1 = new DefaultTableModel();
-       private DefaultTableModel modelo2 = new DefaultTableModel();
-        private DefaultTableModel modelo3 = new DefaultTableModel();
-    public consultaVariasPropiedades() {
-        initComponents();
+     private DefaultTableModel modelo1 = new DefaultTableModel();
+     private DefaultTableModel modelo2 = new DefaultTableModel();
+     private DefaultTableModel modelo3 = new DefaultTableModel();
+     public consultaVariasPropiedades() {
+     initComponents();
+        
+          // Obtén las dimensiones de la pantalla
+    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+
+    // Calcula el centro de la pantalla
+    int centerX = (int) ((screenSize.getWidth() - getWidth()) / 2);
+    //int centerY = (int) ((screenSize.getHeight() - getHeight()) / 2);
+
+    // Establece la ubicación del internal frame en el centro de la pantalla
+    setLocation(centerX, getY());
     }
-private String tipo;
-private String zona;
-private float precio;
-private int superf;
-private int seleccion;
+     
+    private String tipo;
+    private String zona;
+    private float precio;
+    private int superf;
+    private int seleccion;
 
 
   private Connection con;    
@@ -36,10 +49,10 @@ private int seleccion;
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaBusqueda = new javax.swing.JTable();
         salir = new javax.swing.JButton();
-
-        setTitle("Consulta Varias de Propiedades");
+        jLabel1 = new javax.swing.JLabel();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Propiedad"));
+        jPanel1.setPreferredSize(new java.awt.Dimension(575, 177));
 
         comboPropiedad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tipo de Local", "Zona", "Superficie Minima", "Precio" }));
         comboPropiedad.addActionListener(new java.awt.event.ActionListener() {
@@ -48,7 +61,12 @@ private int seleccion;
             }
         });
 
+        buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/consulta2 - mp.png"))); // NOI18N
         buscar.setText("Buscar");
+        buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscar.setMaximumSize(new java.awt.Dimension(165, 50));
+        buscar.setMinimumSize(new java.awt.Dimension(165, 50));
+        buscar.setPreferredSize(new java.awt.Dimension(165, 50));
         buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buscarActionPerformed(evt);
@@ -60,23 +78,22 @@ private int seleccion;
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(45, 45, 45)
-                        .addComponent(comboPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 313, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(171, 171, 171)
-                        .addComponent(buscar)))
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addContainerGap(98, Short.MAX_VALUE)
+                .addComponent(comboPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(199, 199, 199)
+                .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(14, 14, 14)
                 .addComponent(comboPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
-                .addComponent(buscar)
-                .addGap(24, 24, 24))
+                .addGap(32, 32, 32)
+                .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultados"));
@@ -96,53 +113,64 @@ private int seleccion;
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 649, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 636, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/salir1.png"))); // NOI18N
         salir.setText("Salir");
+        salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        salir.setPreferredSize(new java.awt.Dimension(165, 50));
         salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
             }
         });
 
+        jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setText("CONSULTAS VARIAS - PROPIEDADES");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(175, 175, 175)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(25, 25, 25)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(252, 252, 252)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(salir)
-                .addGap(69, 69, 69))
+                .addGap(0, 187, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(176, 176, 176))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(317, 317, 317))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(452, 452, 452))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(49, 49, 49)
+                .addComponent(jLabel1)
+                .addGap(25, 25, 25)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(salir)
-                .addGap(28, 28, 28))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -194,6 +222,7 @@ switch ( seleccion){
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscar;
     private javax.swing.JComboBox<String> comboPropiedad;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

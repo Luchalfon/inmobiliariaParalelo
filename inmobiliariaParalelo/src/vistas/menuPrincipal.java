@@ -170,7 +170,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem6);
 
+        jMenuItem8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jMenuItem8.setText("consulta Varias propiedades");
+        jMenuItem8.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
         jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem8ActionPerformed(evt);
