@@ -2,6 +2,7 @@
 package vistas;
 
 import Entidades.Propietario;
+import Validaciones.Validaciones;
 import accesoADatos.PropietarioData;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -292,11 +293,23 @@ public class propietarioVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        crearPropietario();
-        System.out.println(propietario1);
-        PropietarioData propieData= new PropietarioData();
-        propieData.guardarPropietario(propietario1);
-        
+    
+        if (!Validaciones.validarEntero(textDNI.getText()) || textDNI.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingreso invalido , el DNI debe ser un numero");
+        } else if (textApe.getText().isEmpty() || !Validaciones.validarNombre(textApe.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Apellido no puede estar vacio y debe ser un nombre");
+        } else if (textNom.getText().isEmpty() || !Validaciones.validarNombre(textNom.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Nombre no puede estar vacio y debe contener solo letras");
+        } else if (textDomi.getText().isEmpty() || !Validaciones.validarDireccion(textDomi.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo direccion no puede estar vacio y debe contener letras y numeros solamente");
+        } else if (textTele.getText().isEmpty() || !Validaciones.validarEntero(textTele.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo telefono no puede estar vacio y debe contener solo numeros");
+        } else {
+            crearPropietario();
+            System.out.println(propietario1);
+            PropietarioData propieData = new PropietarioData();
+            propieData.guardarPropietario(propietario1);
+
     //limpio los textbox
         textId.setText("");
         textApe.setText("");
@@ -312,19 +325,19 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         modificar.setEnabled(false);
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
-       
+        }
        
        
     }//GEN-LAST:event_guardarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         guardar.setEnabled(false);
-        
-String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+
+        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
                 new Object[]{"Buscar por id"}, "seleccion")).toString();
 
         switch (opciones) {
-            
+
             case "Buscar por id":
                 String id = JOptionPane.showInputDialog("Ingrese el id");
 
@@ -346,9 +359,6 @@ String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "B
                 }
                 break;
         }
-
-       
-
 
         // TODO add your handling code here:
     }//GEN-LAST:event_buscarActionPerformed
