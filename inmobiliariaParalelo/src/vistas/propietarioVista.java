@@ -327,23 +327,27 @@ String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "B
             
             case "Buscar por id":
                 String id = JOptionPane.showInputDialog("Ingrese el id");
-              
+
                 int miId = Integer.parseInt(id);
                 PropietarioData pd = new PropietarioData();
+
                 propietario1 = pd.buscarPropietarioPorID(miId);
-                textId.setText(id);
-                textApe.setText(propietario1.getApellido());  //alumno1.getApellido());
-                textDNI.setText(String.valueOf(propietario1.getDni()));
-                textNom.setText(propietario1.getNombre());
-                textDomi.setText(propietario1.getDomicilio());
-                textTele.setText(propietario1.getTelefono());
+                if (propietario1 != null) {
+                    textId.setText(id);
+                    textApe.setText(propietario1.getApellido());  //alumno1.getApellido());
+                    textDNI.setText(String.valueOf(propietario1.getDni()));
+                    textNom.setText(propietario1.getNombre());
+                    textDomi.setText(propietario1.getDomicilio());
+                    textTele.setText(propietario1.getTelefono());
+                    modificar.setEnabled(true);
+                    eliminar.setEnabled(true);
+                    nuevo.setEnabled(true);
+                    guardar.setEnabled(false);
+                }
                 break;
         }
 
-        modificar.setEnabled(true);
-        eliminar.setEnabled(true);
-        nuevo.setEnabled(true);
-        guardar.setEnabled(false);
+       
 
 
         // TODO add your handling code here:
