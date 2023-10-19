@@ -178,6 +178,11 @@ public class contratoVista extends javax.swing.JInternalFrame {
         modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/modificar.png"))); // NOI18N
         modificar.setText("Modificar");
         modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        modificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modificarActionPerformed(evt);
+            }
+        });
 
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/eliminar1.png"))); // NOI18N
         eliminar.setText("Eliminar");
@@ -340,8 +345,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
     private void firmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firmarActionPerformed
         //aca guardamos firmar contrato
         dateHoy = Date.valueOf(LocalDate.now());
-      fechaIni=((JTextField)jdFecha1.getDateEditor().getUiComponent()).getText();
-      fechaFin=((JTextField)jdFecha2.getDateEditor().getUiComponent()).getText();
+        fechaIni=((JTextField)jdFecha1.getDateEditor().getUiComponent()).getText();
+        fechaFin=((JTextField)jdFecha2.getDateEditor().getUiComponent()).getText();
          crearContrato();
          ContratoData conData=new ContratoData();
          conData.guardarContrato(contrato1);
@@ -365,7 +370,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboPropiedadActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-this.dispose();
+    this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_salirActionPerformed
 
@@ -391,6 +396,29 @@ this.dispose();
         
         
     }//GEN-LAST:event_nuevoActionPerformed
+
+    private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
+        // TODO add your handling code here:
+//
+//    Contrato cont =new Contrato();
+//    ContratoData contdata =new ContratoData();
+//    cont.setId_contrato(Integer.parseInt(textId.getText()));
+//    cont.setInquilino(inquilinoSelec); 
+//    cont.setPropiedad(propiedadSelec); 
+//    cont.setFecha_Inicio(Date.valueOf(text)); //ver
+//    cont.setFecha_Final(fechafinal); //ver
+//    cont.setFecha_Realizacion(fechainicial); // ver
+//    cont.setVendedor(textVendedor.getText());
+//    cont.getVigencia(Boolean.parseBoolean(textVigencia.getText()));
+//    cont.getNombreGarante(textGarante.getText());
+//
+
+
+
+
+
+
+    }//GEN-LAST:event_modificarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
