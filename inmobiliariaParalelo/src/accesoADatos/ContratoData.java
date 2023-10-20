@@ -70,20 +70,22 @@ public class ContratoData {
      
       public void modificarContrato(Contrato contrato) {
 
-        String sql = "UPDATE `contratoalquiler` SET `fecha_Final`=?, `fecha_Inicio`=?, `marca`=?, `vendedor`=?, `vigencia`=?, `nombre_garante`=?, `dni_garante`=?, `tel_garante`=? WHERE codContrato=?";
+        String sql = "UPDATE `contratoalquiler` SET id_Inquilino=?, id_Propiedad=?, `fecha_Final`=?, `fecha_Inicio`=?, `marca`=?, `vendedor`=?, `vigencia`=?, `nombre_garante`=?, `dni_garante`=?, `tel_garante`=? WHERE codContrato=?";
         PreparedStatement ps = null;
 
         try {
             ps = con.prepareStatement(sql);
-            ps.setDate(1, contrato.getFecha_Final());
-            ps.setDate(2, contrato.getFecha_Inicio());
-            ps.setString(3, String.valueOf(contrato.getMarca()));
-            ps.setString(4, contrato.getVendedor());
-            ps.setBoolean(5, contrato.getVigencia());
-            ps.setString(6, contrato.getNombreGarante());
-            ps.setString(7, contrato.getDniGarante());
-            ps.setString(8, contrato.getTelGarante());
-            ps.setInt(9,contrato.getId_contrato() );
+            ps.setInt(1,contrato.getInquilino().getId_Inquilino());
+            ps.setInt(2, contrato.getPropiedad().getId_propiedad());
+            ps.setDate(3, contrato.getFecha_Final());
+            ps.setDate(4, contrato.getFecha_Inicio());
+            ps.setString(5, String.valueOf(contrato.getMarca()));
+            ps.setString(6, contrato.getVendedor());
+            ps.setBoolean(7, contrato.getVigencia());
+            ps.setString(8, contrato.getNombreGarante());
+            ps.setString(9, contrato.getDniGarante());
+            ps.setString(10, contrato.getTelGarante());
+            ps.setInt(11,contrato.getId_contrato() );
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
