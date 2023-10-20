@@ -22,32 +22,28 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-
 /**
  *
  * @author ULP
  */
 public class contratoVista extends javax.swing.JInternalFrame {
 
-    
     public contratoVista() {
         initComponents();
         modificar.setEnabled(false);
         firmar.setEnabled(false);
         eliminar.setEnabled(false);
-        
-        
+
         // Obtén las dimensiones de la pantalla
-    Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
-    // Calcula el centro de la pantalla
-    int centerX = (int) ((screenSize.getWidth() - getWidth()) / 2);
-    //int centerY = (int) ((screenSize.getHeight() - getHeight()) / 2);
+        // Calcula el centro de la pantalla
+        int centerX = (int) ((screenSize.getWidth() - getWidth()) / 2);
+        //int centerY = (int) ((screenSize.getHeight() - getHeight()) / 2);
 
-    // Establece la ubicación del internal frame en el centro de la pantalla
-    setLocation(centerX, getY());
-    
-    
+        // Establece la ubicación del internal frame en el centro de la pantalla
+        setLocation(centerX, getY());
+
     }
     private Connection con;
     private Inquilino inquilinoSelec;
@@ -60,17 +56,15 @@ public class contratoVista extends javax.swing.JInternalFrame {
     private Contrato contrato1;
     private Date fechainicial;
     private Date fechafinal;
-    private String fechahoy,fechaIni,fechaFin;
+    private String fechahoy, fechaIni, fechaFin;
     private String fInicial, fFinal;
-    java.sql.Date date1,date2,dateHoy;
-    
-    
+    java.sql.Date date1, date2, dateHoy;
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -102,6 +96,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
         jdFecha1 = new com.toedter.calendar.JDateChooser();
         jdFecha2 = new com.toedter.calendar.JDateChooser();
         textFecha_Realizacion = new javax.swing.JTextField();
+        rbVigente = new javax.swing.JRadioButton();
+        rbNoViegente = new javax.swing.JRadioButton();
 
         setPreferredSize(new java.awt.Dimension(1080, 630));
 
@@ -219,6 +215,12 @@ public class contratoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        buttonGroup1.add(rbVigente);
+        rbVigente.setText("Viegente");
+
+        buttonGroup1.add(rbNoViegente);
+        rbNoViegente.setText("No Vigente");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -256,30 +258,37 @@ public class contratoVista extends javax.swing.JInternalFrame {
                                 .addComponent(comboInquilino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(textMarca))
                             .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jdFecha1, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
                             .addComponent(jdFecha2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(60, 227, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(423, 423, 423)
                 .addComponent(jLabel13)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(25, Short.MAX_VALUE)
-                .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(firmar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(firmar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(36, 36, 36)
+                        .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(838, 838, 838)
+                        .addComponent(rbVigente)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(rbNoViegente)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,7 +330,9 @@ public class contratoVista extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(rbVigente)
+                    .addComponent(rbNoViegente))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -338,7 +349,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firmar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -354,27 +365,25 @@ public class contratoVista extends javax.swing.JInternalFrame {
     // FECHA INICIO
     private void jdFecha1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdFecha1PropertyChange
         // TODO add your handling code here:
-       
 
 
     }//GEN-LAST:event_jdFecha1PropertyChange
 
     // FECHA FINAL
     private void jdFecha2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jdFecha2PropertyChange
-      
+
 
     }//GEN-LAST:event_jdFecha2PropertyChange
 
     private void firmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firmarActionPerformed
         //aca guardamos firmar contrato
         dateHoy = Date.valueOf(LocalDate.now());
-        fechaIni=((JTextField)jdFecha1.getDateEditor().getUiComponent()).getText();
-        fechaFin=((JTextField)jdFecha2.getDateEditor().getUiComponent()).getText();
-         crearContrato();
-         ContratoData conData=new ContratoData();
-         conData.guardarContrato(contrato1);
-         
-         
+        fechaIni = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
+        fechaFin = ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText();
+        crearContrato();
+        ContratoData conData = new ContratoData();
+        conData.guardarContrato(contrato1);
+
         textMarca.setText("");
         textDni.setText("");
         textId.setText("");
@@ -382,17 +391,13 @@ public class contratoVista extends javax.swing.JInternalFrame {
         textTel.setText("");
         textVigencia.setText("");
         textGarante.setText("");
-         
-         
-         
-         
+
         nuevo.setEnabled(true);
         modificar.setEnabled(false);
         firmar.setEnabled(false);
         eliminar.setEnabled(false);
         buscar.setEnabled(true);
-        
-        
+
 // TODO add your handling code here:
     }//GEN-LAST:event_firmarActionPerformed
 
@@ -410,7 +415,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboPropiedadActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
-    this.dispose();
+        this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_salirActionPerformed
 
@@ -430,45 +435,37 @@ public class contratoVista extends javax.swing.JInternalFrame {
         textTel.setText("");
         textVigencia.setText("");
         textGarante.setText("");
-        
-        
-        
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
 
-    Contrato cont =new Contrato();
-    ContratoData contdata =new ContratoData();
-    cont.setId_contrato(Integer.parseInt(textId.getText()));
-    cont.setInquilino(inquilinoSelec); 
-    cont.setPropiedad(propiedadSelec); 
-    
-    
+        Contrato cont = new Contrato();
+        ContratoData contdata = new ContratoData();
+        cont.setId_contrato(Integer.parseInt(textId.getText()));
+        cont.setInquilino(inquilinoSelec);
+        cont.setPropiedad(propiedadSelec);
 
-    //dateHoy = Date.valueOf(LocalDate.now());
-    fInicial=((JTextField)jdFecha1.getDateEditor().getUiComponent()).getText();
-    fFinal=((JTextField)jdFecha2.getDateEditor().getUiComponent()).getText();
-    //cont.setFecha_Realizacion(dateHoy);
-    cont.setFecha_Inicio(Date.valueOf(fInicial));
-    cont.setFecha_Final(Date.valueOf(fFinal));
-    
-    cont.setVendedor(textVendedor.getText());
-    cont.setVigencia(Boolean.parseBoolean(textVigencia.getText()));
-    cont.setNombreGarante(textGarante.getText());
-    cont.setDniGarante(textDni.getText());
-    cont.setTelGarante(textTel.getText());
-    String mar=textMarca.getText();
-    char mark=mar.charAt(0);
-    cont.setMarca(mark);
-    
-    contdata.modificarContrato(cont);
-    
+        //dateHoy = Date.valueOf(LocalDate.now());
+        fInicial = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
+        fFinal = ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText();
+        //cont.setFecha_Realizacion(dateHoy);
+        cont.setFecha_Inicio(Date.valueOf(fInicial));
+        cont.setFecha_Final(Date.valueOf(fFinal));
+
+        cont.setVendedor(textVendedor.getText());
+        cont.setVigencia(Boolean.parseBoolean(textVigencia.getText()));
+        cont.setNombreGarante(textGarante.getText());
+        cont.setDniGarante(textDni.getText());
+        cont.setTelGarante(textTel.getText());
+        String mar = textMarca.getText();
+        char mark = mar.charAt(0);
+        cont.setMarca(mark);
+
+        contdata.modificarContrato(cont);
+
 //        textMarca.setText("");
 //        textDni.setText("");
 //        textId.setText("");
@@ -483,15 +480,12 @@ public class contratoVista extends javax.swing.JInternalFrame {
 //        eliminar.setEnabled(false);
 //        buscar.setEnabled(true);
 
-
     }//GEN-LAST:event_modificarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
-                    
-//       guardar.setEnabled(false);
-       
 
+//       guardar.setEnabled(false);
         String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
                 new Object[]{"Buscar por N° de contrato"}, "seleccion")).toString();
 
@@ -501,7 +495,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                 String id = JOptionPane.showInputDialog("Ingrese el Codigo");
 
                 int miId = Integer.parseInt(id);
-              
+
                 ContratoData contData = new ContratoData();
                 Contrato cont = contData.buscarContratoPorID(miId);
                 llenarComboPropiedad();
@@ -511,27 +505,41 @@ public class contratoVista extends javax.swing.JInternalFrame {
                 int contador = model.getSize();
                 for (int i = 0; i < contador; i++) {
                     Inquilino inqui = model.getElementAt(i);
-                    if (cont.getInquilino().getId_Inquilino()== inqui.getId_Inquilino()){
+                    if (cont.getInquilino().getId_Inquilino() == inqui.getId_Inquilino()) {
                         comboInquilino.setSelectedIndex(i);
                     }
                 }
-                
-                
-                 DefaultComboBoxModel<Propiedad> modelo = (DefaultComboBoxModel<Propiedad>) comboPropiedad.getModel();
+
+                DefaultComboBoxModel<Propiedad> modelo = (DefaultComboBoxModel<Propiedad>) comboPropiedad.getModel();
                 int contador1 = modelo.getSize();
                 for (int i = 0; i < contador1; i++) {
-                    Propiedad propie= modelo.getElementAt(i);
-                    if (cont.getPropiedad().getId_propiedad()== propie.getId_propiedad()){
+                    Propiedad propie = modelo.getElementAt(i);
+                    if (cont.getPropiedad().getId_propiedad() == propie.getId_propiedad()) {
                         comboPropiedad.setSelectedIndex(i);
                     }
                 }
-                
-                
+
                 jdFecha1.setDate(cont.getFecha_Inicio());
                 jdFecha2.setDate(cont.getFecha_Final());
-                       
+                Date fechaactual = new Date(System.currentTimeMillis());
                 textId.setText(id);
                 textVendedor.setText(cont.getVendedor());
+                Date fechaFinalC = (Date) jdFecha2.getDate();
+
+                int milisecondsByDay = 86400000;
+                int dias = (int) ((fechaFinalC.getTime() - fechaactual.getTime()) / milisecondsByDay);
+                String diasS = String.valueOf(dias + " Dias");
+               // textDias.setText(diasS);
+
+                if (dias <= 0) {
+                    rbNoViegente .setSelected(true);
+                    textVigencia.setText("0");
+
+                } else {
+                    rbVigente.setSelected(true);
+                    textVigencia.setText("1");
+
+                }
                 textVigencia.setText(String.valueOf(cont.getVigencia()));
                 textGarante.setText(cont.getNombreGarante());
                 textDni.setText(cont.getDniGarante());
@@ -540,7 +548,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
                 String fechaComoCadena = sdf.format(cont.getFecha_Realizacion());
                 textFecha_Realizacion.setText(fechaComoCadena);
-                
+
                 break;
         }
 
@@ -560,6 +568,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscar;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<Inquilino> comboInquilino;
     private javax.swing.JComboBox<Propiedad> comboPropiedad;
     private javax.swing.JButton eliminar;
@@ -581,6 +590,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser jdFecha2;
     private javax.swing.JButton modificar;
     private javax.swing.JButton nuevo;
+    private javax.swing.JRadioButton rbNoViegente;
+    private javax.swing.JRadioButton rbVigente;
     private javax.swing.JButton salir;
     private javax.swing.JTextField textDni;
     private javax.swing.JTextField textFecha_Realizacion;
@@ -617,7 +628,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
     }
 
     public Contrato crearContrato() {
-        
+
         char marca = textMarca.getText().charAt(0);
         String vendendor = textVendedor.getText();
         boolean vigencia = Boolean.parseBoolean(textVigencia.getText());
@@ -625,12 +636,11 @@ public class contratoVista extends javax.swing.JInternalFrame {
         String dniGarante = textDni.getText();
         String telGarante = textTel.getText();
         boolean estado1 = true;
-        contrato1 = new Contrato(inquilinoSelec,Date.valueOf(fechaFin),Date.valueOf(fechaIni), dateHoy, marca, propiedadSelec, vendendor, estado1, vigencia, garante, dniGarante, telGarante);
+        contrato1 = new Contrato(inquilinoSelec, Date.valueOf(fechaFin), Date.valueOf(fechaIni), dateHoy, marca, propiedadSelec, vendendor, estado1, vigencia, garante, dniGarante, telGarante);
         System.out.println(fechaFin);
         System.out.println(fechaIni);
         System.out.println(contrato1);
         return contrato1;
     }
-    
-    
+
 }
