@@ -6,6 +6,7 @@ import Entidades.Propiedad;
 import accesoADatos.ContratoData;
 import accesoADatos.InquilinoData;
 import accesoADatos.PropiedadData;
+import com.toedter.calendar.JDateChooser;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -17,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 import java.time.LocalDate;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 
@@ -60,7 +62,9 @@ public class contratoVista extends javax.swing.JInternalFrame {
     private Date fechainicial;
     private Date fechafinal;
     private String fechahoy,fechaIni,fechaFin;
+    private String fInicial, fFinal;
     java.sql.Date date1,date2,dateHoy;
+    
     
 
   
@@ -155,6 +159,11 @@ public class contratoVista extends javax.swing.JInternalFrame {
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/buscar.png"))); // NOI18N
         buscar.setText("Buscar");
         buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        buscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buscarActionPerformed(evt);
+            }
+        });
 
         nuevo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/nuevo1.png"))); // NOI18N
@@ -405,20 +414,75 @@ public class contratoVista extends javax.swing.JInternalFrame {
 //    cont.setId_contrato(Integer.parseInt(textId.getText()));
 //    cont.setInquilino(inquilinoSelec); 
 //    cont.setPropiedad(propiedadSelec); 
-//    cont.setFecha_Inicio(Date.valueOf(text)); //ver
-//    cont.setFecha_Final(fechafinal); //ver
-//    cont.setFecha_Realizacion(fechainicial); // ver
+//    
+//        dateHoy = Date.valueOf(LocalDate.now());
+//        fInicial=((JTextField)jdFecha1.getDateEditor().getUiComponent()).getText();
+//        fFinal=((JTextField)jdFecha2.getDateEditor().getUiComponent()).getText();
+//    
 //    cont.setVendedor(textVendedor.getText());
-//    cont.getVigencia(Boolean.parseBoolean(textVigencia.getText()));
-//    cont.getNombreGarante(textGarante.getText());
-//
-
-
-
-
+//    cont.setVigencia(Boolean.parseBoolean(textVigencia.getText()));
+//    cont.setNombreGarante(textGarante.getText());
+//    cont.setDniGarante(textDni.getText());
+//    cont.setTelGarante(textTel.getText());
+//    String mar=textMarca.getText();
+//    char mark=mar.charAt(0);
+//    cont.setMarca(mark);
+//    
+//    contdata.modificarContrato(cont);
+//    
+//        textMarca.setText("");
+//        textDni.setText("");
+//        textId.setText("");
+//        textVendedor.setText("");
+//        textTel.setText("");
+//        textVigencia.setText("");
+//        textGarante.setText("");
+//    
+//        nuevo.setEnabled(true);
+//        modificar.setEnabled(false);
+//        firmar.setEnabled(false);
+//        eliminar.setEnabled(false);
+//        buscar.setEnabled(true);
 
 
     }//GEN-LAST:event_modificarActionPerformed
+
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        // TODO add your handling code here:
+                    
+//        firmar.setEnabled(false);
+//
+//        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+//                new Object[]{"Buscar por id"}, "seleccion")).toString();
+//
+//        switch (opciones) {
+//
+//            case "Buscar por id":
+//                String id = JOptionPane.showInputDialog("Ingrese el id");
+//
+//                int miId = Integer.parseInt(id);
+//                ContratooData contData = new ContratoData();
+//                inquilino1 = pd.buscarInquilinoPorID(miId);
+//                textId.setText(id);
+//                textApe.setText(inquilino1.getApellido());
+//                textNom.setText(inquilino1.getNombre()); //alumno1.getApellido());
+//                textDni.setText(String.valueOf(inquilino1.getDni()));
+//                textDetalle.setText(String.valueOf(inquilino1.getDetalle()));
+//                textTipo.setText(String.valueOf(inquilino1.getTipo()));
+//                textCuit.setText(inquilino1.getCuit());
+//                textTel.setText(inquilino1.getTelefono());
+//                break;
+//        }
+//
+//        modificar.setEnabled(true);
+//        eliminar.setEnabled(true);
+//        nuevo.setEnabled(true);
+//        guardar.setEnabled(false);
+//        
+//        
+//        
+//        
+    }//GEN-LAST:event_buscarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
