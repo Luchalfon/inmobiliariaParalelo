@@ -22,8 +22,8 @@ import javax.swing.JOptionPane;
 public class ContratoData {
 
     private Connection con = null;
-    private InquilinoData idata; 
-    private PropiedadData propiedata;
+    private InquilinoData idata=new InquilinoData(); 
+    private PropiedadData propiedata=new PropiedadData();
 
     public ContratoData() {
 
@@ -70,7 +70,7 @@ public class ContratoData {
      
       public void modificarContrato(Contrato contrato) {
 
-        String sql = "UPDATE `contratoalquiler` SET `fecha_Final`=?, `fecha_Inicio`=?, `marca`=?, `vendedor`=?, `vigencia`=?, `nombre_garante`=?, `dni_garante`=?, `tel_garante`=?";
+        String sql = "UPDATE `contratoalquiler` SET `fecha_Final`=?, `fecha_Inicio`=?, `marca`=?, `vendedor`=?, `vigencia`=?, `nombre_garante`=?, `dni_garante`=?, `tel_garante`=? WHERE codContrato=?";
         PreparedStatement ps = null;
 
         try {
@@ -83,6 +83,7 @@ public class ContratoData {
             ps.setString(6, contrato.getNombreGarante());
             ps.setString(7, contrato.getDniGarante());
             ps.setString(8, contrato.getTelGarante());
+            ps.setInt(9,contrato.getId_contrato() );
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
@@ -98,7 +99,7 @@ public class ContratoData {
 
        public Contrato buscarContratoPorID(int id) {
         Contrato contrato = null;
-        String sql = "SELECT `codContrato`, `id_Inquilino`, `id_Propiedad`, `fecha_Final`, `fecha_Inicio`, `fechaRealizacion`, `marca`, `vendedor`, `estado`, `vigencia`, `nombre_garante`, `dni_garante`, `tel_garante` FROM contratoalquiler WHERE codContrato = ? AND estado = 1";
+        String sql = "SELECT id_Inquilino,id_Propiedad,fecha_Final, fecha_Inicio,fechaRealizacion,marca,vendedor,estado,vigencia,nombre_garante,dni_garante,tel_garante FROM contratoalquiler WHERE codContrato =? AND estado = 1";
         PreparedStatement ps = null;
         try {
             ps = con.prepareStatement(sql);
@@ -108,10 +109,17 @@ public class ContratoData {
             if (rs.next()) {
                 contrato = new Contrato();
                 contrato.setId_contrato(id);
-                Inquilino inqui= idata.buscarInquilinoPorID(rs.getInt("id_Inquilino"));
-                contrato.setInquilino(inqui);
-                Propiedad propie= propiedata.buscarPropiedadPorID(rs.getInt("id_Propiedad"));
-                contrato.setPropiedad(propie);
+                
+                int inqId=rs.getInt("id_Inquilino");
+                
+                Inquilino inquilino= idata.buscarInquilinoPorID(inqId);
+                contrato.setInquilino(inquilino);
+                
+                int proId=rs.getInt("id_Propiedad");
+                
+                Propiedad propiedad= propiedata.buscarPropiedadPorID(proId);
+                contrato.setPropiedad(propiedad);
+                
                 contrato.setFecha_Final(rs.getDate("fecha_Final"));
                 contrato.setFecha_Inicio(rs.getDate("fecha_Inicio"));
                 contrato.setFecha_Realizacion(rs.getDate("fechaRealizacion"));

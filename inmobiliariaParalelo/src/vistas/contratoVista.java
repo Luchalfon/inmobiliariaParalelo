@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.sql.Date;
 import java.time.LocalDate;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
@@ -408,28 +409,33 @@ public class contratoVista extends javax.swing.JInternalFrame {
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
         // TODO add your handling code here:
-//
-//    Contrato cont =new Contrato();
-//    ContratoData contdata =new ContratoData();
-//    cont.setId_contrato(Integer.parseInt(textId.getText()));
-//    cont.setInquilino(inquilinoSelec); 
-//    cont.setPropiedad(propiedadSelec); 
-//    
-//        dateHoy = Date.valueOf(LocalDate.now());
-//        fInicial=((JTextField)jdFecha1.getDateEditor().getUiComponent()).getText();
-//        fFinal=((JTextField)jdFecha2.getDateEditor().getUiComponent()).getText();
-//    
-//    cont.setVendedor(textVendedor.getText());
-//    cont.setVigencia(Boolean.parseBoolean(textVigencia.getText()));
-//    cont.setNombreGarante(textGarante.getText());
-//    cont.setDniGarante(textDni.getText());
-//    cont.setTelGarante(textTel.getText());
-//    String mar=textMarca.getText();
-//    char mark=mar.charAt(0);
-//    cont.setMarca(mark);
-//    
-//    contdata.modificarContrato(cont);
-//    
+
+    Contrato cont =new Contrato();
+    ContratoData contdata =new ContratoData();
+    cont.setId_contrato(Integer.parseInt(textId.getText()));
+    cont.setInquilino(inquilinoSelec); 
+    cont.setPropiedad(propiedadSelec); 
+    
+    
+
+    dateHoy = Date.valueOf(LocalDate.now());
+    fInicial=((JTextField)jdFecha1.getDateEditor().getUiComponent()).getText();
+    fFinal=((JTextField)jdFecha2.getDateEditor().getUiComponent()).getText();
+    cont.setFecha_Realizacion(dateHoy);
+    cont.setFecha_Inicio(Date.valueOf(fInicial));
+    cont.setFecha_Final(Date.valueOf(fFinal));
+    
+    cont.setVendedor(textVendedor.getText());
+    cont.setVigencia(Boolean.parseBoolean(textVigencia.getText()));
+    cont.setNombreGarante(textGarante.getText());
+    cont.setDniGarante(textDni.getText());
+    cont.setTelGarante(textTel.getText());
+    String mar=textMarca.getText();
+    char mark=mar.charAt(0);
+    cont.setMarca(mark);
+    
+    contdata.modificarContrato(cont);
+    
 //        textMarca.setText("");
 //        textDni.setText("");
 //        textId.setText("");
@@ -450,35 +456,63 @@ public class contratoVista extends javax.swing.JInternalFrame {
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
                     
-//        firmar.setEnabled(false);
-//
-//        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
-//                new Object[]{"Buscar por id"}, "seleccion")).toString();
-//
-//        switch (opciones) {
-//
-//            case "Buscar por id":
-//                String id = JOptionPane.showInputDialog("Ingrese el id");
-//
-//                int miId = Integer.parseInt(id);
-//                ContratooData contData = new ContratoData();
-//                inquilino1 = pd.buscarInquilinoPorID(miId);
-//                textId.setText(id);
-//                textApe.setText(inquilino1.getApellido());
-//                textNom.setText(inquilino1.getNombre()); //alumno1.getApellido());
-//                textDni.setText(String.valueOf(inquilino1.getDni()));
-//                textDetalle.setText(String.valueOf(inquilino1.getDetalle()));
-//                textTipo.setText(String.valueOf(inquilino1.getTipo()));
-//                textCuit.setText(inquilino1.getCuit());
-//                textTel.setText(inquilino1.getTelefono());
-//                break;
-//        }
-//
-//        modificar.setEnabled(true);
-//        eliminar.setEnabled(true);
-//        nuevo.setEnabled(true);
-//        guardar.setEnabled(false);
-//        
+//       guardar.setEnabled(false);
+
+        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+                new Object[]{"Buscar por N° de contrato"}, "seleccion")).toString();
+
+        switch (opciones) {
+
+            case "Buscar por N° de contrato":
+                String id = JOptionPane.showInputDialog("Ingrese el Codigo");
+
+                int miId = Integer.parseInt(id);
+              
+                ContratoData contData = new ContratoData();
+                Contrato cont = contData.buscarContratoPorID(miId);
+                
+                //comparamos el inquilino de la base y lo seteamos en el comboBox
+                DefaultComboBoxModel<Inquilino> model = (DefaultComboBoxModel<Inquilino>) comboInquilino.getModel();
+                int contador = model.getSize();
+                for (int i = 0; i < contador; i++) {
+                    Inquilino inqui = model.getElementAt(i);
+                    if (cont.getInquilino().getId_Inquilino()== inqui.getId_Inquilino()){
+                        comboInquilino.setSelectedIndex(i);
+                    }
+                }
+                
+                
+                 DefaultComboBoxModel<Propiedad> modelo = (DefaultComboBoxModel<Propiedad>) comboPropiedad.getModel();
+                int contador1 = modelo.getSize();
+                for (int i = 0; i < contador1; i++) {
+                    Propiedad propie= modelo.getElementAt(i);
+                    if (cont.getPropiedad().getId_propiedad()== propie.getId_propiedad()){
+                        comboPropiedad.setSelectedIndex(i);
+                    }
+                }
+                
+                
+                jdFecha1.setDate(cont.getFecha_Inicio());
+                jdFecha2.setDate(cont.getFecha_Final());
+                       
+                textId.setText(id);
+                textVendedor.setText(cont.getVendedor());
+                textVigencia.setText(String.valueOf(cont.getVigencia()));
+                textGarante.setText(cont.getNombreGarante());
+                textDni.setText(cont.getDniGarante());
+                textTel.setText(cont.getTelGarante());
+                textMarca.setText(String.valueOf(cont.getMarca()));
+                
+                
+                
+
+                break;
+        }
+
+        modificar.setEnabled(true);
+        eliminar.setEnabled(true);
+        nuevo.setEnabled(true);
+        firmar.setEnabled(false);
 //        
 //        
 //        
