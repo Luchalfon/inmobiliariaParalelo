@@ -541,9 +541,15 @@ public class contratoVista extends javax.swing.JInternalFrame {
                     }
                 }
 
+                
+                
                 jdFecha1.setDate(cont.getFecha_Inicio());
-                jdFecha2.setDate(cont.getFecha_Final());
-                Date fechaactual = new Date(System.currentTimeMillis());
+               jdFecha2.setDate(cont.getFecha_Final());
+             //   Date fechaactual = new Date(System.currentTimeMillis());
+                
+                //aca escribir calculo
+               
+                
                 textId.setText(id);
                 textVendedor.setText(cont.getVendedor());
                 
