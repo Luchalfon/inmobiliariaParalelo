@@ -4,12 +4,14 @@ package Validaciones;
 public class Validaciones {
 
     public static boolean validarEntero(String ingreso){
+        boolean esNumero=false;
         try {
-            int x = Integer.parseInt(ingreso);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
+            esNumero  = ingreso.matches("^[0-9]+$");
+        } catch (NullPointerException e) {
+            
+            System.out.println(e.getMessage());
         }
+        return esNumero;
     }
     
     public static boolean validarDouble(String ingreso){
