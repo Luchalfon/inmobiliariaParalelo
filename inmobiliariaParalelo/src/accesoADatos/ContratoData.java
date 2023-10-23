@@ -148,4 +148,26 @@ public class ContratoData {
         return contrato;
         
 }
+        public void modificarContratoVigencia(Contrato contrato) {
+
+        String sql = "UPDATE `contratoalquiler` SET `vigencia`=? WHERE codContrato=?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setBoolean(1, contrato.getVigencia());
+            ps.setInt(2,contrato.getId_contrato() );
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                System.out.println("Vigencia modificada");
+            } else {
+                System.out.println("No exite contrato");
+            }
+
+        } catch (SQLException ex) {
+            System.out.println("Erro al acceder al contrato");
+        }
+}
+
 }

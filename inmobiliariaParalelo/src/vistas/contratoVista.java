@@ -558,7 +558,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                 textFecha_Realizacion.setText(fechaComoCadena);
                 
                 int milisecondsByDay = 86400000;
-                int dias = (int) ((fechaFinal.getTime()-fechaactual.getTime()) / milisecondsByDay);
+                int dias = (int) (((fechaFinal.getTime()-fechaactual.getTime()) / milisecondsByDay)+1);
                 String diasS=String.valueOf(dias+" Dias");
                 textDias.setText(diasS);
 
@@ -566,9 +566,40 @@ public class contratoVista extends javax.swing.JInternalFrame {
                 vigenciaNo.setSelected(true);
                 textVigencia.setText("False");
                 JOptionPane.showMessageDialog(null, "Su contrato quedo sin vigencia", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
+//                crearContrato();
+//                ContratoData contraData = new ContratoData();
+//                contraData.modificarContratoVigencia(contrato1);
+
+        Contrato contra = new Contrato();
+        ContratoData contradata = new ContratoData();
+        contra.setId_contrato(Integer.parseInt(textId.getText()));
+        contra.setInquilino(inquilinoSelec);
+        contra.setPropiedad(propiedadSelec);
+
+        fInicial = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
+        fFinal = ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText();
+        contra.setFecha_Inicio(Date.valueOf(fInicial));
+        contra.setFecha_Final(Date.valueOf(fFinal));
+
+        contra.setVendedor(textVendedor.getText());
+        contra.setVigencia(Boolean.parseBoolean(textVigencia.getText()));
+        contra.setNombreGarante(textGarante.getText());
+        contra.setDniGarante(textDni.getText());
+        contra.setTelGarante(textTel.getText());
+        String mar = textMarca.getText();
+        char mark = mar.charAt(0);
+        contra.setMarca(mark);
+        contradata.modificarContrato(contra);
+
+
+
+
+
+
                 }else{
                 vigenciaSi.setSelected(true);
                 textVigencia.setText("True");
+                
               
                 // if cant dias <=7
                 // JOptionPane ------> comunique al inquilino y al propietario que el contrato esta pronto a vencer
@@ -674,20 +705,5 @@ public class contratoVista extends javax.swing.JInternalFrame {
         System.out.println(contrato1);
         return contrato1;
     }
-
-     public Contrato renovarContrato() {
-
-        char marca = textMarca.getText().charAt(0);
-        String vendendor = textVendedor.getText();
-        boolean vigencia = Boolean.parseBoolean(textVigencia.getText());
-        String garante = textGarante.getText();
-        String dniGarante = textDni.getText();
-        String telGarante = textTel.getText();
-        boolean estado1 = true;
-        contrato1 = new Contrato(inquilinoSelec, Date.valueOf(fechaFin), Date.valueOf(fechaIni), dateHoy, marca, propiedadSelec, vendendor, estado1, vigencia, garante, dniGarante, telGarante);
-        System.out.println(fechaFin);
-        System.out.println(fechaIni);
-        System.out.println(contrato1);
-        return contrato1;
-    }
+    
 }
