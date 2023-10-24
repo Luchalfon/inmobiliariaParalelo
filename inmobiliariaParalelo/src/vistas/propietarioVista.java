@@ -19,26 +19,21 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         modificar.setEnabled(false);
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
-        
-                  // Obtén las dimensiones de la pantalla
+        bloquearCampos();
+                
+    // Obtén las dimensiones de la pantalla
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
     // Calcula el centro de la pantalla
     int centerX = (int) ((screenSize.getWidth() - getWidth()) / 2);
-    //int centerY = (int) ((screenSize.getHeight() - getHeight()) / 2);
+    int centerY = (int) ((screenSize.getHeight() - getHeight()) / 2);
 
     // Establece la ubicación del internal frame en el centro de la pantalla
-    setLocation(centerX, getY());
-    
-        
-        
-        
-        
+    setLocation(centerX, centerY);
+      
     }
         private Connection con;
         Propietario propietario1;
-        
-         
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -204,40 +199,42 @@ public class propietarioVista extends javax.swing.JInternalFrame {
                             .addComponent(textDNI)
                             .addComponent(textApe)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(396, 396, 396)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(16, 16, 16)
-                        .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(33, 33, 33)
-                        .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
-                        .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(29, 29, 29)
-                        .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(16, Short.MAX_VALUE))
+                        .addGap(395, 395, 395)
+                        .addComponent(jLabel1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
+                .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(jLabel1)
-                .addGap(39, 39, 39)
+                .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textDNI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addGap(18, 18, 18)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textApe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3))
-                .addGap(32, 32, 32)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
@@ -257,7 +254,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
                     .addComponent(eliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
 
         pack();
@@ -272,15 +269,11 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         modificar.setEnabled(false);
         eliminar.setEnabled(false);
         guardar.setEnabled(true);
-        //textId.setText("");
-        //textApe.setText("");
-        //textDomi.setText("");
-        //textDNI.setText("");
-        //textNom.setText("");
-        //textTele.setText("");
-        textDNI.requestFocus();
+        nuevo.setEnabled(false);
         limpiarTextos();
-
+        habilitarCampos();
+        textDNI.requestFocus();
+        
 
         // TODO add your handling code here:
     }//GEN-LAST:event_nuevoActionPerformed
@@ -310,14 +303,8 @@ public class propietarioVista extends javax.swing.JInternalFrame {
             PropietarioData propieData = new PropietarioData();
             propieData.guardarPropietario(propietario1);
 
-            //limpio los textbox
-            //   textId.setText("");
-            //   textApe.setText("");
-            //   textDomi.setText("");
-            //   textDNI.setText("");
-            //   textNom.setText("");
-            //   textTele.setText("");
             limpiarTextos();
+            bloquearCampos();
 
             //habilitacion de botones
             buscar.setEnabled(true);
@@ -333,13 +320,13 @@ public class propietarioVista extends javax.swing.JInternalFrame {
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         guardar.setEnabled(false);
         try {
-            String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
-                    new Object[]{"Buscar por id"}, "seleccion")).toString();
+            String opciones = (JOptionPane.showInputDialog(null, "Seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+                    new Object[]{"Buscar por Id"}, "seleccion")).toString();
 
             switch (opciones) {
 
-                case "Buscar por id":
-                    String id = JOptionPane.showInputDialog("Ingrese el id");
+                case "Buscar por Id":
+                    String id = JOptionPane.showInputDialog("Ingrese el Id");
 
                     int miId = Integer.parseInt(id);
                     PropietarioData pd = new PropietarioData();
@@ -347,11 +334,12 @@ public class propietarioVista extends javax.swing.JInternalFrame {
                     propietario1 = pd.buscarPropietarioPorID(miId);
                     if (propietario1 != null) {
                         textId.setText(id);
-                        textApe.setText(propietario1.getApellido());  //alumno1.getApellido());
+                        textApe.setText(propietario1.getApellido());  
                         textDNI.setText(String.valueOf(propietario1.getDni()));
                         textNom.setText(propietario1.getNombre());
                         textDomi.setText(propietario1.getDomicilio());
                         textTele.setText(propietario1.getTelefono());
+                        habilitarCampos();
                         modificar.setEnabled(true);
                         eliminar.setEnabled(true);
                         nuevo.setEnabled(true);
@@ -393,17 +381,13 @@ public class propietarioVista extends javax.swing.JInternalFrame {
 
             pd.modificarPropietario(p1);
 
-            //textId.setText("");
-            //textApe.setText("");
-            //textDomi.setText("");
-            //textDNI.setText("");
-            //textNom.setText("");
-            //textTele.setText(""); 
             limpiarTextos();
+            bloquearCampos();
             nuevo.setEnabled(true);
             modificar.setEnabled(false);
             guardar.setEnabled(false);
             eliminar.setEnabled(false);
+            buscar.setEnabled(true);
         }
 
     }//GEN-LAST:event_modificarActionPerformed
@@ -414,18 +398,13 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         PropietarioData pd=new PropietarioData();
         pd.eliminarPropietario(idBorrar);
         
-       // textId.setText("");
-       // textApe.setText("");
-       // textDomi.setText("");
-       // textDNI.setText("");
-        //textNom.setText("");
-        //textTele.setText("");    
         limpiarTextos();
+        bloquearCampos();
         nuevo.setEnabled(true);
         modificar.setEnabled(false);
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
-
+        buscar.setEnabled(true);
 
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarActionPerformed
@@ -474,6 +453,22 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         textDNI.setText("");
         textNom.setText("");
         textTele.setText("");   
+    }
+    private void bloquearCampos(){
+        textId.setEnabled(false);
+        textApe.setEnabled(false);
+        textDomi.setEnabled(false);
+        textDNI.setEnabled(false);
+        textNom.setEnabled(false);
+        textTele.setEnabled(false);
+    }
+
+    private void habilitarCampos(){
+        textApe.setEnabled(true);
+        textDomi.setEnabled(true);
+        textDNI.setEnabled(true);
+        textNom.setEnabled(true);
+        textTele.setEnabled(true);
     }
 
 }
