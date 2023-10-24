@@ -2,6 +2,7 @@
 package vistas;
 
 import Entidades.Inquilino;
+import Validaciones.Validaciones;
 import accesoADatos.InquilinoData;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -293,27 +294,41 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_textIdActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-        // TODO add your handling code here:
-        crearInquilino();
-        System.out.println("Inquilino creado");
-        InquilinoData idata = new InquilinoData();
-        idata.guardarInquilino(inquilino1);
-        
-        textId.setText("");
-        textApe.setText("");
-        textNom.setText("");
-        textDni.setText("");
-        textDetalle.setText("");
-        textTipo.setText("");
-        textCuit.setText("");
-        textTel.setText("");
-        
-        modificar.setEnabled(false);
-        eliminar.setEnabled(false);
-        guardar.setEnabled(false);
-        buscar.setEnabled(true);
-             
-        
+        if (textApe.getText().isEmpty() || !Validaciones.validarNombre(textApe.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Apellido no puede estar vacio y debe contener un Apellido");
+        } else if (textNom.getText().isEmpty() || !Validaciones.validarNombre(textNom.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Nombre no puede estar vacio y debe tener un nombre");
+        } else if (textDni.getText().isEmpty() || !Validaciones.validarEntero(textDni.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo DNI no puede estar vacio y debe contener numeros");
+        } else if (textDetalle.getText().isEmpty() || !Validaciones.validarChar(textDetalle.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo detalle no puede estar vacio y debe ser un caracter");
+        } else if (textTipo.getText().isEmpty() || !Validaciones.validarChar(textTipo.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Tipo no puede estar vacio y debe ser un caracter");
+        } else if (textCuit.getText().isEmpty() || !Validaciones.validarSoloNumeros(textCuit.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Cuit no puede estar vacio y debe ser solo numeros");
+        } else if (textTel.getText().isEmpty() || !Validaciones.validarSoloNumeros(textTel.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Tlefono no puede estar vacio y debe ser solo numeros");
+        } else {
+            crearInquilino();
+            System.out.println("Inquilino creado");
+            InquilinoData idata = new InquilinoData();
+            idata.guardarInquilino(inquilino1);
+
+            textId.setText("");
+            textApe.setText("");
+            textNom.setText("");
+            textDni.setText("");
+            textDetalle.setText("");
+            textTipo.setText("");
+            textCuit.setText("");
+            textTel.setText("");
+
+            modificar.setEnabled(false);
+            eliminar.setEnabled(false);
+            guardar.setEnabled(false);
+            buscar.setEnabled(true);
+        }
+
     }//GEN-LAST:event_guardarActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
@@ -337,34 +352,39 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         guardar.setEnabled(false);
+        try {
+            String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+                    new Object[]{"Buscar por id"}, "seleccion")).toString();
 
-        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
-                new Object[]{"Buscar por id"}, "seleccion")).toString();
+            switch (opciones) {
 
-        switch (opciones) {
+                case "Buscar por id":
+                    String id = JOptionPane.showInputDialog("Ingrese el id");
 
-            case "Buscar por id":
-                String id = JOptionPane.showInputDialog("Ingrese el id");
+                    int miId = Integer.parseInt(id);
+                    InquilinoData pd = new InquilinoData();
+                    inquilino1 = pd.buscarInquilinoPorID(miId);
+                    textId.setText(id);
+                    textApe.setText(inquilino1.getApellido());
+                    textNom.setText(inquilino1.getNombre()); //alumno1.getApellido());
+                    textDni.setText(String.valueOf(inquilino1.getDni()));
+                    textDetalle.setText(String.valueOf(inquilino1.getDetalle()));
+                    textTipo.setText(String.valueOf(inquilino1.getTipo()));
+                    textCuit.setText(inquilino1.getCuit());
+                    textTel.setText(inquilino1.getTelefono());
+                    break;
+            }
 
-                int miId = Integer.parseInt(id);
-                InquilinoData pd = new InquilinoData();
-                inquilino1 = pd.buscarInquilinoPorID(miId);
-                textId.setText(id);
-                textApe.setText(inquilino1.getApellido());
-                textNom.setText(inquilino1.getNombre()); //alumno1.getApellido());
-                textDni.setText(String.valueOf(inquilino1.getDni()));
-                textDetalle.setText(String.valueOf(inquilino1.getDetalle()));
-                textTipo.setText(String.valueOf(inquilino1.getTipo()));
-                textCuit.setText(inquilino1.getCuit());
-                textTel.setText(inquilino1.getTelefono());
-                break;
+            modificar.setEnabled(true);
+            eliminar.setEnabled(true);
+            nuevo.setEnabled(true);
+            guardar.setEnabled(false);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "No se selecciono");
+        } catch (NumberFormatException e1) {
+            JOptionPane.showMessageDialog(this, "No ingreso un ID");
         }
 
-        modificar.setEnabled(true);
-        eliminar.setEnabled(true);
-        nuevo.setEnabled(true);
-        guardar.setEnabled(false);
-        // TODO add your handling code here:
     }//GEN-LAST:event_buscarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
@@ -399,7 +419,7 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         modificar.setEnabled(false);
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
-// TODO add your handling code here:
+
     }//GEN-LAST:event_modificarActionPerformed
 
 
