@@ -374,6 +374,8 @@ public class propiedadVista extends javax.swing.JInternalFrame {
                     break;
             }
 
+            habilitarCampos();
+            llenarCombo();
             modificar.setEnabled(true);
             eliminar.setEnabled(true);
             nuevo.setEnabled(true);
@@ -421,11 +423,12 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             pd.modificarPropiedad(propie1);
 
             limpiarTextos();
-
+            bloquearCampos();
             nuevo.setEnabled(true);
             modificar.setEnabled(false);
             guardar.setEnabled(false);
             eliminar.setEnabled(false);
+            buscar.setEnabled(true);
         }
     }//GEN-LAST:event_modificarActionPerformed
 
@@ -435,10 +438,12 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         PropiedadData pd = new PropiedadData();
         pd.eliminarPropiedad(idBorrar);
         limpiarTextos();
+        bloquearCampos();
         nuevo.setEnabled(true);
         modificar.setEnabled(false);
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
+        buscar.setEnabled(true);
     }//GEN-LAST:event_eliminarActionPerformed
 
 
