@@ -293,7 +293,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_salirActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-    
+
         if (!Validaciones.validarEntero(textDNI.getText()) || textDNI.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingreso invalido , el DNI debe ser un numero");
         } else if (textApe.getText().isEmpty() || !Validaciones.validarNombre(textApe.getText())) {
@@ -310,63 +310,68 @@ public class propietarioVista extends javax.swing.JInternalFrame {
             PropietarioData propieData = new PropietarioData();
             propieData.guardarPropietario(propietario1);
 
-    //limpio los textbox
-        textId.setText("");
-        textApe.setText("");
-        textDomi.setText("");
-        textDNI.setText("");
-        textNom.setText("");
-        textTele.setText("");
-       
+            //limpio los textbox
+            //   textId.setText("");
+            //   textApe.setText("");
+            //   textDomi.setText("");
+            //   textDNI.setText("");
+            //   textNom.setText("");
+            //   textTele.setText("");
+            limpiarTextos();
 
-    //habilitacion de botones
-        buscar.setEnabled(true);
-        nuevo.setEnabled(true);
-        modificar.setEnabled(false);
-        guardar.setEnabled(false);
-        eliminar.setEnabled(false);
+            //habilitacion de botones
+            buscar.setEnabled(true);
+            nuevo.setEnabled(true);
+            modificar.setEnabled(false);
+            guardar.setEnabled(false);
+            eliminar.setEnabled(false);
         }
-       
-       
+
+
     }//GEN-LAST:event_guardarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         guardar.setEnabled(false);
+        try {
+            String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+                    new Object[]{"Buscar por id"}, "seleccion")).toString();
 
-        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
-                new Object[]{"Buscar por id"}, "seleccion")).toString();
+            switch (opciones) {
 
-        switch (opciones) {
+                case "Buscar por id":
+                    String id = JOptionPane.showInputDialog("Ingrese el id");
 
-            case "Buscar por id":
-                String id = JOptionPane.showInputDialog("Ingrese el id");
+                    int miId = Integer.parseInt(id);
+                    PropietarioData pd = new PropietarioData();
 
-                int miId = Integer.parseInt(id);
-                PropietarioData pd = new PropietarioData();
-
-                propietario1 = pd.buscarPropietarioPorID(miId);
-                if (propietario1 != null) {
-                    textId.setText(id);
-                    textApe.setText(propietario1.getApellido());  //alumno1.getApellido());
-                    textDNI.setText(String.valueOf(propietario1.getDni()));
-                    textNom.setText(propietario1.getNombre());
-                    textDomi.setText(propietario1.getDomicilio());
-                    textTele.setText(propietario1.getTelefono());
-                    modificar.setEnabled(true);
-                    eliminar.setEnabled(true);
-                    nuevo.setEnabled(true);
-                    guardar.setEnabled(false);
-                }
-                break;
+                    propietario1 = pd.buscarPropietarioPorID(miId);
+                    if (propietario1 != null) {
+                        textId.setText(id);
+                        textApe.setText(propietario1.getApellido());  //alumno1.getApellido());
+                        textDNI.setText(String.valueOf(propietario1.getDni()));
+                        textNom.setText(propietario1.getNombre());
+                        textDomi.setText(propietario1.getDomicilio());
+                        textTele.setText(propietario1.getTelefono());
+                        modificar.setEnabled(true);
+                        eliminar.setEnabled(true);
+                        nuevo.setEnabled(true);
+                        guardar.setEnabled(false);
+                    }
+                    break;
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "No se selecciono ");
+        } catch (NumberFormatException e1){
+            JOptionPane.showMessageDialog(this, "No selecciono ID");
         }
 
         // TODO add your handling code here:
     }//GEN-LAST:event_buscarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        
-        Propietario p1=new Propietario();
-        PropietarioData pd=new PropietarioData();
+
+        Propietario p1 = new Propietario();
+        PropietarioData pd = new PropietarioData();
         p1.setId_propietario(Integer.parseInt(textId.getText()));
         p1.setDni(Integer.parseInt(textDNI.getText()));
         p1.setApellido(textApe.getText());
@@ -374,23 +379,20 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         p1.setDomicilio(textDomi.getText());
         p1.setTelefono(textTele.getText());
         p1.setEstado(true);
-               
+
         pd.modificarPropietario(p1);
-        
-          
-        
-    textId.setText("");
-    textApe.setText("");
-    textDomi.setText("");
-    textDNI.setText("");
-    textNom.setText("");
-    textTele.setText("");    
-    nuevo.setEnabled(true);
-    modificar.setEnabled(false);
-    guardar.setEnabled(false);
-    eliminar.setEnabled(false);
-      
-     
+
+        //textId.setText("");
+        //textApe.setText("");
+        //textDomi.setText("");
+        //textDNI.setText("");
+        //textNom.setText("");
+        //textTele.setText(""); 
+        limpiarTextos();
+        nuevo.setEnabled(true);
+        modificar.setEnabled(false);
+        guardar.setEnabled(false);
+        eliminar.setEnabled(false);
 
 // TODO add your handling code here:
     }//GEN-LAST:event_modificarActionPerformed
@@ -401,12 +403,13 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         PropietarioData pd=new PropietarioData();
         pd.eliminarPropietario(idBorrar);
         
-        textId.setText("");
-        textApe.setText("");
-        textDomi.setText("");
-        textDNI.setText("");
-        textNom.setText("");
-        textTele.setText("");    
+       // textId.setText("");
+       // textApe.setText("");
+       // textDomi.setText("");
+       // textDNI.setText("");
+        //textNom.setText("");
+        //textTele.setText("");    
+        limpiarTextos();
         nuevo.setEnabled(true);
         modificar.setEnabled(false);
         guardar.setEnabled(false);
@@ -453,6 +456,13 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         return propietario1;
     }
 
-
+    private void limpiarTextos(){
+        textId.setText("");
+        textApe.setText("");
+        textDomi.setText("");
+        textDNI.setText("");
+        textNom.setText("");
+        textTele.setText("");   
+    }
 
 }
