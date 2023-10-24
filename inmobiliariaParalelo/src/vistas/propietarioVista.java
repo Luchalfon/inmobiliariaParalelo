@@ -280,9 +280,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirActionPerformed
         this.dispose();
-        
-
-        // TODO add your handling code here:
+              // TODO add your handling code here:
     }//GEN-LAST:event_salirActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
@@ -306,15 +304,12 @@ public class propietarioVista extends javax.swing.JInternalFrame {
             limpiarTextos();
             bloquearCampos();
 
-            //habilitacion de botones
             buscar.setEnabled(true);
             nuevo.setEnabled(true);
             modificar.setEnabled(false);
             guardar.setEnabled(false);
             eliminar.setEnabled(false);
         }
-
-
     }//GEN-LAST:event_guardarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
