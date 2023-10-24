@@ -2,6 +2,7 @@ package vistas;
 
 import Entidades.Propiedad;
 import Entidades.Propietario;
+import Validaciones.Validaciones;
 import accesoADatos.PropiedadData;
 import accesoADatos.PropietarioData;
 import java.awt.Dimension;
@@ -296,36 +297,37 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_comboPropietarioActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
-
+        if(textAcce.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "El campo acceso no puede estar vacio");
+        }else if(textDire.getText().isEmpty() || !Validaciones.validarDireccion(textDire.getText())){
+            JOptionPane.showMessageDialog(this, "El campo Direccion no puede estar vacio y debe contener letras y numeros");
+        }else if(textForma.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(this, "El campo Forma no puede estar vacio");
+        }else if(textPrecio.getText().isEmpty() || !Validaciones.validarFloat(textPrecio.getText())){
+            JOptionPane.showMessageDialog(this, "El campo precio no puede estar vacio y debe ser un numero");
+        }else if(textRevisor.getText().isEmpty() || !Validaciones.validarNombre(textRevisor.getText())){
+            JOptionPane.showMessageDialog(this, "El campo revisor no puede estar vacio y debe ser un nombre");
+        }else if(textSuper.getText().isEmpty() || !Validaciones.validarEntero(textSuper.getText())){
+            JOptionPane.showMessageDialog(this, "El campo superficie no puede estar vacio y debe contener un entero");
+        }else if(textTipo.getText().isEmpty() ){
+            JOptionPane.showMessageDialog(this, "El campo tipo de propiedad no puede estar vacio");
+        }else if(textZona.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "El campo Zona no puede estar vacio");
+        }else{
         crearPropiedad();
         PropiedadData pd = new PropiedadData();
         pd.guardarPropiedad(propiedad1);
-        textAcce.setText("");
-        textDire.setText("");
-        textForma.setText("");
-        textPrecio.setText("");
-        textRevisor.setText("");
-        textSuper.setText("");
-        textTipo.setText("");
-        textZona.setText("");
-
+        limpiarTextos();
         modificar.setEnabled(false);
         eliminar.setEnabled(false);
         guardar.setEnabled(false);
         buscar.setEnabled(true);
+        }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
 
-        textId.setText("");
-        textAcce.setText("");
-        textDire.setText("");
-        textForma.setText("");
-        textPrecio.setText("");
-        textRevisor.setText("");
-        textSuper.setText("");
-        textTipo.setText("");
-        textZona.setText("");
+        limpiarTextos();
         textAcce.requestFocus();
         // TODO add your handling code here:
         buscar.setEnabled(false);
@@ -337,106 +339,105 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
 
         guardar.setEnabled(false);
+        try {
+            String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+                    new Object[]{"Buscar por Legajo"}, "seleccion")).toString();
 
-        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
-                new Object[]{"Buscar por Legajo"}, "seleccion")).toString();
+            switch (opciones) {
 
-        switch (opciones) {
+                case "Buscar por Legajo":
+                    String id = JOptionPane.showInputDialog("Ingrese el id");
 
-            case "Buscar por Legajo":
-                String id = JOptionPane.showInputDialog("Ingrese el id");
+                    int miId = Integer.parseInt(id);
+                    PropiedadData pd = new PropiedadData();
+                    Propiedad propie1 = pd.buscarPropiedadPorID(miId);
 
-                int miId = Integer.parseInt(id);
-                PropiedadData pd = new PropiedadData();
-                Propiedad propie1 = pd.buscarPropiedadPorID(miId);
-                
-                DefaultComboBoxModel<Propietario> model = (DefaultComboBoxModel<Propietario>) comboPropietario.getModel();
-                int contador = model.getSize();
-                for (int i = 0; i < contador; i++) {
-                    Propietario p = model.getElementAt(i);
-                    if (propie1.getPropietario().getId_propietario() == p.getId_propietario()) {
-                        comboPropietario.setSelectedIndex(i);
+                    DefaultComboBoxModel<Propietario> model = (DefaultComboBoxModel<Propietario>) comboPropietario.getModel();
+                    int contador = model.getSize();
+                    for (int i = 0; i < contador; i++) {
+                        Propietario p = model.getElementAt(i);
+                        if (propie1.getPropietario().getId_propietario() == p.getId_propietario()) {
+                            comboPropietario.setSelectedIndex(i);
+                        }
                     }
-                }
-                textId.setText(id);
-                textAcce.setText(propie1.getAccesibilidad());
-                textDire.setText(propie1.getDireccion());
-                textForma.setText(propie1.getForma());
-                textPrecio.setText(String.valueOf(propie1.getPrecio()));
-                textRevisor.setText(propie1.getRevisor());
-                textSuper.setText(String.valueOf(propie1.getSuperficieMinima()));
-                textTipo.setText(propie1.getTipoPropiedad());
-                textZona.setText(propie1.getZona());
+                    textId.setText(id);
+                    textAcce.setText(propie1.getAccesibilidad());
+                    textDire.setText(propie1.getDireccion());
+                    textForma.setText(propie1.getForma());
+                    textPrecio.setText(String.valueOf(propie1.getPrecio()));
+                    textRevisor.setText(propie1.getRevisor());
+                    textSuper.setText(String.valueOf(propie1.getSuperficieMinima()));
+                    textTipo.setText(propie1.getTipoPropiedad());
+                    textZona.setText(propie1.getZona());
 
-                break;
+                    break;
+            }
+
+            modificar.setEnabled(true);
+            eliminar.setEnabled(true);
+            nuevo.setEnabled(true);
+            guardar.setEnabled(false);
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(this, "No se selecciono");
+        } catch (NumberFormatException e1) {
+            JOptionPane.showMessageDialog(this, "No se selecciono ID");
         }
 
-        modificar.setEnabled(true);
-        eliminar.setEnabled(true);
-        nuevo.setEnabled(true);
-        guardar.setEnabled(false);
-
-        // TODO add your handling code here:
-        // TODO add your handling code here:
     }//GEN-LAST:event_buscarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
 
-        Propiedad propie1 = new Propiedad();
-        PropiedadData pd = new PropiedadData();
-        propie1.setId_propiedad(Integer.parseInt(textId.getText()));
-        propie1.setPropietario(propietarioSelect);
-        propie1.setAccesibilidad(textAcce.getText());
-        propie1.setDireccion(textDire.getText());
-        propie1.setForma(textForma.getText());
-        propie1.setPrecio(Float.parseFloat(textPrecio.getText()));
-        propie1.setRevisor(textRevisor.getText());
-        propie1.setSuperficieMinima(Integer.parseInt(textSuper.getText()));
-        propie1.setTipoPropiedad(textTipo.getText());
-        propie1.setZona(textZona.getText());
+        if (textAcce.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo acceso no puede estar vacio");
+        } else if (textDire.getText().isEmpty() || !Validaciones.validarDireccion(textDire.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Direccion no puede estar vacio y debe contener letras y numeros");
+        } else if (textForma.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo Forma no puede estar vacio");
+        } else if (textPrecio.getText().isEmpty() || !Validaciones.validarFloat(textPrecio.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo precio no puede estar vacio y debe ser un numero");
+        } else if (textRevisor.getText().isEmpty() || !Validaciones.validarNombre(textRevisor.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo revisor no puede estar vacio y debe ser un nombre");
+        } else if (textSuper.getText().isEmpty() || !Validaciones.validarEntero(textSuper.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo superficie no puede estar vacio y debe contener un entero");
+        } else if (textTipo.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo tipo de propiedad no puede estar vacio");
+        } else if (textZona.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "El campo Zona no puede estar vacio");
+        } else {
+            Propiedad propie1 = new Propiedad();
+            PropiedadData pd = new PropiedadData();
+            propie1.setId_propiedad(Integer.parseInt(textId.getText()));
+            propie1.setPropietario(propietarioSelect);
+            propie1.setAccesibilidad(textAcce.getText());
+            propie1.setDireccion(textDire.getText());
+            propie1.setForma(textForma.getText());
+            propie1.setPrecio(Float.parseFloat(textPrecio.getText()));
+            propie1.setRevisor(textRevisor.getText());
+            propie1.setSuperficieMinima(Integer.parseInt(textSuper.getText()));
+            propie1.setTipoPropiedad(textTipo.getText());
+            propie1.setZona(textZona.getText());
 
+            pd.modificarPropiedad(propie1);
 
-        pd.modificarPropiedad(propie1);
+            limpiarTextos();
 
-        // TODO add your handling code here:
-        textId.setText("");
-        textAcce.setText("");
-        textDire.setText("");
-        textForma.setText("");
-        textPrecio.setText("");
-        textRevisor.setText("");
-        textSuper.setText("");
-        textTipo.setText("");
-        textZona.setText("");
-        
-        nuevo.setEnabled(true);
-        modificar.setEnabled(false);
-        guardar.setEnabled(false);
-        eliminar.setEnabled(false);
+            nuevo.setEnabled(true);
+            modificar.setEnabled(false);
+            guardar.setEnabled(false);
+            eliminar.setEnabled(false);
+        }
     }//GEN-LAST:event_modificarActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
 
- int idBorrar=Integer.parseInt(textId.getText());
-        PropiedadData pd=new PropiedadData();
+        int idBorrar = Integer.parseInt(textId.getText());
+        PropiedadData pd = new PropiedadData();
         pd.eliminarPropiedad(idBorrar);
-        
-        textId.setText("");
-        textAcce.setText("");
-        textDire.setText("");
-        textForma.setText("");
-        textPrecio.setText("");
-        textRevisor.setText("");
-        textSuper.setText("");
-        textTipo.setText("");
-        textZona.setText("");  
+        limpiarTextos();
         nuevo.setEnabled(true);
         modificar.setEnabled(false);
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
-
-
-        // TODO add your handling code here:
     }//GEN-LAST:event_eliminarActionPerformed
 
 
@@ -497,5 +498,17 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         propiedad1 = new Propiedad(acceso, direcion, propietarioSelect, forma, precio, revisor, superficieMinima, tipoPropiedad, zona, estado);
         System.out.println(propiedad1);
         return propiedad1;
+    }
+    
+    private void limpiarTextos() {
+        textId.setText("");
+        textAcce.setText("");
+        textDire.setText("");
+        textForma.setText("");
+        textPrecio.setText("");
+        textRevisor.setText("");
+        textSuper.setText("");
+        textTipo.setText("");
+        textZona.setText("");
     }
 }

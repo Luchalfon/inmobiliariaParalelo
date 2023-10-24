@@ -4,14 +4,12 @@ package Validaciones;
 public class Validaciones {
 
     public static boolean validarEntero(String ingreso){
-        boolean esNumero=false;
-        try {
-            esNumero  = ingreso.matches("^[0-9]+$");
-        } catch (NullPointerException e) {
-            
-            System.out.println(e.getMessage());
-        }
-        return esNumero;
+       try {
+            int x = Integer.parseInt(ingreso);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        } 
     }
     
     public static boolean validarDouble(String ingreso){
@@ -21,6 +19,26 @@ public class Validaciones {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+    
+    public static boolean validarFloat(String ingreso){
+        try {
+            float x = Float.parseFloat(ingreso);
+            return true;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+    
+    public static boolean validarSoloNumeros(String ingreso){
+        boolean esNumero=false;
+        try {
+            esNumero  = ingreso.matches("^[0-9]+$");
+        } catch (NullPointerException e) {
+            
+            System.out.println(e.getMessage());
+        }
+        return esNumero;
     }
     
     //letras y espacio para nombres

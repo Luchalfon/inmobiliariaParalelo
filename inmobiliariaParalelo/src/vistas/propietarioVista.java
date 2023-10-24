@@ -272,14 +272,14 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         modificar.setEnabled(false);
         eliminar.setEnabled(false);
         guardar.setEnabled(true);
-        textId.setText("");
-        textApe.setText("");
-        textDomi.setText("");
-        textDNI.setText("");
-        textNom.setText("");
-        textTele.setText("");
+        //textId.setText("");
+        //textApe.setText("");
+        //textDomi.setText("");
+        //textDNI.setText("");
+        //textNom.setText("");
+        //textTele.setText("");
         textDNI.requestFocus();
-
+        limpiarTextos();
 
 
         // TODO add your handling code here:
@@ -294,7 +294,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
 
-        if (!Validaciones.validarEntero(textDNI.getText()) || textDNI.getText().isEmpty()) {
+        if (!Validaciones.validarSoloNumeros(textDNI.getText()) || textDNI.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Ingreso invalido , el DNI debe ser un numero");
         } else if (textApe.getText().isEmpty() || !Validaciones.validarNombre(textApe.getText())) {
             JOptionPane.showMessageDialog(this, "El campo Apellido no puede estar vacio y debe ser un nombre");
@@ -302,7 +302,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El campo Nombre no puede estar vacio y debe contener solo letras");
         } else if (textDomi.getText().isEmpty() || !Validaciones.validarDireccion(textDomi.getText())) {
             JOptionPane.showMessageDialog(this, "El campo direccion no puede estar vacio y debe contener letras y numeros solamente");
-        } else if (textTele.getText().isEmpty() || !Validaciones.validarEntero(textTele.getText())) {
+        } else if (textTele.getText().isEmpty() || !Validaciones.validarSoloNumeros(textTele.getText())) {
             JOptionPane.showMessageDialog(this, "El campo telefono no puede estar vacio y debe contener solo numeros");
         } else {
             crearPropietario();
@@ -370,31 +370,42 @@ public class propietarioVista extends javax.swing.JInternalFrame {
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
 
-        Propietario p1 = new Propietario();
-        PropietarioData pd = new PropietarioData();
-        p1.setId_propietario(Integer.parseInt(textId.getText()));
-        p1.setDni(Integer.parseInt(textDNI.getText()));
-        p1.setApellido(textApe.getText());
-        p1.setNombre(textNom.getText());
-        p1.setDomicilio(textDomi.getText());
-        p1.setTelefono(textTele.getText());
-        p1.setEstado(true);
+        if (!Validaciones.validarSoloNumeros(textDNI.getText()) || textDNI.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingreso invalido , el DNI debe ser un numero");
+        } else if (textApe.getText().isEmpty() || !Validaciones.validarNombre(textApe.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Apellido no puede estar vacio y debe ser un nombre");
+        } else if (textNom.getText().isEmpty() || !Validaciones.validarNombre(textNom.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Nombre no puede estar vacio y debe contener solo letras");
+        } else if (textDomi.getText().isEmpty() || !Validaciones.validarDireccion(textDomi.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo direccion no puede estar vacio y debe contener letras y numeros solamente");
+        } else if (textTele.getText().isEmpty() || !Validaciones.validarSoloNumeros(textTele.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo telefono no puede estar vacio y debe contener solo numeros");
+        } else {
+            Propietario p1 = new Propietario();
+            PropietarioData pd = new PropietarioData();
+            p1.setId_propietario(Integer.parseInt(textId.getText()));
+            p1.setDni(Integer.parseInt(textDNI.getText()));
+            p1.setApellido(textApe.getText());
+            p1.setNombre(textNom.getText());
+            p1.setDomicilio(textDomi.getText());
+            p1.setTelefono(textTele.getText());
+            p1.setEstado(true);
 
-        pd.modificarPropietario(p1);
+            pd.modificarPropietario(p1);
 
-        //textId.setText("");
-        //textApe.setText("");
-        //textDomi.setText("");
-        //textDNI.setText("");
-        //textNom.setText("");
-        //textTele.setText(""); 
-        limpiarTextos();
-        nuevo.setEnabled(true);
-        modificar.setEnabled(false);
-        guardar.setEnabled(false);
-        eliminar.setEnabled(false);
+            //textId.setText("");
+            //textApe.setText("");
+            //textDomi.setText("");
+            //textDNI.setText("");
+            //textNom.setText("");
+            //textTele.setText(""); 
+            limpiarTextos();
+            nuevo.setEnabled(true);
+            modificar.setEnabled(false);
+            guardar.setEnabled(false);
+            eliminar.setEnabled(false);
+        }
 
-// TODO add your handling code here:
     }//GEN-LAST:event_modificarActionPerformed
 
     private void eliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_eliminarActionPerformed
