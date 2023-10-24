@@ -278,14 +278,7 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         modificar.setEnabled(false);
         eliminar.setEnabled(false);
         guardar.setEnabled(true);
-        textId.setText("");
-        textApe.setText("");
-        textNom.setText("");
-        textDni.setText("");
-        textDetalle.setText("");
-        textTipo.setText("");
-        textCuit.setText("");
-        textTel.setText("");
+        limpiarTextos();
         textApe.requestFocus();
     }//GEN-LAST:event_nuevoActionPerformed
 
@@ -314,14 +307,7 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
             InquilinoData idata = new InquilinoData();
             idata.guardarInquilino(inquilino1);
 
-            textId.setText("");
-            textApe.setText("");
-            textNom.setText("");
-            textDni.setText("");
-            textDetalle.setText("");
-            textTipo.setText("");
-            textCuit.setText("");
-            textTel.setText("");
+            limpiarTextos();
 
             modificar.setEnabled(false);
             eliminar.setEnabled(false);
@@ -336,14 +322,7 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         int idBorrar = Integer.parseInt(textId.getText());
         InquilinoData pd = new InquilinoData();
         pd.eliminarInquilino(idBorrar);
-
-        textId.setText("");
-        textApe.setText("");
-        textNom.setText("");
-        textDni.setText("");
-        textDetalle.setText("");
-        textTipo.setText("");
-        textTel.setText("");
+        limpiarTextos();
         nuevo.setEnabled(true);
         modificar.setEnabled(false);
         guardar.setEnabled(false);
@@ -388,38 +367,46 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_buscarActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        Inquilino inq = new Inquilino();
-        InquilinoData id = new InquilinoData();
-        inq.setId_Inquilino(Integer.parseInt(textId.getText()));
-        inq.setApellido(textApe.getText());
-        inq.setNombre(textNom.getText());
-        inq.setDni(Integer.parseInt(textDni.getText()));
-        String deta=textDetalle.getText();
-        char deta1=deta.charAt(0);
-        String ti=textTipo.getText();
-        char tipo1=ti.charAt(0);
-        inq.setDetalle(deta1);
-        inq.setTipo(tipo1);
-        inq.setCuit(textCuit.getText());
-        inq.setTelefono(textTel.getText());
-        inq.setEstado(true);
+        if (textApe.getText().isEmpty() || !Validaciones.validarNombre(textApe.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Apellido no puede estar vacio y debe contener un Apellido");
+        } else if (textNom.getText().isEmpty() || !Validaciones.validarNombre(textNom.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Nombre no puede estar vacio y debe tener un nombre");
+        } else if (textDni.getText().isEmpty() || !Validaciones.validarEntero(textDni.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo DNI no puede estar vacio y debe contener numeros");
+        } else if (textDetalle.getText().isEmpty() || !Validaciones.validarChar(textDetalle.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo detalle no puede estar vacio y debe ser un caracter");
+        } else if (textTipo.getText().isEmpty() || !Validaciones.validarChar(textTipo.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Tipo no puede estar vacio y debe ser un caracter");
+        } else if (textCuit.getText().isEmpty() || !Validaciones.validarSoloNumeros(textCuit.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Cuit no puede estar vacio y debe ser solo numeros");
+        } else if (textTel.getText().isEmpty() || !Validaciones.validarSoloNumeros(textTel.getText())) {
+            JOptionPane.showMessageDialog(this, "El campo Tlefono no puede estar vacio y debe ser solo numeros");
+        } else {
+            Inquilino inq = new Inquilino();
+            InquilinoData id = new InquilinoData();
+            inq.setId_Inquilino(Integer.parseInt(textId.getText()));
+            inq.setApellido(textApe.getText());
+            inq.setNombre(textNom.getText());
+            inq.setDni(Integer.parseInt(textDni.getText()));
+            String deta = textDetalle.getText();
+            char deta1 = deta.charAt(0);
+            String ti = textTipo.getText();
+            char tipo1 = ti.charAt(0);
+            inq.setDetalle(deta1);
+            inq.setTipo(tipo1);
+            inq.setCuit(textCuit.getText());
+            inq.setTelefono(textTel.getText());
+            inq.setEstado(true);
 
-        id.modificarInquilino(inq);
+            id.modificarInquilino(inq);
 
-        textId.setText("");
-        textApe.setText("");
-        textNom.setText("");
-        textDni.setText("");
-        textDetalle.setText("");
-        textTipo.setText("");
-        textCuit.setText("");
-        textTel.setText("");
-        
-        nuevo.setEnabled(true);
-        modificar.setEnabled(false);
-        guardar.setEnabled(false);
-        eliminar.setEnabled(false);
+            limpiarTextos();
 
+            nuevo.setEnabled(true);
+            modificar.setEnabled(false);
+            guardar.setEnabled(false);
+            eliminar.setEnabled(false);
+        }
     }//GEN-LAST:event_modificarActionPerformed
 
 
@@ -466,5 +453,16 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         inquilino1 = new Inquilino(apellido, nombre, dni, deta, tipo1, cuit, telefono, estado);
         System.out.println(inquilino1);
         return inquilino1;
+    }
+    
+    private void limpiarTextos(){
+         textId.setText("");
+        textApe.setText("");
+        textNom.setText("");
+        textDni.setText("");
+        textDetalle.setText("");
+        textTipo.setText("");
+        textCuit.setText("");
+        textTel.setText("");
     }
 }

@@ -3,6 +3,7 @@ package vistas;
 import Entidades.Contrato;
 import Entidades.Inquilino;
 import Entidades.Propiedad;
+import Validaciones.Validaciones;
 import accesoADatos.ContratoData;
 import accesoADatos.InquilinoData;
 import accesoADatos.PropiedadData;
@@ -458,8 +459,17 @@ public class contratoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        // TODO add your handling code here:
-
+        if(textVendedor.getText().isEmpty() || !Validaciones.validarNombre(textVendedor.getText())){
+            JOptionPane.showMessageDialog(this, "El campo vendedor no puede estar vacio y debe contener un nombre");
+        }else if(textGarante.getText().isEmpty() || !Validaciones.validarNombre(textGarante.getText())){
+            JOptionPane.showMessageDialog(this, "El campo nombre de garante, no puede estar vacio y debe contener un nombre");
+        }else if(textDni.getText().isEmpty() || !Validaciones.validarSoloNumeros(textDni.getText())){
+            JOptionPane.showMessageDialog(this, "El campo DNI Garante, no puede estar vacio y debe contener un numero");
+        }else if(textTel.getText().isEmpty() || !Validaciones.validarSoloNumeros(textTel.getText())){
+            JOptionPane.showMessageDialog(this, "El campo Telefono , no puede estar vacio y debe contener solo numeros");
+        }else if(textMarca.getText().isEmpty() || !Validaciones.validarChar(textMarca.getText())){
+            JOptionPane.showMessageDialog(this, "El campo Marca, no puede estar vacio y debe contener un caracter");
+        }else{
         Contrato cont = new Contrato();
         ContratoData contdata = new ContratoData();
         cont.setId_contrato(Integer.parseInt(textId.getText()));
@@ -497,129 +507,122 @@ public class contratoVista extends javax.swing.JInternalFrame {
 //        firmar.setEnabled(false);
 //        eliminar.setEnabled(false);
 //        buscar.setEnabled(true);
-
+        }
     }//GEN-LAST:event_modificarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
         // TODO add your handling code here:
 
 //       guardar.setEnabled(false);
-        String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
-                new Object[]{"Buscar por N° de contrato"}, "seleccion")).toString();
+        try {
+            String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
+                    new Object[]{"Buscar por N° de contrato"}, "seleccion")).toString();
 
-        switch (opciones) {
+            switch (opciones) {
 
-            case "Buscar por N° de contrato":
-                String id = JOptionPane.showInputDialog("Ingrese el Codigo");
+                case "Buscar por N° de contrato":
+                    String id = JOptionPane.showInputDialog("Ingrese el Codigo");
 
-                int miId = Integer.parseInt(id);
+                    int miId = Integer.parseInt(id);
 
-                ContratoData contData = new ContratoData();
-                Contrato cont = contData.buscarContratoPorID(miId);
-                llenarComboPropiedad();
-                llenarComboInquilino();
-                //comparamos el inquilino de la base y lo seteamos en el comboBox
-                DefaultComboBoxModel<Inquilino> model = (DefaultComboBoxModel<Inquilino>) comboInquilino.getModel();
-                int contador = model.getSize();
-                for (int i = 0; i < contador; i++) {
-                    Inquilino inqui = model.getElementAt(i);
-                    if (cont.getInquilino().getId_Inquilino() == inqui.getId_Inquilino()) {
-                        comboInquilino.setSelectedIndex(i);
+                    ContratoData contData = new ContratoData();
+                    Contrato cont = contData.buscarContratoPorID(miId);
+                    llenarComboPropiedad();
+                    llenarComboInquilino();
+                    //comparamos el inquilino de la base y lo seteamos en el comboBox
+                    DefaultComboBoxModel<Inquilino> model = (DefaultComboBoxModel<Inquilino>) comboInquilino.getModel();
+                    int contador = model.getSize();
+                    for (int i = 0; i < contador; i++) {
+                        Inquilino inqui = model.getElementAt(i);
+                        if (cont.getInquilino().getId_Inquilino() == inqui.getId_Inquilino()) {
+                            comboInquilino.setSelectedIndex(i);
+                        }
                     }
-                }
 
-                DefaultComboBoxModel<Propiedad> modelo = (DefaultComboBoxModel<Propiedad>) comboPropiedad.getModel();
-                int contador1 = modelo.getSize();
-                for (int i = 0; i < contador1; i++) {
-                    Propiedad propie = modelo.getElementAt(i);
-                    if (cont.getPropiedad().getId_propiedad() == propie.getId_propiedad()) {
-                        comboPropiedad.setSelectedIndex(i);
+                    DefaultComboBoxModel<Propiedad> modelo = (DefaultComboBoxModel<Propiedad>) comboPropiedad.getModel();
+                    int contador1 = modelo.getSize();
+                    for (int i = 0; i < contador1; i++) {
+                        Propiedad propie = modelo.getElementAt(i);
+                        if (cont.getPropiedad().getId_propiedad() == propie.getId_propiedad()) {
+                            comboPropiedad.setSelectedIndex(i);
+                        }
                     }
-                }
 
-                
-                jdFecha1.setDate(cont.getFecha_Inicio());
-                jdFecha2.setDate(cont.getFecha_Final());
-                //   Date fechaactual = new Date(System.currentTimeMillis());
-               
-                java.util.Date fechaactual = new java.util.Date(System.currentTimeMillis());
-                //jdFecha1.setDate(fechaactual); //poner fecha en el chooser
-                java.util.Date fechaFinal=jdFecha2.getDate();
-      
-                textId.setText(id);
-                textVendedor.setText(cont.getVendedor());
-                //textVigencia.setText(String.valueOf(cont.getVigencia()));
-                textGarante.setText(cont.getNombreGarante());
-                textDni.setText(cont.getDniGarante());
-                textTel.setText(cont.getTelGarante());
-                textMarca.setText(String.valueOf(cont.getMarca()));
-                SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
-                String fechaComoCadena = sdf.format(cont.getFecha_Realizacion());
-                textFecha_Realizacion.setText(fechaComoCadena);
-                
-                int milisecondsByDay = 86400000;
-                int dias = (int) (((fechaFinal.getTime()-fechaactual.getTime()) / milisecondsByDay)+1);
-                String diasS=String.valueOf(dias+" Dias");
-                textDias.setText(diasS);
+                    jdFecha1.setDate(cont.getFecha_Inicio());
+                    jdFecha2.setDate(cont.getFecha_Final());
+                    //   Date fechaactual = new Date(System.currentTimeMillis());
 
-                if(dias<=0){
-                vigenciaNo.setSelected(true);
-                textVigencia.setText("False");
-                JOptionPane.showMessageDialog(null, "Su contrato quedo sin vigencia", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
+                    java.util.Date fechaactual = new java.util.Date(System.currentTimeMillis());
+                    //jdFecha1.setDate(fechaactual); //poner fecha en el chooser
+                    java.util.Date fechaFinal = jdFecha2.getDate();
+
+                    textId.setText(id);
+                    textVendedor.setText(cont.getVendedor());
+                    //textVigencia.setText(String.valueOf(cont.getVigencia()));
+                    textGarante.setText(cont.getNombreGarante());
+                    textDni.setText(cont.getDniGarante());
+                    textTel.setText(cont.getTelGarante());
+                    textMarca.setText(String.valueOf(cont.getMarca()));
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+                    String fechaComoCadena = sdf.format(cont.getFecha_Realizacion());
+                    textFecha_Realizacion.setText(fechaComoCadena);
+
+                    int milisecondsByDay = 86400000;
+                    int dias = (int) (((fechaFinal.getTime() - fechaactual.getTime()) / milisecondsByDay) + 1);
+                    String diasS = String.valueOf(dias + " Dias");
+                    textDias.setText(diasS);
+
+                    if (dias <= 0) {
+                        vigenciaNo.setSelected(true);
+                        textVigencia.setText("False");
+                        JOptionPane.showMessageDialog(null, "Su contrato quedo sin vigencia", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
 //                crearContrato();
 //                ContratoData contraData = new ContratoData();
 //                contraData.modificarContratoVigencia(contrato1);
 
-        Contrato contra = new Contrato();
-        ContratoData contradata = new ContratoData();
-        contra.setId_contrato(Integer.parseInt(textId.getText()));
-        contra.setInquilino(inquilinoSelec);
-        contra.setPropiedad(propiedadSelec);
+                        Contrato contra = new Contrato();
+                        ContratoData contradata = new ContratoData();
+                        contra.setId_contrato(Integer.parseInt(textId.getText()));
+                        contra.setInquilino(inquilinoSelec);
+                        contra.setPropiedad(propiedadSelec);
 
-        fInicial = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
-        fFinal = ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText();
-        contra.setFecha_Inicio(Date.valueOf(fInicial));
-        contra.setFecha_Final(Date.valueOf(fFinal));
+                        fInicial = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
+                        fFinal = ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText();
+                        contra.setFecha_Inicio(Date.valueOf(fInicial));
+                        contra.setFecha_Final(Date.valueOf(fFinal));
 
-        contra.setVendedor(textVendedor.getText());
-        contra.setVigencia(Boolean.parseBoolean(textVigencia.getText()));
-        contra.setNombreGarante(textGarante.getText());
-        contra.setDniGarante(textDni.getText());
-        contra.setTelGarante(textTel.getText());
-        String mar = textMarca.getText();
-        char mark = mar.charAt(0);
-        contra.setMarca(mark);
-        contradata.modificarContrato(contra);
+                        contra.setVendedor(textVendedor.getText());
+                        contra.setVigencia(Boolean.parseBoolean(textVigencia.getText()));
+                        contra.setNombreGarante(textGarante.getText());
+                        contra.setDniGarante(textDni.getText());
+                        contra.setTelGarante(textTel.getText());
+                        String mar = textMarca.getText();
+                        char mark = mar.charAt(0);
+                        contra.setMarca(mark);
+                        contradata.modificarContrato(contra);
 
+                    } else {
+                        vigenciaSi.setSelected(true);
+                        textVigencia.setText("True");
 
+                        // if cant dias <=7
+                        // JOptionPane ------> comunique al inquilino y al propietario que el contrato esta pronto a vencer
+                        // ¿Desea Renovar?
+                        // Respuesta: SI
+                        // llamar metodo renovarContrato()
+                    }
+                    break;
+            }
 
-
-
-
-                }else{
-                vigenciaSi.setSelected(true);
-                textVigencia.setText("True");
-                
-              
-                // if cant dias <=7
-                // JOptionPane ------> comunique al inquilino y al propietario que el contrato esta pronto a vencer
-                // ¿Desea Renovar?
-                // Respuesta: SI
-                // llamar metodo renovarContrato()
-                
-                
-                
-                
-                
-                }
-                break;
+            modificar.setEnabled(true);
+            eliminar.setEnabled(true);
+            nuevo.setEnabled(true);
+            firmar.setEnabled(false);
+        }catch(NullPointerException e){
+            JOptionPane.showMessageDialog(this, "No se selecciono");
+        }catch(NumberFormatException e1){
+            JOptionPane.showMessageDialog(this, "No si ingreso ID");
         }
-
-        modificar.setEnabled(true);
-        eliminar.setEnabled(true);
-        nuevo.setEnabled(true);
-        firmar.setEnabled(false);
-       
     }//GEN-LAST:event_buscarActionPerformed
 
     private void textFecha_RealizacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textFecha_RealizacionActionPerformed
