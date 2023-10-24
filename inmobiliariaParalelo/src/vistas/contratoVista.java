@@ -396,6 +396,17 @@ public class contratoVista extends javax.swing.JInternalFrame {
 
     private void firmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_firmarActionPerformed
         //aca guardamos firmar contrato
+         if(textVendedor.getText().isEmpty() || !Validaciones.validarNombre(textVendedor.getText())){
+            JOptionPane.showMessageDialog(this, "El campo vendedor no puede estar vacio y debe contener un nombre");
+        }else if(textGarante.getText().isEmpty() || !Validaciones.validarNombre(textGarante.getText())){
+            JOptionPane.showMessageDialog(this, "El campo nombre de garante, no puede estar vacio y debe contener un nombre");
+        }else if(textDni.getText().isEmpty() || !Validaciones.validarSoloNumeros(textDni.getText())){
+            JOptionPane.showMessageDialog(this, "El campo DNI Garante, no puede estar vacio y debe contener un numero");
+        }else if(textTel.getText().isEmpty() || !Validaciones.validarSoloNumeros(textTel.getText())){
+            JOptionPane.showMessageDialog(this, "El campo Telefono , no puede estar vacio y debe contener solo numeros");
+        }else if(textMarca.getText().isEmpty() || !Validaciones.validarChar(textMarca.getText())){
+            JOptionPane.showMessageDialog(this, "El campo Marca, no puede estar vacio y debe contener un caracter");
+        }else{
         dateHoy = Date.valueOf(LocalDate.now());
         fechaIni = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
         fechaFin = ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText();
@@ -416,8 +427,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
         firmar.setEnabled(false);
         eliminar.setEnabled(false);
         buscar.setEnabled(true);
+        }
 
-// TODO add your handling code here:
     }//GEN-LAST:event_firmarActionPerformed
 
     private void comboInquilinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboInquilinoActionPerformed
