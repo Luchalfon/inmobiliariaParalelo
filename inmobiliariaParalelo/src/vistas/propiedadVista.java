@@ -355,10 +355,12 @@ public class propiedadVista extends javax.swing.JInternalFrame {
 
                     DefaultComboBoxModel<Propietario> model = (DefaultComboBoxModel<Propietario>) comboPropietario.getModel();
                     int contador = model.getSize();
+                    //arreglar si no encuentra propietario
                     for (int i = 0; i < contador; i++) {
                         Propietario p = model.getElementAt(i);
                         if (propie1.getPropietario().getId_propietario() == p.getId_propietario()) {
                             comboPropietario.setSelectedIndex(i);
+                            
                         }
                     }
                     textId.setText(id);
@@ -499,9 +501,10 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         int superficieMinima = Integer.parseInt(textSuper.getText());
         String tipoPropiedad = textTipo.getText();
         String zona = textZona.getText();
+        boolean disponible =false;
         boolean estado = true;
 
-        propiedad1 = new Propiedad(acceso, direcion, propietarioSelect, forma, precio, revisor, superficieMinima, tipoPropiedad, zona, estado);
+        propiedad1 = new Propiedad(acceso, direcion, propietarioSelect, forma, precio, revisor, superficieMinima, tipoPropiedad, zona, disponible, estado);
         System.out.println(propiedad1);
         return propiedad1;
     }
