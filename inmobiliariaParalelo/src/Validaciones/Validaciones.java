@@ -45,7 +45,7 @@ public class Validaciones {
     public static boolean validarNombre(String ingreso){
         boolean esNombre=false;
         try{
-        esNombre = ingreso.matches("^[a-zA-Z ]+$");
+        esNombre = ingreso.matches("^[a-zA-Z áéíóúÁÉÍÓÚ]+$");
         }catch(NullPointerException e){
             System.out.println(e.getMessage());
         }
