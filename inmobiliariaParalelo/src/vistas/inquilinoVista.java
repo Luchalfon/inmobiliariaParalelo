@@ -18,7 +18,10 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         modificar.setEnabled(false);
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
-        
+        nuevo.setEnabled(true);
+        buscar.setEnabled(true);
+        limpiarTextos();
+        bloquearCampos();
     // Obtén las dimensiones de la pantalla
     Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -274,11 +277,12 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         // TODO add your handling code here:
+        habilitarCampos();
+        limpiarTextos();
         buscar.setEnabled(false);
         modificar.setEnabled(false);
         eliminar.setEnabled(false);
         guardar.setEnabled(true);
-        limpiarTextos();
         textApe.requestFocus();
     }//GEN-LAST:event_nuevoActionPerformed
 
@@ -308,11 +312,13 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
             idata.guardarInquilino(inquilino1);
 
             limpiarTextos();
-
+            bloquearCampos();
             modificar.setEnabled(false);
             eliminar.setEnabled(false);
             guardar.setEnabled(false);
             buscar.setEnabled(true);
+            nuevo.setEnabled(true);
+            
         }
 
     }//GEN-LAST:event_guardarActionPerformed
@@ -323,14 +329,17 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         InquilinoData pd = new InquilinoData();
         pd.eliminarInquilino(idBorrar);
         limpiarTextos();
+        bloquearCampos();
         nuevo.setEnabled(true);
         modificar.setEnabled(false);
         guardar.setEnabled(false);
         eliminar.setEnabled(false);
+        buscar.setEnabled(true);
+        
     }//GEN-LAST:event_eliminarActionPerformed
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
-        guardar.setEnabled(false);
+        
         try {
             String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
                     new Object[]{"Buscar por id"}, "seleccion")).toString();
@@ -353,7 +362,9 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
                     textTel.setText(inquilino1.getTelefono());
                     break;
             }
-
+            
+            habilitarCampos();
+            buscar.setEnabled(true);
             modificar.setEnabled(true);
             eliminar.setEnabled(true);
             nuevo.setEnabled(true);
@@ -401,8 +412,9 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
             id.modificarInquilino(inq);
 
             limpiarTextos();
-
+            bloquearCampos();
             nuevo.setEnabled(true);
+            buscar.setEnabled(true);
             modificar.setEnabled(false);
             guardar.setEnabled(false);
             eliminar.setEnabled(false);
@@ -456,7 +468,7 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
     }
     
     private void limpiarTextos(){
-         textId.setText("");
+        textId.setText("");
         textApe.setText("");
         textNom.setText("");
         textDni.setText("");
@@ -465,4 +477,24 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         textCuit.setText("");
         textTel.setText("");
     }
+    private void bloquearCampos(){
+        textId.setEnabled(false);
+        textApe.setEnabled(false);
+        textNom.setEnabled(false);
+        textDni.setEnabled(false);
+        textDetalle.setEnabled(false);
+        textTipo.setEnabled(false);
+        textCuit.setEnabled(false);
+        textTel.setEnabled(false);
+    }
+    private void habilitarCampos(){
+        textApe.setEnabled(true);
+        textNom.setEnabled(true);
+        textDni.setEnabled(true);
+        textDetalle.setEnabled(true);
+        textTipo.setEnabled(true);
+        textCuit.setEnabled(true);
+        textTel.setEnabled(true);
+    }
+       
 }
