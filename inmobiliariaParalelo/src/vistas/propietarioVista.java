@@ -316,7 +316,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         guardar.setEnabled(false);
         try {
             String opciones = (JOptionPane.showInputDialog(null, "Seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
-                    new Object[]{"Buscar por Id"}, "seleccion")).toString();
+                    new Object[]{"Buscar por Id", "Buscar por DNI"}, "seleccion")).toString();
 
             switch (opciones) {
 
@@ -329,7 +329,27 @@ public class propietarioVista extends javax.swing.JInternalFrame {
                     propietario1 = pd.buscarPropietarioPorID(miId);
                     if (propietario1 != null) {
                         textId.setText(id);
-                        textApe.setText(propietario1.getApellido());  
+                        textApe.setText(propietario1.getApellido());
+                        textDNI.setText(String.valueOf(propietario1.getDni()));
+                        textNom.setText(propietario1.getNombre());
+                        textDomi.setText(propietario1.getDomicilio());
+                        textTele.setText(propietario1.getTelefono());
+                        habilitarCampos();
+                        modificar.setEnabled(true);
+                        eliminar.setEnabled(true);
+                        nuevo.setEnabled(true);
+                        guardar.setEnabled(false);
+                    }
+                    break;
+                case "Buscar por DNI":
+                    String dni = JOptionPane.showInputDialog("Ingrese el dni");
+
+                    int miDni = Integer.parseInt(dni);
+                    PropietarioData pd2 = new PropietarioData();
+                     propietario1 = pd2.buscarPropietarioPorDNI(miDni);
+                    if (propietario1 != null) {
+                        textId.setText(String.valueOf(propietario1.getId_propietario()));
+                        textApe.setText(propietario1.getApellido());
                         textDNI.setText(String.valueOf(propietario1.getDni()));
                         textNom.setText(propietario1.getNombre());
                         textDomi.setText(propietario1.getDomicilio());
@@ -345,7 +365,7 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "No se selecciono ");
         } catch (NumberFormatException e1){
-            JOptionPane.showMessageDialog(this, "No selecciono ID");
+            JOptionPane.showMessageDialog(this, "No se ingreso datos");
         }
 
         // TODO add your handling code here:

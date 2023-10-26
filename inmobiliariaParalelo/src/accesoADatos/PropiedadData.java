@@ -221,7 +221,7 @@ public List<Propiedad> obtenerPropiedadesPorZona(String zona) {
 
         ArrayList<Propiedad> propiedades = new ArrayList<>();
 
-        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND zona= ?";
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponibilidad=0 AND zona= ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -255,7 +255,7 @@ public List<Propiedad> obtenerPropiedadesPorTipo(String tipo) {
 
         ArrayList<Propiedad> propiedades = new ArrayList<>();
 
-        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND tipoDeLocal= ?";
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponibilidad=0 AND tipoDeLocal= ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -287,7 +287,7 @@ public List<Propiedad> obtenerPropiedadesPorSup(int superf) {
 
         ArrayList<Propiedad> propiedades = new ArrayList<>();
 
-        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND superficieMinima > ?";
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponibilidad=0 AND superficieMinima > ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -319,7 +319,7 @@ public List<Propiedad> obtenerPropiedadesPorPrecio(float precio) {
 
         ArrayList<Propiedad> propiedades = new ArrayList<>();
 
-        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND precioTazado < ?";
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponibilidad=0 AND precioTazado < ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -347,6 +347,43 @@ public List<Propiedad> obtenerPropiedadesPorPrecio(float precio) {
         return propiedades;
     }       
 
+ public List<Propiedad> listarPropiedadesDisponibles() {
+
+        List<Propiedad> propiedades = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM `propiedadinmueble` WHERE estado=1 AND disponibilidad=0";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+               Propiedad propiedad;
+               
+                propiedad = new Propiedad();
+                propiedad.setId_propiedad(rs.getInt("id_Propiedad"));
+                Propietario propie=pd.buscarPropietarioPorID(rs.getInt("id_Propietario"));
+                
+                propiedad.setPropietario(propie);
+                
+                propiedad.setAccesibilidad(rs.getString("accesibilidad"));
+                propiedad.setDireccion(rs.getString("direccion"));
+                propiedad.setForma(rs.getString("forma"));
+                propiedad.setPrecio(rs.getFloat("precioTazado"));
+                propiedad.setRevisor(rs.getString("revisor"));
+                propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
+                propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
+                propiedad.setZona(rs.getString("zona"));
+                propiedad.setDisponible(rs.getBoolean("disponibilidad"));
+                propiedad.setEstado(true);
+               
+                propiedades.add(propiedad);
+                          
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla propiedad" + ex.getMessage());
+        }
+        return propiedades;
+    }
 
  
 }

@@ -520,7 +520,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         textSuper.setText("");
         textTipo.setText("");
         textZona.setText("");
-        comboPropietario.removeAllItems();
+        //comboPropietario.removeAllItems();
     }
     private void bloquearCampos(){
         textId.setEnabled(false);
