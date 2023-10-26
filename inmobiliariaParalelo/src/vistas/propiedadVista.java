@@ -317,10 +317,12 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         PropiedadData pd = new PropiedadData();
         pd.guardarPropiedad(propiedad1);
         limpiarTextos();
+        bloquearCampos();
         modificar.setEnabled(false);
         eliminar.setEnabled(false);
         guardar.setEnabled(false);
         buscar.setEnabled(true);
+        nuevo.setEnabled(true);
         }
     }//GEN-LAST:event_guardarActionPerformed
 
@@ -339,7 +341,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
 
     private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
 
-        guardar.setEnabled(false);
+        
         try {
             String opciones = (JOptionPane.showInputDialog(null, "seleccione una opcion", "Buscar", JOptionPane.QUESTION_MESSAGE, null,
                     new Object[]{"Buscar por Legajo"}, "seleccion")).toString();
@@ -363,6 +365,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
                             
                         }
                     }
+                    llenarCombo();
                     textId.setText(id);
                     textAcce.setText(propie1.getAccesibilidad());
                     textDire.setText(propie1.getDireccion());
@@ -377,7 +380,6 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             }
 
             habilitarCampos();
-            llenarCombo();
             modificar.setEnabled(true);
             eliminar.setEnabled(true);
             nuevo.setEnabled(true);
@@ -518,6 +520,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         textSuper.setText("");
         textTipo.setText("");
         textZona.setText("");
+        comboPropietario.removeAllItems();
     }
     private void bloquearCampos(){
         textId.setEnabled(false);
