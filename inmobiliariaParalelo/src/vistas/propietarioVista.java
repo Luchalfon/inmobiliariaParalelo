@@ -26,10 +26,10 @@ public class propietarioVista extends javax.swing.JInternalFrame {
 
     // Calcula el centro de la pantalla
     int centerX = (int) ((screenSize.getWidth() - getWidth()) / 2);
-    int centerY = (int) ((screenSize.getHeight() - getHeight()) / 2);
+   // int centerY = (int) ((screenSize.getHeight() - getHeight()) / 2);
 
     // Establece la ubicación del internal frame en el centro de la pantalla
-    setLocation(centerX, centerY);
+    setLocation(centerX, getY());
       
     }
         private Connection con;

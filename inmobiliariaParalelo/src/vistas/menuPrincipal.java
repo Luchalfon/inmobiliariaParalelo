@@ -6,7 +6,10 @@
 package vistas;
 
 import accesoADatos.miConexion;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.sql.Connection;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -16,6 +19,8 @@ public class menuPrincipal extends javax.swing.JFrame {
 
     public menuPrincipal() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setSize(500,520);
         setExtendedState(MAXIMIZED_BOTH);
         con = miConexion.getConexion();
     }
@@ -29,7 +34,14 @@ public class menuPrincipal extends javax.swing.JFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem7 = new javax.swing.JMenuItem();
-        escritorio = new javax.swing.JDesktopPane();
+        ImageIcon icono=new ImageIcon(getClass().getResource("/diseño/fondoEscritorio.jpg"));
+        Image miImage=icono.getImage();
+        escritorio = new javax.swing.JDesktopPane(){
+
+            public void paintComponent(Graphics g){
+                g.drawImage(miImage,0,0,getWidth(),getHeight(),this);
+            }
+        };
         jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
