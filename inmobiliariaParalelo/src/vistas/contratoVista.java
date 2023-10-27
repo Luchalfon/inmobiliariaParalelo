@@ -540,6 +540,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                     llenarComboPropiedad();
                     llenarComboInquilino();
                     //comparamos el inquilino de la base y lo seteamos en el comboBox
+                    //si el inquilino esta eliminado no traer nada
                     DefaultComboBoxModel<Inquilino> model = (DefaultComboBoxModel<Inquilino>) comboInquilino.getModel();
                     int contador = model.getSize();
                     for (int i = 0; i < contador; i++) {

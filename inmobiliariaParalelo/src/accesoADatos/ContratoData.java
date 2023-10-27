@@ -89,7 +89,7 @@ public class ContratoData {
             int exito = ps.executeUpdate();
 
             if (exito == 1) {
-                JOptionPane.showMessageDialog(null, "Contrato Modificado Exitosamente.");
+                JOptionPane.showMessageDialog(null, "El contrato se ha modificado");
             } else {
                 JOptionPane.showMessageDialog(null, "El contrato no existe");
             }
@@ -166,7 +166,7 @@ public class ContratoData {
             }
 
         } catch (SQLException ex) {
-            System.out.println("Erro al acceder al contrato");
+            System.out.println("Error al acceder al contrato");
         }
 }
 
