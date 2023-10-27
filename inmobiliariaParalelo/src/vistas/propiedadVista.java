@@ -1,5 +1,6 @@
 package vistas;
 
+
 import Entidades.Propiedad;
 import Entidades.Propietario;
 import Validaciones.Validaciones;
@@ -38,6 +39,9 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     Propiedad propiedad1;
     int idProSelect;
     private boolean si;
+    private int seleccion;
+    private String tipoPropiedad;
+    private String tipoZona;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -62,14 +66,14 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         textPrecio = new javax.swing.JTextField();
         textRevisor = new javax.swing.JTextField();
         textSuper = new javax.swing.JTextField();
-        textTipo = new javax.swing.JTextField();
-        textZona = new javax.swing.JTextField();
         buscar = new javax.swing.JButton();
         nuevo = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
         modificar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
         salir = new javax.swing.JButton();
+        comboTipoPropiedad = new javax.swing.JComboBox<>();
+        comboTipoZona = new javax.swing.JComboBox<>();
 
         setMaximumSize(new java.awt.Dimension(1080, 625));
         setName(""); // NOI18N
@@ -91,7 +95,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         jLabel5.setText("Propietario");
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel7.setText("Forma");
+        jLabel7.setText("Forma de Pago");
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel8.setText("Precio");
@@ -100,7 +104,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         jLabel9.setText("Revisor");
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel10.setText("Superficie Minima");
+        jLabel10.setText("Superficie Min. (m2)");
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel11.setText("Tipo de propiedad");
@@ -170,6 +174,20 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             }
         });
 
+        comboTipoPropiedad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Casa", "Departamento", "Comercio", "Deposito", "Campo" }));
+        comboTipoPropiedad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoPropiedadActionPerformed(evt);
+            }
+        });
+
+        comboTipoZona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Centrica", "Rural" }));
+        comboTipoZona.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoZonaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,7 +199,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(33, Short.MAX_VALUE)
+                        .addContainerGap(47, Short.MAX_VALUE)
                         .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(38, 38, 38)
                         .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -206,7 +224,6 @@ public class propiedadVista extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2))
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(textZona)
                             .addComponent(textId)
                             .addComponent(textDire)
                             .addComponent(comboPropietario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -214,8 +231,9 @@ public class propiedadVista extends javax.swing.JInternalFrame {
                             .addComponent(textPrecio)
                             .addComponent(textRevisor)
                             .addComponent(textSuper)
-                            .addComponent(textTipo)
-                            .addComponent(textAcce))
+                            .addComponent(textAcce)
+                            .addComponent(comboTipoPropiedad, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(comboTipoZona, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(21, 21, 21))
@@ -226,50 +244,51 @@ public class propiedadVista extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textAcce, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel3)))
+                            .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textAcce, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3)))
-                    .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textDire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(comboPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(textForma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
+                            .addComponent(textDire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4))
                         .addGap(18, 18, 18)
-                        .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(textRevisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(comboPropietario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel5))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(textForma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7))
+                                .addGap(18, 18, 18)
+                                .addComponent(textPrecio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(textRevisor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textSuper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel11))
+                    .addComponent(comboTipoPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textSuper, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(textTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                    .addComponent(jLabel12)
+                    .addComponent(comboTipoZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -308,10 +327,10 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El campo revisor no puede estar vacio y debe ser un nombre");
         }else if(textSuper.getText().isEmpty() || !Validaciones.validarEntero(textSuper.getText())){
             JOptionPane.showMessageDialog(this, "El campo superficie no puede estar vacio y debe contener un entero");
-        }else if(textTipo.getText().isEmpty() ){
-            JOptionPane.showMessageDialog(this, "El campo tipo de propiedad no puede estar vacio");
-        }else if(textZona.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "El campo Zona no puede estar vacio");
+//        }else if(textTipo.getText().isEmpty() ){
+//            JOptionPane.showMessageDialog(this, "El campo tipo de propiedad no puede estar vacio");
+//        }else if(textZona.getText().isEmpty()){
+//            JOptionPane.showMessageDialog(this, "El campo Zona no puede estar vacio");
         }else{
         crearPropiedad();
         PropiedadData pd = new PropiedadData();
@@ -373,8 +392,34 @@ public class propiedadVista extends javax.swing.JInternalFrame {
                     textPrecio.setText(String.valueOf(propie1.getPrecio()));
                     textRevisor.setText(propie1.getRevisor());
                     textSuper.setText(String.valueOf(propie1.getSuperficieMinima()));
-                    textTipo.setText(propie1.getTipoPropiedad());
-                    textZona.setText(propie1.getZona());
+                    switch(propie1.getTipoPropiedad()){
+                        case "Casa":
+                        comboTipoPropiedad.setSelectedIndex(0);
+                        break;
+                        case "Departamento":
+                        comboTipoPropiedad.setSelectedIndex(1);
+                        break;
+                        case "Comercio":
+                        comboTipoPropiedad.setSelectedIndex(2);
+                        break;
+                        case "Deposito":
+                        comboTipoPropiedad.setSelectedIndex(3);
+                        break;
+                        case "Campo":
+                        comboTipoPropiedad.setSelectedIndex(4);
+                        break;
+                    }
+                      switch(propie1.getTipoZona()){
+                        case "Centrica":
+                        comboTipoZona.setSelectedIndex(0);
+                        break;
+                        case "Rural":
+                        comboTipoZona.setSelectedIndex(1);
+                        break;
+                       
+                    }
+//textTipo.setText(propie1.getTipoPropiedad());
+//                    textZona.setText(propie1.getZona());
 
                     break;
             }
@@ -406,10 +451,10 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El campo revisor no puede estar vacio y debe ser un nombre");
         } else if (textSuper.getText().isEmpty() || !Validaciones.validarEntero(textSuper.getText())) {
             JOptionPane.showMessageDialog(this, "El campo superficie no puede estar vacio y debe contener un entero");
-        } else if (textTipo.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "El campo tipo de propiedad no puede estar vacio");
-        } else if (textZona.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "El campo Zona no puede estar vacio");
+//        } else if (textTipo.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "El campo tipo de propiedad no puede estar vacio");
+//        } else if (textZona.getText().isEmpty()) {
+//            JOptionPane.showMessageDialog(this, "El campo Zona no puede estar vacio");
         } else {
             Propiedad propie1 = new Propiedad();
             PropiedadData pd = new PropiedadData();
@@ -421,8 +466,8 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             propie1.setPrecio(Float.parseFloat(textPrecio.getText()));
             propie1.setRevisor(textRevisor.getText());
             propie1.setSuperficieMinima(Integer.parseInt(textSuper.getText()));
-            propie1.setTipoPropiedad(textTipo.getText());
-            propie1.setZona(textZona.getText());
+            propie1.setTipoPropiedad(tipoPropiedad);
+            propie1.setTipoZona(tipoZona);
 
             pd.modificarPropiedad(propie1);
 
@@ -450,10 +495,51 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         buscar.setEnabled(true);
     }//GEN-LAST:event_eliminarActionPerformed
 
+    private void comboTipoPropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoPropiedadActionPerformed
+            // TODO add your handling code here:
+        seleccion=comboTipoPropiedad.getSelectedIndex();
+        switch (seleccion) {
+        case 0:
+        tipoPropiedad = "Casa";
+        break;
+        case 1:
+        tipoPropiedad = "Departamento";
+        break;
+        case 2:
+        tipoPropiedad = "Comercio";
+        break;
+        case 3:
+        tipoPropiedad = "Deposito";
+        break;
+        case 4:
+        tipoPropiedad = "Campo";
+        break;
+    }
+        
+        
+        
+    }//GEN-LAST:event_comboTipoPropiedadActionPerformed
+
+    private void comboTipoZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoZonaActionPerformed
+    // TODO add your handling code here:
+          seleccion=comboTipoZona.getSelectedIndex();
+        switch (seleccion) {
+        case 0:
+        tipoZona = "Centrica";
+        break;
+        case 1:
+        tipoZona = "Rural";
+        break;
+        }
+        
+    }//GEN-LAST:event_comboTipoZonaActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscar;
     private javax.swing.JComboBox<Propietario> comboPropietario;
+    private javax.swing.JComboBox<String> comboTipoPropiedad;
+    private javax.swing.JComboBox<String> comboTipoZona;
     private javax.swing.JButton eliminar;
     private javax.swing.JButton guardar;
     private javax.swing.JLabel jLabel1;
@@ -477,8 +563,6 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField textPrecio;
     private javax.swing.JTextField textRevisor;
     private javax.swing.JTextField textSuper;
-    private javax.swing.JTextField textTipo;
-    private javax.swing.JTextField textZona;
     // End of variables declaration//GEN-END:variables
 
     public void llenarCombo() {
@@ -501,12 +585,12 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         float precio = Float.parseFloat(textPrecio.getText());
         String revisor = textRevisor.getText();
         int superficieMinima = Integer.parseInt(textSuper.getText());
-        String tipoPropiedad = textTipo.getText();
-        String zona = textZona.getText();
+//        String tipoPropiedad = textTipoPropiedad.getText();
+       // String zona = textZona.getText();
         boolean disponible =false;
         boolean estado = true;
 
-        propiedad1 = new Propiedad(acceso, direcion, propietarioSelect, forma, precio, revisor, superficieMinima, tipoPropiedad, zona, disponible, estado);
+        propiedad1 = new Propiedad(acceso, direcion, propietarioSelect, forma, precio, revisor, superficieMinima, tipoPropiedad, tipoZona, disponible, estado);
         System.out.println(propiedad1);
         return propiedad1;
     }
@@ -518,8 +602,8 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         textPrecio.setText("");
         textRevisor.setText("");
         textSuper.setText("");
-        textTipo.setText("");
-        textZona.setText("");
+        // textTipo.setText("");
+        //textZona.setText("");
         //comboPropietario.removeAllItems();
     }
     private void bloquearCampos(){
@@ -531,8 +615,8 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         textPrecio.setEnabled(false);
         textRevisor.setEnabled(false);
         textSuper.setEnabled(false);
-        textTipo.setEnabled(false);
-        textZona.setEnabled(false);
+//        textTipo.setEnabled(false);
+        //textZona.setEnabled(false);
     }
       private void habilitarCampos(){
        
@@ -543,7 +627,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         textPrecio.setEnabled(true);
         textRevisor.setEnabled(true);
         textSuper.setEnabled(true);
-        textTipo.setEnabled(true);
-        textZona.setEnabled(true);
+//        textTipo.setEnabled(true);
+        //textZona.setEnabled(true);
     }
 }

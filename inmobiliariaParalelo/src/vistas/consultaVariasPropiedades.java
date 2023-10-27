@@ -200,7 +200,7 @@ seleccion=comboPropiedad.getSelectedIndex();
 switch ( seleccion){
         case 0:
             //hacer un if asi no calga de nuevo el modelo      
-            tipo= JOptionPane.showInputDialog("Ingrese el Tipo de Propiedad:");
+            tipo= JOptionPane.showInputDialog("Ingrese el Tipo de Propiedad: ");
             llenarTablaTipo();
             
            break;
@@ -255,7 +255,7 @@ private void armarCabecera() {
 private void llenarTablaTipo() {
         PropiedadData proData = new PropiedadData();
         for (Propiedad propi : proData.obtenerPropiedadesPorTipo(tipo)) {
-            modelo.addRow(new Object[]{propi.getId_propiedad(),propi.getTipoPropiedad(),propi.getDireccion(),propi.getPrecio(),propi.getZona(),propi.getSuperficieMinima()});
+            modelo.addRow(new Object[]{propi.getId_propiedad(),propi.getTipoPropiedad(),propi.getDireccion(),propi.getPrecio(),propi.getTipoZona(),propi.getSuperficieMinima()});
 
         }
 
@@ -264,7 +264,7 @@ private void llenarTablaTipo() {
 private void llenarTablaZona() {
         PropiedadData proData = new PropiedadData();
         for (Propiedad propi1 : proData.obtenerPropiedadesPorZona(zona)) {
-           modelo.addRow(new Object[]{propi1.getId_propiedad(),propi1.getTipoPropiedad(),propi1.getDireccion(),propi1.getPrecio(),propi1.getZona(),propi1.getSuperficieMinima()});
+           modelo.addRow(new Object[]{propi1.getId_propiedad(),propi1.getTipoPropiedad(),propi1.getDireccion(),propi1.getPrecio(),propi1.getTipoZona(),propi1.getSuperficieMinima()});
 
         }
 
@@ -273,7 +273,7 @@ private void llenarTablaZona() {
 private void llenarTablaSuper() {
         PropiedadData proData = new PropiedadData();
         for (Propiedad propi1 : proData.obtenerPropiedadesPorSup(superf)) {
-            modelo.addRow(new Object[]{propi1.getId_propiedad(),propi1.getTipoPropiedad(),propi1.getDireccion(),propi1.getPrecio(),propi1.getZona(),propi1.getSuperficieMinima()});
+            modelo.addRow(new Object[]{propi1.getId_propiedad(),propi1.getTipoPropiedad(),propi1.getDireccion(),propi1.getPrecio(),propi1.getTipoZona(),propi1.getSuperficieMinima()});
 
         }
 
@@ -282,7 +282,7 @@ private void llenarTablaSuper() {
 private void llenarTablaPrecio() {
         PropiedadData proData = new PropiedadData();
         for (Propiedad propi1 : proData.obtenerPropiedadesPorPrecio(precio)) {
-            modelo.addRow(new Object[]{propi1.getId_propiedad(),propi1.getTipoPropiedad(),propi1.getDireccion(),propi1.getPrecio(),propi1.getZona(),propi1.getSuperficieMinima()});
+            modelo.addRow(new Object[]{propi1.getId_propiedad(),propi1.getTipoPropiedad(),propi1.getDireccion(),propi1.getPrecio(),propi1.getTipoZona(),propi1.getSuperficieMinima()});
 
         }
 

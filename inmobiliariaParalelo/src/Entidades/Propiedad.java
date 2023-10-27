@@ -12,7 +12,7 @@ public class Propiedad {
   private String revisor;
   private int superficieMinima;
   private String tipoPropiedad;
-  private String zona;
+  private String tipoZona;
   private boolean disponible;
   private boolean estado;
 
@@ -28,7 +28,7 @@ public class Propiedad {
         this.revisor = revisor;
         this.superficieMinima = superficieMinima;
         this.tipoPropiedad = tipoPropiedad;
-        this.zona = zona;
+        this.tipoZona = tipoZona;
         this.disponible=disponible;
         this.estado = estado;
     }
@@ -43,7 +43,7 @@ public class Propiedad {
         this.revisor = revisor;
         this.superficieMinima = superficieMinima;
         this.tipoPropiedad = tipoPropiedad;
-        this.zona = zona;
+        this.tipoZona = tipoZona;
         this.disponible=disponible;
         this.estado = estado;
     }
@@ -120,12 +120,12 @@ public class Propiedad {
         this.tipoPropiedad = tipoPropiedad;
     }
 
-    public String getZona() {
-        return zona;
+    public String getTipoZona() {
+        return tipoZona;
     }
 
-    public void setZona(String zona) {
-        this.zona = zona;
+    public void setTipoZona(String tipoZona) {
+        this.tipoZona = tipoZona;
     }
 
     public boolean isDisponible() {

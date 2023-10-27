@@ -39,7 +39,7 @@ public class PropiedadData {
             ps.setString(6,propiedad.getRevisor());
             ps.setInt(7,propiedad.getSuperficieMinima());
             ps.setString(8,propiedad.getTipoPropiedad());
-            ps.setString(9,propiedad.getZona());
+            ps.setString(9,propiedad.getTipoZona());
             ps.setBoolean(10,propiedad.isEstado());
             
             
@@ -76,7 +76,7 @@ public class PropiedadData {
             ps.setString(6,propiedad.getRevisor());
             ps.setInt(7,propiedad.getSuperficieMinima());
             ps.setString(8,propiedad.getTipoPropiedad());
-            ps.setString(9,propiedad.getZona());
+            ps.setString(9,propiedad.getTipoZona());
             ps.setInt(10,propiedad.getId_propiedad()) ;
             int exito = ps.executeUpdate();
 
@@ -114,7 +114,7 @@ public class PropiedadData {
                 propiedad.setRevisor(rs.getString("revisor"));
                 propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                 propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
-                propiedad.setZona(rs.getString("zona"));
+                propiedad.setTipoZona(rs.getString("zona"));
                                 
                           
 
@@ -157,7 +157,7 @@ public class PropiedadData {
                 propiedad.setRevisor(rs.getString("revisor"));
                 propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                 propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
-                propiedad.setZona(rs.getString("zona"));
+                propiedad.setTipoZona(rs.getString("zona"));
                 propiedad.setEstado(true);
                
                 propiedades.add(propiedad);
@@ -235,7 +235,7 @@ public List<Propiedad> obtenerPropiedadesPorZona(String zona) {
                 propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
                 propiedad.setDireccion(rs.getString("direccion"));
                 propiedad.setPrecio(rs.getFloat("precioTazado"));
-                propiedad.setZona(rs.getString("zona"));
+                propiedad.setTipoZona(rs.getString("zona"));
                 propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                
                 propiedades.add(propiedad);
@@ -269,7 +269,7 @@ public List<Propiedad> obtenerPropiedadesPorTipo(String tipo) {
                 propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
                 propiedad.setDireccion(rs.getString("direccion"));
                 propiedad.setPrecio(rs.getFloat("precioTazado"));
-                propiedad.setZona(rs.getString("zona"));
+                propiedad.setTipoZona(rs.getString("zona"));
                 propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                 
                
@@ -301,7 +301,7 @@ public List<Propiedad> obtenerPropiedadesPorSup(int superf) {
                 propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
                 propiedad.setDireccion(rs.getString("direccion"));
                 propiedad.setPrecio(rs.getFloat("precioTazado"));
-                propiedad.setZona(rs.getString("zona"));
+                propiedad.setTipoZona(rs.getString("zona"));
                 propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                 
                
@@ -333,7 +333,7 @@ public List<Propiedad> obtenerPropiedadesPorPrecio(float precio) {
                 propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
                 propiedad.setDireccion(rs.getString("direccion"));
                 propiedad.setPrecio(rs.getFloat("precioTazado"));
-                propiedad.setZona(rs.getString("zona"));
+                propiedad.setTipoZona(rs.getString("zona"));
                 propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                 
                
@@ -370,7 +370,7 @@ public List<Propiedad> obtenerPropiedadesPorPrecio(float precio) {
                 propiedad.setRevisor(rs.getString("revisor"));
                 propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                 propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
-                propiedad.setZona(rs.getString("zona"));
+                propiedad.setTipoZona(rs.getString("zona"));
                 propiedad.setDisponible(rs.getBoolean("disponibilidad"));
                 propiedad.setEstado(true);
                

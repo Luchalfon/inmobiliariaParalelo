@@ -586,9 +586,9 @@ public class contratoVista extends javax.swing.JInternalFrame {
                         vigenciaNo.setSelected(true);
                         textVigencia.setText("False");
                         JOptionPane.showMessageDialog(null, "Su contrato quedo sin vigencia", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
-//                crearContrato();
-//                ContratoData contraData = new ContratoData();
-//                contraData.modificarContratoVigencia(contrato1);
+//                      crearContrato();
+//                      ContratoData contraData = new ContratoData();
+//                      contraData.modificarContratoVigencia(contrato1);
 
                         Contrato contra = new Contrato();
                         ContratoData contradata = new ContratoData();
@@ -611,7 +611,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                         contra.setMarca(mark);
                         contradata.modificarContrato(contra);
 
-                    } else {
+                        } else {
                         vigenciaSi.setSelected(true);
                         textVigencia.setText("True");
 
