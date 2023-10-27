@@ -75,6 +75,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         comboTipoPropiedad = new javax.swing.JComboBox<>();
         comboTipoZona = new javax.swing.JComboBox<>();
 
+        setBackground(new java.awt.Color(153, 153, 153));
         setMaximumSize(new java.awt.Dimension(1080, 625));
         setName(""); // NOI18N
         setPreferredSize(new java.awt.Dimension(1080, 625));
@@ -120,6 +121,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             }
         });
 
+        buscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/buscar.png"))); // NOI18N
         buscar.setText("Buscar");
         buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -129,6 +131,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             }
         });
 
+        nuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/nuevo1.png"))); // NOI18N
         nuevo.setText("Nuevo");
         nuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -138,6 +141,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             }
         });
 
+        guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/guardar.png"))); // NOI18N
         guardar.setText("Guardar");
         guardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -147,6 +151,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             }
         });
 
+        modificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/modificar.png"))); // NOI18N
         modificar.setText("Modificar");
         modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -156,6 +161,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             }
         });
 
+        eliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/eliminar1.png"))); // NOI18N
         eliminar.setText("Eliminar");
         eliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -165,6 +171,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             }
         });
 
+        salir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/salir2.png"))); // NOI18N
         salir.setText("Salir");
         salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -288,7 +295,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(comboTipoZona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(nuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(guardar, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -418,8 +425,8 @@ public class propiedadVista extends javax.swing.JInternalFrame {
                         break;
                        
                     }
-//textTipo.setText(propie1.getTipoPropiedad());
-//                    textZona.setText(propie1.getZona());
+                    //textTipo.setText(propie1.getTipoPropiedad());
+                    //                    textZona.setText(propie1.getZona());
 
                     break;
             }
@@ -585,8 +592,8 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         float precio = Float.parseFloat(textPrecio.getText());
         String revisor = textRevisor.getText();
         int superficieMinima = Integer.parseInt(textSuper.getText());
-//        String tipoPropiedad = textTipoPropiedad.getText();
-       // String zona = textZona.getText();
+        // String tipoPropiedad = textTipoPropiedad.getText();
+        // String zona = textZona.getText();
         boolean disponible =false;
         boolean estado = true;
 
@@ -602,7 +609,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         textPrecio.setText("");
         textRevisor.setText("");
         textSuper.setText("");
-        // textTipo.setText("");
+        //textTipo.setText("");
         //textZona.setText("");
         //comboPropietario.removeAllItems();
     }
@@ -615,6 +622,9 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         textPrecio.setEnabled(false);
         textRevisor.setEnabled(false);
         textSuper.setEnabled(false);
+        comboTipoPropiedad.setEnabled(false);
+        comboTipoZona.setEnabled(false);
+        
 //        textTipo.setEnabled(false);
         //textZona.setEnabled(false);
     }
@@ -627,6 +637,8 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         textPrecio.setEnabled(true);
         textRevisor.setEnabled(true);
         textSuper.setEnabled(true);
+        comboTipoPropiedad.setEnabled(true);
+        comboTipoZona.setEnabled(true);
 //        textTipo.setEnabled(true);
         //textZona.setEnabled(true);
     }
