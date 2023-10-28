@@ -31,9 +31,11 @@ public class contratoVista extends javax.swing.JInternalFrame {
 
     public contratoVista() {
         initComponents();
+        textVigencia.setVisible(false);
         modificar.setEnabled(false);
         firmar.setEnabled(false);
         eliminar.setEnabled(false);
+        BotonRenovar.setVisible(false);
 
         // Obtén las dimensiones de la pantalla
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -101,6 +103,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
         vigenciaNo = new javax.swing.JRadioButton();
         textDias = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        BotonRenovar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(1080, 630));
 
@@ -234,6 +237,13 @@ public class contratoVista extends javax.swing.JInternalFrame {
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel14.setText("Dias Restantes de Contrato");
 
+        BotonRenovar.setText("Renovar");
+        BotonRenovar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BotonRenovarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -277,27 +287,35 @@ public class contratoVista extends javax.swing.JInternalFrame {
                                 .addComponent(textTel, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(textDni, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(textGarante, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(textVigencia, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(textVendedor, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(comboPropiedad, javax.swing.GroupLayout.Alignment.LEADING, 0, 615, Short.MAX_VALUE)
                                 .addComponent(comboInquilino, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(textMarca)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(textVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(39, 39, 39)
-                                    .addComponent(vigenciaSi)
-                                    .addGap(35, 35, 35)
-                                    .addComponent(vigenciaNo)))
+                                .addComponent(textMarca))
                             .addComponent(textId, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(textFecha_Realizacion, javax.swing.GroupLayout.PREFERRED_SIZE, 615, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(jdFecha1, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
                                 .addComponent(jdFecha2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(21, 21, 21)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(textDias)
-                            .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
-                        .addContainerGap(20, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(21, 21, 21)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(textDias)
+                                    .addComponent(buscar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 195, Short.MAX_VALUE))
+                                .addContainerGap(13, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(vigenciaSi)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(vigenciaNo)
+                                        .addGap(29, 29, 29))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(BotonRenovar)
+                                        .addGap(72, 72, 72))))))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,22 +362,25 @@ public class contratoVista extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(textDias, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(textVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel9))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(vigenciaSi)
-                        .addComponent(vigenciaNo)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(textVigencia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(vigenciaSi)
+                    .addComponent(vigenciaNo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textGarante, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(textDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel11))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(textDni, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel11)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(BotonRenovar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textTel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12))
@@ -367,7 +388,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(textMarca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(firmar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(modificar, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -439,6 +460,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
 
     private void comboPropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboPropiedadActionPerformed
         propiedadSelec = (Propiedad) comboPropiedad.getSelectedItem();
+        
         idPropiedSelec = propiedadSelec.getId_propiedad();
 // TODO add your handling code here:
     }//GEN-LAST:event_comboPropiedadActionPerformed
@@ -583,13 +605,11 @@ public class contratoVista extends javax.swing.JInternalFrame {
                     String diasS = String.valueOf(dias + " Dias");
                     textDias.setText(diasS);
 
-                    if (dias <= 0) {
+                    if (dias <=0) {
                         vigenciaNo.setSelected(true);
                         textVigencia.setText("False");
                         JOptionPane.showMessageDialog(null, "Su contrato quedo sin vigencia", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
-//                      crearContrato();
-//                      ContratoData contraData = new ContratoData();
-//                      contraData.modificarContratoVigencia(contrato1);
+                       
 
                         Contrato contra = new Contrato();
                         ContratoData contradata = new ContratoData();
@@ -611,8 +631,29 @@ public class contratoVista extends javax.swing.JInternalFrame {
                         char mark = mar.charAt(0);
                         contra.setMarca(mark);
                         contradata.modificarContrato(contra);
-
-                        } else {
+                        
+                        }else if(dias>1 && dias<=30){
+                            
+                           // cartel para avisar que su contrato esta por vencer desea renovar si o no
+                           //if si
+                           BotonRenovar.setVisible(true);
+                           //cartel ingrese los datos restantes
+                           // darle focus al chooser
+                           //limpiamos campos para cargar de nuevo
+                           //chooser1 y 2
+                           textVendedor.setText("");
+                           textVigencia.setText("");
+                           textGarante.setText("");
+                           textDni.setText("");
+                           textTel.setText("");
+                           textMarca.setText("");
+                           
+                           
+                           //else salir y borrar los campos o lo dejar 
+                           
+                            
+                        }
+                        else {
                         vigenciaSi.setSelected(true);
                         textVigencia.setText("True");
 
@@ -636,8 +677,25 @@ public class contratoVista extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textFecha_RealizacionActionPerformed
 
+    private void BotonRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRenovarActionPerformed
+
+                          //  crearContrato();
+                         //   ContratoData contData=new ContratoData();
+                          // contData.guardarContrato(contrato1);
+                        //   PropiedadData proData=new PropiedadData();
+                          //double jop ingrese el nuevo precio del alquiler
+                          
+                          
+                          //  propiedadSelec.setPrecio(jop);
+                          //  proData.modificarPrecioPropiedad(propiedadSelec);
+
+
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BotonRenovarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BotonRenovar;
     private javax.swing.JButton buscar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<Inquilino> comboInquilino;

@@ -115,7 +115,8 @@ public class PropiedadData {
                 propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                 propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
                 propiedad.setTipoZona(rs.getString("zona"));
-                                
+                    
+              //  propiedad.setPrecio(jop);
                           
 
             } else {
@@ -138,7 +139,7 @@ public class PropiedadData {
 
         List<Propiedad> propiedades = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM `propiedadinmueble` WHERE estado=1 ";
+            String sql = "SELECT * FROM `propiedadinmueble` WHERE estado=1 AND disponible=0";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -158,6 +159,7 @@ public class PropiedadData {
                 propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                 propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
                 propiedad.setTipoZona(rs.getString("zona"));
+                propiedad.setDisponible(rs.getBoolean("disponible"));
                 propiedad.setEstado(true);
                
                 propiedades.add(propiedad);
@@ -385,5 +387,26 @@ public List<Propiedad> obtenerPropiedadesPorPrecio(float precio) {
         return propiedades;
     }
 
- 
+ public void modificarPrecioPropiedad(Propiedad propiedad) {
+
+        String sql = "UPDATE `propiedadinmueble` SET `precioTazado`=? WHERE id_Propiedad=?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setDouble(1, propiedad.getPrecio());
+            ps.setInt(2, propiedad.getId_propiedad());
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                JOptionPane.showMessageDialog(null, "Propidad Modificada Exitosamente.");
+            } else {
+                JOptionPane.showMessageDialog(null, "La propiedad no existe");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Propiedad " + ex.getMessage());
+        }
+
+    }
 }

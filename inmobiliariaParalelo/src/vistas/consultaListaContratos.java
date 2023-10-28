@@ -63,6 +63,7 @@ public class consultaListaContratos extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        TablaBusqueda.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane1.setViewportView(TablaBusqueda);
 
         jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -80,16 +81,18 @@ public class consultaListaContratos extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 945, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(842, 842, 842)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(386, 386, 386)
-                            .addComponent(jLabel1))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(842, 842, 842)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(386, 386, 386)
+                                .addComponent(jLabel1)))
+                        .addGap(0, 262, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,7 +103,7 @@ public class consultaListaContratos extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         pack();
@@ -121,22 +124,24 @@ public class consultaListaContratos extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     private void armarCabecera() {
            
-        modelo.addColumn("Inquilino");
-        modelo.addColumn("Propiedad");
+        modelo.addColumn("Apellido Inquilino");
+        modelo.addColumn("Nombre Inquilino");
+        modelo.addColumn("Tipo Propiedad");
+        modelo.addColumn("Direccion Propiedad");
         modelo.addColumn("Fecha Inicio");
         modelo.addColumn("Fecha Final");
         modelo.addColumn("Vendedor");
         modelo.addColumn("Vigencia");
         modelo.addColumn("Garante");
         modelo.addColumn("DNI Garante");
-        modelo.addColumn("TEL Garante");
+      
                
        TablaBusqueda.setModel(modelo);
     }
         private void llenarTabla() {
         ContratoData conData = new ContratoData();
         for (Contrato contr : conData.listarContratos()) {
-            modelo.addRow(new Object[]{contr.getInquilino().getId_Inquilino(),contr.getPropiedad().getId_propiedad(),contr.getFecha_Inicio(),contr.getFecha_Final(),contr.getVendedor(),contr.getVigencia(),contr.getNombreGarante(),contr.getDniGarante(),contr.getTelGarante()});
+            modelo.addRow(new Object[]{contr.getInquilino().getApellido(),contr.getInquilino().getNombre(),contr.getPropiedad().getTipoPropiedad(),contr.getPropiedad().getDireccion(),contr.getFecha_Inicio(),contr.getFecha_Final(),contr.getVendedor(),contr.getVigencia(),contr.getNombreGarante(),contr.getDniGarante()});
 
         }
 
