@@ -1,19 +1,22 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package vistas;
 
-import Entidades.Propietario;
-import accesoADatos.PropietarioData;
+import Entidades.Contrato;
+import accesoADatos.ContratoData;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.table.DefaultTableModel;
 
+public class consultaListaContratos extends javax.swing.JInternalFrame {
 
-public class consultaListaPropietarios extends javax.swing.JInternalFrame {
-    private DefaultTableModel modelo = new DefaultTableModel();
-    
-    public consultaListaPropietarios() {
+     private DefaultTableModel modelo = new DefaultTableModel();
+  
+    public consultaListaContratos() {
         initComponents();
-        
         armarCabecera();
         llenarTabla();
          // Obtén las dimensiones de la pantalla
@@ -25,10 +28,9 @@ public class consultaListaPropietarios extends javax.swing.JInternalFrame {
 
         // Establece la ubicación del internal frame en el centro de la pantalla
         setLocation(centerX, getY());
-        
     }
 
-    
+   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -38,10 +40,8 @@ public class consultaListaPropietarios extends javax.swing.JInternalFrame {
         TablaBusqueda = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
 
-        setClosable(true);
-
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
-        jLabel1.setText("LISTA DE PROPIETARIOS");
+        jLabel1.setText("LISTADO DE CONTRATOS");
 
         TablaBusqueda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         TablaBusqueda.setModel(new javax.swing.table.DefaultTableModel(
@@ -80,34 +80,34 @@ public class consultaListaPropietarios extends javax.swing.JInternalFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(390, 390, 390)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 939, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(70, 70, 70))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 945, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(842, 842, 842)
+                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(386, 386, 386)
+                            .addComponent(jLabel1))))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addComponent(jLabel1)
-                .addGap(37, 37, 37)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 346, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            this.dispose();
-            
+        this.dispose();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -119,29 +119,28 @@ public class consultaListaPropietarios extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-
-    
     private void armarCabecera() {
            
-        modelo.addColumn("DNI");
-        modelo.addColumn("Apellido");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Telefono");
-       
-
+        modelo.addColumn("Inquilino");
+        modelo.addColumn("Propiedad");
+        modelo.addColumn("Fecha Inicio");
+        modelo.addColumn("Fecha Final");
+        modelo.addColumn("Vendedor");
+        modelo.addColumn("Vigencia");
+        modelo.addColumn("Garante");
+        modelo.addColumn("DNI Garante");
+        modelo.addColumn("TEL Garante");
+               
        TablaBusqueda.setModel(modelo);
     }
-
-private void llenarTabla() {
-        PropietarioData proData = new PropietarioData();
-        for (Propietario propi : proData.listarPropietarios()) {
-            modelo.addRow(new Object[]{propi.getDni(),propi.getApellido(),propi.getNombre(),propi.getTelefono()});
+        private void llenarTabla() {
+        ContratoData conData = new ContratoData();
+        for (Contrato contr : conData.listarContratos()) {
+            modelo.addRow(new Object[]{contr.getInquilino().getId_Inquilino(),contr.getPropiedad().getId_propiedad(),contr.getFecha_Inicio(),contr.getFecha_Final(),contr.getVendedor(),contr.getVigencia(),contr.getNombreGarante(),contr.getDniGarante(),contr.getTelGarante()});
 
         }
 
     }
-
-
 
 
 
