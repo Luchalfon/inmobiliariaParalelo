@@ -568,6 +568,12 @@ public class contratoVista extends javax.swing.JInternalFrame {
                     //comparamos el inquilino de la base y lo seteamos en el comboBox
                     //si el inquilino esta eliminado no traer nada
                     DefaultComboBoxModel<Inquilino> model = (DefaultComboBoxModel<Inquilino>) comboInquilino.getModel();
+                    if(cont.getVigencia()==false){
+                        vigenciaNo.setSelected(true);
+                        
+                    }else{
+                        vigenciaSi.setSelected(true);
+                    }
                     int contador = model.getSize();
                     for (int i = 0; i < contador; i++) {
                         Inquilino inqui = model.getElementAt(i);
@@ -606,13 +612,13 @@ public class contratoVista extends javax.swing.JInternalFrame {
                     String diasS = String.valueOf(dias + " Dias");
                     textDias.setText(diasS);
 
-                    if (dias <=0) {
+                    if (dias <=0 && cont.getVigencia()==true) {
                         vigenciaNo.setSelected(true);
                         textVigencia.setText("False");
                         JOptionPane.showMessageDialog(null, "Su contrato quedo sin vigencia", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
                     
                     
-                    }else if(dias>0 && dias<15){
+                    }else if(dias>0 && dias<15 && cont.getVigencia()==true){
                           vigenciaSi.setSelected(true);
                           textVigencia.setText("True");
                           JOptionPane.showMessageDialog(null, "Su contrato aun esta vigente, pero ya no se puede Renovar", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
@@ -645,11 +651,15 @@ public class contratoVista extends javax.swing.JInternalFrame {
 //                        contradata.modificarContrato(contra);
 //                           
     
-                    }else if(dias>=15 && dias<=30){
+                    }else if(dias>=15 && dias<=30 && cont.getVigencia()==true){
                             
                            int salida = JOptionPane.showConfirmDialog(null, "Presione Aceptar si desea renovar el contrato", "CONTRATO PRONTO A VENCER", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
                            if (salida==0){
-                                                                              
+                           
+                           if(cont.getVigencia()==true){    
+                           cont.setVigencia(false);
+                           contData.modificarContratoVigencia(cont);
+                           vigenciaSi.setSelected(false);
                            JOptionPane.showMessageDialog(null,"Complete los campos faltantes");
                            BotonRenovar.setVisible(true);
                            firmar.setEnabled(false);
@@ -669,7 +679,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                            jdFecha1.requestFocus();
                            vigenciaSi.setSelected(true);
                            textVigencia.setText("True");
-                           
+                           }
                            
                            }else if(salida==2){
                            JOptionPane.showMessageDialog(null,"Recuerde que si la cantidad de dias restantes es menor a 15, no podra realizar la Renovacion");    
@@ -718,7 +728,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                                 PropiedadData proData=new PropiedadData();
                                 Propiedad nuevaPro=new Propiedad();
                                 nuevaPro=propiedadSelec;
-                                System.out.println(nuevaPro);
+                              //  System.out.println(nuevaPro);
                                
                                 dateHoy = Date.valueOf(LocalDate.now());
                                 fechaIni = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
