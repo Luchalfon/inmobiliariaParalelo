@@ -434,6 +434,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
         ContratoData conData = new ContratoData();
         conData.guardarContrato(contrato1);
 
+        jdFecha1.setDate(null);
+        jdFecha2.setDate(null);
         textMarca.setText("");
         textDni.setText("");
         textId.setText("");
@@ -479,6 +481,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
         modificar.setEnabled(false);
         eliminar.setEnabled(false);
         firmar.setEnabled(true);
+        jdFecha1.setDate(null);
+        jdFecha2.setDate(null);
         textMarca.setText("");
         textDni.setText("");
         textId.setText("");
@@ -580,15 +584,12 @@ public class contratoVista extends javax.swing.JInternalFrame {
                             comboPropiedad.setSelectedIndex(i);
                         }
                     }
-
                     jdFecha1.setDate(cont.getFecha_Inicio());
                     jdFecha2.setDate(cont.getFecha_Final());
                     //   Date fechaactual = new Date(System.currentTimeMillis());
-
                     java.util.Date fechaactual = new java.util.Date(System.currentTimeMillis());
                     //jdFecha1.setDate(fechaactual); //poner fecha en el chooser
                     java.util.Date fechaFinal = jdFecha2.getDate();
-
                     textId.setText(id);
                     textVendedor.setText(cont.getVendedor());
                     //textVigencia.setText(String.valueOf(cont.getVigencia()));
@@ -609,63 +610,94 @@ public class contratoVista extends javax.swing.JInternalFrame {
                         vigenciaNo.setSelected(true);
                         textVigencia.setText("False");
                         JOptionPane.showMessageDialog(null, "Su contrato quedo sin vigencia", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
-                       
-
-                        Contrato contra = new Contrato();
-                        ContratoData contradata = new ContratoData();
-                        contra.setId_contrato(Integer.parseInt(textId.getText()));
-                        contra.setInquilino(inquilinoSelec);
-                        contra.setPropiedad(propiedadSelec);
-
-                        fInicial = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
-                        fFinal = ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText();
-                        contra.setFecha_Inicio(Date.valueOf(fInicial));
-                        contra.setFecha_Final(Date.valueOf(fFinal));
-
-                        contra.setVendedor(textVendedor.getText());
-                        contra.setVigencia(Boolean.parseBoolean(textVigencia.getText()));
-                        contra.setNombreGarante(textGarante.getText());
-                        contra.setDniGarante(textDni.getText());
-                        contra.setTelGarante(textTel.getText());
-                        String mar = textMarca.getText();
-                        char mark = mar.charAt(0);
-                        contra.setMarca(mark);
-                        contradata.modificarContrato(contra);
-                        
-                        }else if(dias>1 && dias<=30){
+                    
+                    
+                    }else if(dias>0 && dias<15){
+                          vigenciaSi.setSelected(true);
+                          textVigencia.setText("True");
+                          JOptionPane.showMessageDialog(null, "Su contrato aun esta vigente, pero ya no se puede Renovar", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
+                          nuevo.setEnabled(true);
+                          modificar.setEnabled(true);
+                          buscar.setEnabled(true);
+                          firmar.setEnabled(false);
+                          eliminar.setEnabled(true);
+                          
+                          
+//                        Contrato contra = new Contrato();
+//                        ContratoData contradata = new ContratoData();
+//                        contra.setId_contrato(Integer.parseInt(textId.getText()));
+//                        contra.setInquilino(inquilinoSelec);
+//                        contra.setPropiedad(propiedadSelec);
+//
+//                        fInicial = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
+//                        fFinal = ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText();
+//                        contra.setFecha_Inicio(Date.valueOf(fInicial));
+//                        contra.setFecha_Final(Date.valueOf(fFinal));
+//
+//                        contra.setVendedor(textVendedor.getText());
+//                        contra.setVigencia(Boolean.parseBoolean(textVigencia.getText()));
+//                        contra.setNombreGarante(textGarante.getText());
+//                        contra.setDniGarante(textDni.getText());
+//                        contra.setTelGarante(textTel.getText());
+//                        String mar = textMarca.getText();
+//                        char mark = mar.charAt(0);
+//                        contra.setMarca(mark);
+//                        contradata.modificarContrato(contra);
+//                           
+    
+                    }else if(dias>=15 && dias<=30){
                             
-                           // cartel para avisar que su contrato esta por vencer desea renovar si o no
-                           //if si
+                           int salida = JOptionPane.showConfirmDialog(null, "Presione Aceptar si desea renovar el contrato", "CONTRATO PRONTO A VENCER", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                           if (salida==0){
+                                                                              
+                           JOptionPane.showMessageDialog(null,"Complete los campos faltantes");
                            BotonRenovar.setVisible(true);
-                           //cartel ingrese los datos restantes
-                           // darle focus al chooser
-                           //limpiamos campos para cargar de nuevo
-                           //chooser1 y 2
+                           firmar.setEnabled(false);
+                           nuevo.setEnabled(false);
+                           modificar.setEnabled(false);
+                           eliminar.setEnabled(false);
+                           buscar.setEnabled(false);
+                           jdFecha1.setDate(null);
+                           jdFecha2.setDate(null);
+                           textId.setEnabled(false);
+                           textFecha_Realizacion.setEnabled(false);
                            textVendedor.setText("");
-                           textVigencia.setText("");
                            textGarante.setText("");
                            textDni.setText("");
                            textTel.setText("");
                            textMarca.setText("");
+                           jdFecha1.requestFocus();
+                           vigenciaSi.setSelected(true);
+                           textVigencia.setText("True");
                            
                            
-                           //else salir y borrar los campos o lo dejar 
+                           }else if(salida==2){
+                           JOptionPane.showMessageDialog(null,"Recuerde que si la cantidad de dias restantes es menor a 15, no podra realizar la Renovacion");    
+                           vigenciaSi.setSelected(true);
+                           textVigencia.setText("True");
+                           modificar.setEnabled(true);
+                           eliminar.setEnabled(true);
+                           nuevo.setEnabled(true);
+                           firmar.setEnabled(false);
+                           buscar.setEnabled(true);
                            
-                            
-                        }
-                        else {
+                           }
+                                        
+                           
+                    }else {
                         vigenciaSi.setSelected(true);
                         textVigencia.setText("True");
+                        modificar.setEnabled(true);
+                        eliminar.setEnabled(true);
+                        nuevo.setEnabled(true);
+                        firmar.setEnabled(false);
+                        buscar.setEnabled(true);
 
-                        
                     }
                     break;
             }
 
-            modificar.setEnabled(true);
-            eliminar.setEnabled(true);
-            nuevo.setEnabled(true);
-            firmar.setEnabled(false);
+           
         }catch(NullPointerException e){
             JOptionPane.showMessageDialog(this, "No se selecciono");
         }catch(NumberFormatException e1){
@@ -678,16 +710,28 @@ public class contratoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_textFecha_RealizacionActionPerformed
 
     private void BotonRenovarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BotonRenovarActionPerformed
+ 
+                           try {
+                            String input = JOptionPane.showInputDialog(null, "Por favor, ingrese el nuevo Precio de Alquiler: ", "Puede ingresar un monto decimal", JOptionPane.QUESTION_MESSAGE);
+                            if (input != null) {
+                                double precioNuevo = Double.parseDouble(input);
+                                PropiedadData proData=new PropiedadData();
+                                propiedadSelec.setPrecio(precioNuevo);
+                                proData.modificarPrecioPropiedad(propiedadSelec);
+                                crearContrato();
+                                ContratoData contData=new ContratoData();
+                                contData.guardarContrato(contrato1);
 
-                          //  crearContrato();
-                         //   ContratoData contData=new ContratoData();
-                          // contData.guardarContrato(contrato1);
-                        //   PropiedadData proData=new PropiedadData();
-                          //double jop ingrese el nuevo precio del alquiler
+                                System.out.println("Número ingresado: " + precioNuevo);
+                            } else {
+                                System.out.println("Ningún valor ingresado.");
+                            }
+                        } catch (NumberFormatException e) {
+                            System.out.println("Error: Ingrese un número decimal válido.");
+                        }
                           
-                          
-                          //  propiedadSelec.setPrecio(jop);
-                          //  proData.modificarPrecioPropiedad(propiedadSelec);
+                                                    
+                        
 
 
         // TODO add your handling code here:

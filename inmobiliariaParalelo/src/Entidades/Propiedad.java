@@ -150,6 +150,10 @@ public class Propiedad {
         return  id_propiedad + " - " + tipoPropiedad + " - " + direccion + " - " + precio;
     }
 
+    public void setPrecio(double precioNuevo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
        
   
   
