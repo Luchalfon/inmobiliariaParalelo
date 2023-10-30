@@ -714,14 +714,32 @@ public class contratoVista extends javax.swing.JInternalFrame {
                            try {
                             String input = JOptionPane.showInputDialog(null, "Por favor, ingrese el nuevo Precio de Alquiler: ", "Puede ingresar un monto decimal", JOptionPane.QUESTION_MESSAGE);
                             if (input != null) {
-                                double precioNuevo = Double.parseDouble(input);
+                                Float precioNuevo = Float.parseFloat(input);
                                 PropiedadData proData=new PropiedadData();
-                                propiedadSelec.setPrecio(precioNuevo);
-                                proData.modificarPrecioPropiedad(propiedadSelec);
+                                Propiedad nuevaPro=new Propiedad();
+                                nuevaPro=propiedadSelec;
+                                System.out.println(nuevaPro);
+                               
+                                dateHoy = Date.valueOf(LocalDate.now());
+                                fechaIni = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
+                                fechaFin = ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText();
                                 crearContrato();
                                 ContratoData contData=new ContratoData();
                                 contData.guardarContrato(contrato1);
-
+                                
+                                //renovar precio de propiedad
+                                
+                                nuevaPro.setPrecio(precioNuevo);
+                                proData.modificarPrecioPropiedad(nuevaPro);
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                                 System.out.println("Número ingresado: " + precioNuevo);
                             } else {
                                 System.out.println("Ningún valor ingresado.");
