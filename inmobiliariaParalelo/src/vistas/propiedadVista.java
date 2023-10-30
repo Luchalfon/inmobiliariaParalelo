@@ -326,7 +326,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El campo acceso no puede estar vacio");
         }else if(textDire.getText().isEmpty() || !Validaciones.validarDireccion(textDire.getText())){
             JOptionPane.showMessageDialog(this, "El campo Direccion no puede estar vacio y debe contener letras y numeros");
-        }else if(textForma.getText().isEmpty() ){
+        }else if(textForma.getText().isEmpty() || !Validaciones.validarNombre(textForma.getText())){
             JOptionPane.showMessageDialog(this, "El campo Forma no puede estar vacio");
         }else if(textPrecio.getText().isEmpty() || !Validaciones.validarFloat(textPrecio.getText())){
             JOptionPane.showMessageDialog(this, "El campo precio no puede estar vacio y debe ser un numero");
