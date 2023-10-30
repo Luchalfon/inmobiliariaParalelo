@@ -1,5 +1,7 @@
 package Validaciones;
 
+import java.sql.Date;
+
 
 public class Validaciones {
 
@@ -87,6 +89,22 @@ public class Validaciones {
         }
         return esDire;
     }
+    
+    
+    
+    public static boolean validarOrdenFechas(String fInicio, String fFinal){
+       boolean valido;
+        try {
+            Date inicioDate = Date.valueOf(fInicio);
+            Date finalDate = Date.valueOf(fFinal);
+        valido = inicioDate.before(finalDate);
+        } catch (IllegalArgumentException e) {
+            valido=false;
+        }
+        return valido;
+        
+    }
+    
     /*
         for(char c : ingreso.toCharArray()){
             if(Character.isDigit(c)){

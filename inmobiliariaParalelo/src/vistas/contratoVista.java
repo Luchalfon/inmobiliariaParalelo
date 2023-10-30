@@ -426,6 +426,9 @@ public class contratoVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "El campo Telefono , no puede estar vacio y debe contener solo numeros");
         }else if(textMarca.getText().isEmpty() || !Validaciones.validarChar(textMarca.getText())){
             JOptionPane.showMessageDialog(this, "El campo Marca, no puede estar vacio y debe contener un caracter");
+        }else if(!Validaciones.validarOrdenFechas(((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText(), 
+                ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText())){
+         JOptionPane.showMessageDialog(this, "La fecha inicial debe ser anterior a la fecha final y ambas deben estar cargadas");
         }else{
         dateHoy = Date.valueOf(LocalDate.now());
         fechaIni = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
@@ -495,17 +498,20 @@ public class contratoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_nuevoActionPerformed
 
     private void modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarActionPerformed
-        if(textVendedor.getText().isEmpty() || !Validaciones.validarNombre(textVendedor.getText())){
+        if (textVendedor.getText().isEmpty() || !Validaciones.validarNombre(textVendedor.getText())) {
             JOptionPane.showMessageDialog(this, "El campo vendedor no puede estar vacio y debe contener un nombre");
-        }else if(textGarante.getText().isEmpty() || !Validaciones.validarNombre(textGarante.getText())){
+        } else if (textGarante.getText().isEmpty() || !Validaciones.validarNombre(textGarante.getText())) {
             JOptionPane.showMessageDialog(this, "El campo nombre de garante, no puede estar vacio y debe contener un nombre");
-        }else if(textDni.getText().isEmpty() || !Validaciones.validarSoloNumeros(textDni.getText())){
+        } else if (textDni.getText().isEmpty() || !Validaciones.validarSoloNumeros(textDni.getText())) {
             JOptionPane.showMessageDialog(this, "El campo DNI Garante, no puede estar vacio y debe contener un numero");
-        }else if(textTel.getText().isEmpty() || !Validaciones.validarSoloNumeros(textTel.getText())){
+        } else if (textTel.getText().isEmpty() || !Validaciones.validarSoloNumeros(textTel.getText())) {
             JOptionPane.showMessageDialog(this, "El campo Telefono , no puede estar vacio y debe contener solo numeros");
-        }else if(textMarca.getText().isEmpty() || !Validaciones.validarChar(textMarca.getText())){
+        } else if (textMarca.getText().isEmpty() || !Validaciones.validarChar(textMarca.getText())) {
             JOptionPane.showMessageDialog(this, "El campo Marca, no puede estar vacio y debe contener un caracter");
-        }else{
+        } else if (!Validaciones.validarOrdenFechas(((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText(),
+                ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText())) {
+            JOptionPane.showMessageDialog(this, "La fecha inicial debe ser anterior a la fecha final y ambas Fechas deben estar cargadas");
+        } else {
         Contrato cont = new Contrato();
         ContratoData contdata = new ContratoData();
         cont.setId_contrato(Integer.parseInt(textId.getText()));
