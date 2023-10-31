@@ -31,12 +31,18 @@ public class contratoVista extends javax.swing.JInternalFrame {
 
     public contratoVista() {
         initComponents();
-        textVigencia.setVisible(false);
+        textVigencia.setVisible(true);
         modificar.setEnabled(false);
         firmar.setEnabled(false);
         eliminar.setEnabled(false);
         BotonRenovar.setVisible(false);
-
+        nuevo.setEnabled(true);
+        buscar.setEnabled(true);
+        limpiarCampos();
+        bloquearCampos();
+        
+        
+        
         // Obtén las dimensiones de la pantalla
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
@@ -437,21 +443,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
         ContratoData conData = new ContratoData();
         conData.guardarContrato(contrato1);
 
-        jdFecha1.setDate(null);
-        jdFecha2.setDate(null);
-        textMarca.setText("");
-        textDni.setText("");
-        textId.setText("");
-        textVendedor.setText("");
-        textTel.setText("");
-        textVigencia.setText("");
-        textGarante.setText("");
+        formaInicial();
 
-        nuevo.setEnabled(true);
-        modificar.setEnabled(false);
-        firmar.setEnabled(false);
-        eliminar.setEnabled(false);
-        buscar.setEnabled(true);
         }
 
     }//GEN-LAST:event_firmarActionPerformed
@@ -477,23 +470,16 @@ public class contratoVista extends javax.swing.JInternalFrame {
 
     private void nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nuevoActionPerformed
         // TODO add your handling code here:
-        llenarComboPropiedad();
-        llenarComboInquilino();
+        
         nuevo.setEnabled(false);
         buscar.setEnabled(false);
         modificar.setEnabled(false);
         eliminar.setEnabled(false);
         firmar.setEnabled(true);
-        jdFecha1.setDate(null);
-        jdFecha2.setDate(null);
-        textMarca.setText("");
-        textDni.setText("");
-        textId.setText("");
-        textVendedor.setText("");
-        textTel.setText("");
-        textVigencia.setText("");
-        textGarante.setText("");
-
+        llenarComboPropiedad();
+        llenarComboInquilino();
+        limpiarCampos();
+        habilitarCampos();
 
     }//GEN-LAST:event_nuevoActionPerformed
 
@@ -536,19 +522,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
 
         contdata.modificarContrato(cont);
 
-//        textMarca.setText("");
-//        textDni.setText("");
-//        textId.setText("");
-//        textVendedor.setText("");
-//        textTel.setText("");
-//        textVigencia.setText("");
-//        textGarante.setText("");
-//    
-//        nuevo.setEnabled(true);
-//        modificar.setEnabled(false);
-//        firmar.setEnabled(false);
-//        eliminar.setEnabled(false);
-//        buscar.setEnabled(true);
+        formaInicial();
+        
         }
     }//GEN-LAST:event_modificarActionPerformed
 
@@ -618,6 +593,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
                     String diasS = String.valueOf(dias + " Dias");
                     textDias.setText(diasS);
 
+                    habilitarCampos();
+                    
                     if (dias <=0 && cont.getVigencia()==true) {
                         vigenciaNo.setSelected(true);
                         textVigencia.setText("False");
@@ -634,28 +611,6 @@ public class contratoVista extends javax.swing.JInternalFrame {
                           firmar.setEnabled(false);
                           eliminar.setEnabled(true);
                           
-                          
-//                        Contrato contra = new Contrato();
-//                        ContratoData contradata = new ContratoData();
-//                        contra.setId_contrato(Integer.parseInt(textId.getText()));
-//                        contra.setInquilino(inquilinoSelec);
-//                        contra.setPropiedad(propiedadSelec);
-//
-//                        fInicial = ((JTextField) jdFecha1.getDateEditor().getUiComponent()).getText();
-//                        fFinal = ((JTextField) jdFecha2.getDateEditor().getUiComponent()).getText();
-//                        contra.setFecha_Inicio(Date.valueOf(fInicial));
-//                        contra.setFecha_Final(Date.valueOf(fFinal));
-//
-//                        contra.setVendedor(textVendedor.getText());
-//                        contra.setVigencia(Boolean.parseBoolean(textVigencia.getText()));
-//                        contra.setNombreGarante(textGarante.getText());
-//                        contra.setDniGarante(textDni.getText());
-//                        contra.setTelGarante(textTel.getText());
-//                        String mar = textMarca.getText();
-//                        char mark = mar.charAt(0);
-//                        contra.setMarca(mark);
-//                        contradata.modificarContrato(contra);
-//                           
     
                     }else if(dias>=15 && dias<=30 && cont.getVigencia()==true){
                             
@@ -667,21 +622,30 @@ public class contratoVista extends javax.swing.JInternalFrame {
                            contData.modificarContratoVigencia(cont);
                            vigenciaSi.setSelected(false);
                            JOptionPane.showMessageDialog(null,"Complete los campos faltantes");
+                           
+                           comboInquilino.setEnabled(false);
+                           comboPropiedad.setEnabled(false);
                            BotonRenovar.setVisible(true);
+                           textVigencia.setVisible(false);
                            firmar.setEnabled(false);
                            nuevo.setEnabled(false);
                            modificar.setEnabled(false);
                            eliminar.setEnabled(false);
                            buscar.setEnabled(false);
-                           jdFecha1.setDate(null);
-                           jdFecha2.setDate(null);
+                           textMarca.setEnabled(false);
                            textId.setEnabled(false);
                            textFecha_Realizacion.setEnabled(false);
+                           
+                           
+                           jdFecha1.setDate(null);
+                           jdFecha2.setDate(null);
+                           textId.setText("");
+                           textFecha_Realizacion.setText("");
                            textVendedor.setText("");
                            textGarante.setText("");
                            textDni.setText("");
                            textTel.setText("");
-                           textMarca.setText("");
+                           
                            jdFecha1.requestFocus();
                            vigenciaSi.setSelected(true);
                            textVigencia.setText("True");
@@ -748,13 +712,9 @@ public class contratoVista extends javax.swing.JInternalFrame {
                                 nuevaPro.setPrecio(precioNuevo);
                                 proData.modificarPrecioPropiedad(nuevaPro);
                                 
-                                
-                                
-                                
-                                
-                                
-                                
-                                
+                                formaInicial();
+                                BotonRenovar.setVisible(false);
+
                                 
                                 System.out.println("Número ingresado: " + precioNuevo);
                             } else {
@@ -852,5 +812,56 @@ public class contratoVista extends javax.swing.JInternalFrame {
         System.out.println(contrato1);
         return contrato1;
     }
-    
-}
+    private void bloquearCampos(){
+        comboInquilino.setEnabled(false);
+        comboPropiedad.setEnabled(false);
+        jdFecha1.setEnabled(false);
+        jdFecha2.setEnabled(false);
+        textMarca.setEnabled(false);
+        textDni.setEnabled(false);
+        textId.setEnabled(false);
+        textVendedor.setEnabled(false);
+        textTel.setEnabled(false);
+        textVigencia.setEnabled(false);
+        textGarante.setEnabled(false);
+        textFecha_Realizacion.setEnabled(false);
+        
+    }
+    private void habilitarCampos(){
+        comboInquilino.setEnabled(true);
+        comboPropiedad.setEnabled(true);
+        jdFecha1.setEnabled(true);
+        jdFecha2.setEnabled(true);
+        textMarca.setEnabled(true);
+        textDni.setEnabled(true);
+        textVendedor.setEnabled(true);
+        textTel.setEnabled(true);
+        textVigencia.setEnabled(true);
+        textGarante.setEnabled(true);
+
+    }
+    private void limpiarCampos(){
+        llenarComboPropiedad();
+        llenarComboInquilino();
+        jdFecha1.setDate(null);
+        jdFecha2.setDate(null);
+        textMarca.setText("");
+        textDni.setText("");
+        textId.setText("");
+        textVendedor.setText("");
+        textTel.setText("");
+        textVigencia.setText("");
+        textGarante.setText("");
+
+    }
+
+    private void formaInicial(){
+        limpiarCampos();
+        bloquearCampos();
+        nuevo.setEnabled(true);
+        modificar.setEnabled(false);
+        firmar.setEnabled(false);
+        eliminar.setEnabled(false);
+        buscar.setEnabled(true);
+    }
+} 
