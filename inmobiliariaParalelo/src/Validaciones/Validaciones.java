@@ -47,7 +47,7 @@ public class Validaciones {
     public static boolean validarNombre(String ingreso){
         boolean esNombre=false;
         try{
-        esNombre = ingreso.matches("^[a-zA-Z áéíóúÁÉÍÓÚ]+$");
+        esNombre = ingreso.matches("^[a-zA-Z áéíóúÁÉÍÓÚÑñ]+$");
         }catch(NullPointerException e){
             System.out.println(e.getMessage());
         }
@@ -57,7 +57,7 @@ public class Validaciones {
     public static boolean validarSoloLetras(String ingreso){ 
         boolean soloLetras = false;
         try {
-            soloLetras = ingreso.matches("^[a-zA-Z]+$");
+            soloLetras = ingreso.matches("^[a-zA-ZáéíóúÁÉÍÓÚñÑ]+$");
         } catch (NullPointerException e) {
             System.out.println(e.getMessage());
         }
@@ -82,7 +82,7 @@ public class Validaciones {
     public static boolean validarDireccion(String ingreso){
         boolean esDire = false;
         try{
-            esDire = ingreso.matches("^[a-zA-Z 0-9]+$");
+            esDire = ingreso.matches("^[a-zA-Z áéíóúÁÉÍÓÚñÑ0-9]+$");
             
         }catch(NullPointerException e){
             System.out.println(e.getMessage());

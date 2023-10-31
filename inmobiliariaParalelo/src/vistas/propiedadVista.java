@@ -327,7 +327,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         }else if(textDire.getText().isEmpty() || !Validaciones.validarDireccion(textDire.getText())){
             JOptionPane.showMessageDialog(this, "El campo Direccion no puede estar vacio y debe contener letras y numeros");
         }else if(textForma.getText().isEmpty() || !Validaciones.validarNombre(textForma.getText())){
-            JOptionPane.showMessageDialog(this, "El campo Forma no puede estar vacio");
+            JOptionPane.showMessageDialog(this, "El campo Forma de pago no puede estar vacio y no puede contener numeros");
         }else if(textPrecio.getText().isEmpty() || !Validaciones.validarFloat(textPrecio.getText())){
             JOptionPane.showMessageDialog(this, "El campo precio no puede estar vacio y debe ser un numero");
         }else if(textRevisor.getText().isEmpty() || !Validaciones.validarNombre(textRevisor.getText())){
@@ -451,7 +451,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         } else if (textDire.getText().isEmpty() || !Validaciones.validarDireccion(textDire.getText())) {
             JOptionPane.showMessageDialog(this, "El campo Direccion no puede estar vacio y debe contener letras y numeros");
         } else if (textForma.getText().isEmpty() || !Validaciones.validarNombre(textForma.getText())) {
-            JOptionPane.showMessageDialog(this, "El campo Forma no puede estar vacio");
+            JOptionPane.showMessageDialog(this, "El campo Forma no puede estar vacio y debe contener solo letras");
         } else if (textPrecio.getText().isEmpty() || !Validaciones.validarFloat(textPrecio.getText())) {
             JOptionPane.showMessageDialog(this, "El campo precio no puede estar vacio y debe ser un numero");
         } else if (textRevisor.getText().isEmpty() || !Validaciones.validarNombre(textRevisor.getText())) {
