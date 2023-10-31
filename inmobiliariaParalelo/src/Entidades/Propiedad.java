@@ -19,7 +19,7 @@ public class Propiedad {
     public Propiedad() {
     }
 
-    public Propiedad(String accesibilidad, String direccion, Propietario propietario, String forma, float precio, String revisor, int superficieMinima, String tipoPropiedad, String zona,boolean disponible, boolean estado) {
+    public Propiedad(String accesibilidad, String direccion, Propietario propietario, String forma, float precio, String revisor, int superficieMinima, String tipoPropiedad, String tipoZona,boolean disponible, boolean estado) {
         this.accesibilidad = accesibilidad;
         this.direccion = direccion;
         this.propietario = propietario;
@@ -33,7 +33,7 @@ public class Propiedad {
         this.estado = estado;
     }
 
-    public Propiedad(int id_propiedad, String accesibilidad, String direccion, Propietario propietario, String forma, float precio, String revisor, int superficieMinima, String tipoPropiedad, String zona,boolean disponible, boolean estado) {
+    public Propiedad(int id_propiedad, String accesibilidad, String direccion, Propietario propietario, String forma, float precio, String revisor, int superficieMinima, String tipoPropiedad, String tipoZona,boolean disponible, boolean estado) {
         this.id_propiedad = id_propiedad;
         this.accesibilidad = accesibilidad;
         this.direccion = direccion;

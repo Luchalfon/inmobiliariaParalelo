@@ -27,7 +27,7 @@ public class PropiedadData {
     
     public void guardarPropiedad(Propiedad propiedad) {
 
-        String sql = " INSERT INTO `propiedadinmueble`( `accesibilidad`, `direccion`, id_Propietario, `forma`, `precioTazado`, `revisor`, `superficieMinima`, `tipoDeLocal`, `zona`, `estado`)VALUES (?,?,?,?,?,?,?,?,?,?)";
+        String sql = " INSERT INTO `propiedadinmueble`( `accesibilidad`, `direccion`, id_Propietario, `forma`, `precioTazado`, `revisor`, `superficieMinima`, `tipoDeLocal`, `zona`, disponible, `estado`)VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -40,7 +40,8 @@ public class PropiedadData {
             ps.setInt(7,propiedad.getSuperficieMinima());
             ps.setString(8,propiedad.getTipoPropiedad());
             ps.setString(9,propiedad.getTipoZona());
-            ps.setBoolean(10,propiedad.isEstado());
+            ps.setBoolean(10,propiedad.isDisponible());
+            ps.setBoolean(11,propiedad.isEstado());
             
             
             ps.executeUpdate();

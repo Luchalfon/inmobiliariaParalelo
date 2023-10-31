@@ -40,6 +40,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     int idProSelect;
     private boolean si;
     private int seleccion;
+    private int seleccion1;
     private String tipoPropiedad;
     private String tipoZona;
 
@@ -342,6 +343,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         crearPropiedad();
         PropiedadData pd = new PropiedadData();
         pd.guardarPropiedad(propiedad1);
+        
         limpiarTextos();
         bloquearCampos();
         modificar.setEnabled(false);
@@ -529,8 +531,8 @@ public class propiedadVista extends javax.swing.JInternalFrame {
 
     private void comboTipoZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoZonaActionPerformed
     // TODO add your handling code here:
-          seleccion=comboTipoZona.getSelectedIndex();
-        switch (seleccion) {
+          seleccion1=comboTipoZona.getSelectedIndex();
+        switch (seleccion1) {
         case 0:
         tipoZona = "Centrica";
         break;
@@ -585,7 +587,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     }
 
     public Propiedad crearPropiedad() {
-
+        System.out.println("tiopPropiedad "+tipoPropiedad+" tipozona "+tipoZona);
         String acceso = textAcce.getText();
         String direcion = textDire.getText();
         String forma = textForma.getText();
