@@ -549,12 +549,7 @@ public class contratoVista extends javax.swing.JInternalFrame {
                     //comparamos el inquilino de la base y lo seteamos en el comboBox
                     //si el inquilino esta eliminado no traer nada
                     DefaultComboBoxModel<Inquilino> model = (DefaultComboBoxModel<Inquilino>) comboInquilino.getModel();
-                    if(cont.getVigencia()==false){
-                        vigenciaNo.setSelected(true);
-                        
-                    }else{
-                        vigenciaSi.setSelected(true);
-                    }
+
                     int contador = model.getSize();
                     for (int i = 0; i < contador; i++) {
                         Inquilino inqui = model.getElementAt(i);
@@ -573,13 +568,22 @@ public class contratoVista extends javax.swing.JInternalFrame {
                     }
                     jdFecha1.setDate(cont.getFecha_Inicio());
                     jdFecha2.setDate(cont.getFecha_Final());
-                    //   Date fechaactual = new Date(System.currentTimeMillis());
+                    
                     java.util.Date fechaactual = new java.util.Date(System.currentTimeMillis());
-                    //jdFecha1.setDate(fechaactual); //poner fecha en el chooser
+                    
                     java.util.Date fechaFinal = jdFecha2.getDate();
                     textId.setText(id);
                     textVendedor.setText(cont.getVendedor());
-                    //textVigencia.setText(String.valueOf(cont.getVigencia()));
+
+                    textVigencia.setText(String.valueOf(cont.getVigencia()));
+                  
+                    if (cont.getVigencia() == false) {
+                        vigenciaNo.setSelected(true);
+
+                    } else {
+                        vigenciaSi.setSelected(true);
+                    }
+
                     textGarante.setText(cont.getNombreGarante());
                     textDni.setText(cont.getDniGarante());
                     textTel.setText(cont.getTelGarante());
@@ -594,79 +598,75 @@ public class contratoVista extends javax.swing.JInternalFrame {
                     textDias.setText(diasS);
 
                     habilitarCampos();
-                    
-                    if (dias <=0 && cont.getVigencia()==true) {
-                        vigenciaNo.setSelected(true);
-                        textVigencia.setText("False");
+
+                    if (dias <= 0 && cont.getVigencia() == true) {
+                        //vigenciaNo.setSelected(true);
+                        //textVigencia.setText("False");
                         JOptionPane.showMessageDialog(null, "Su contrato quedo sin vigencia", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
-                    
-                    
-                    }else if(dias>0 && dias<15 && cont.getVigencia()==true){
-                          vigenciaSi.setSelected(true);
-                          textVigencia.setText("True");
-                          JOptionPane.showMessageDialog(null, "Su contrato aun esta vigente, pero ya no se puede Renovar", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
-                          nuevo.setEnabled(true);
-                          modificar.setEnabled(true);
-                          buscar.setEnabled(true);
-                          firmar.setEnabled(false);
-                          eliminar.setEnabled(true);
-                          
-    
-                    }else if(dias>=15 && dias<=30 && cont.getVigencia()==true){
-                            
-                           int salida = JOptionPane.showConfirmDialog(null, "Presione Aceptar si desea renovar el contrato", "CONTRATO PRONTO A VENCER", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
-                           if (salida==0){
-                           
-                           if(cont.getVigencia()==true){    
-                           cont.setVigencia(false);
-                           contData.modificarContratoVigencia(cont);
-                           vigenciaSi.setSelected(false);
-                           JOptionPane.showMessageDialog(null,"Complete los campos faltantes");
-                           
-                           comboInquilino.setEnabled(false);
-                           comboPropiedad.setEnabled(false);
-                           BotonRenovar.setVisible(true);
-                           textVigencia.setVisible(false);
-                           firmar.setEnabled(false);
-                           nuevo.setEnabled(false);
-                           modificar.setEnabled(false);
-                           eliminar.setEnabled(false);
-                           buscar.setEnabled(false);
-                           textMarca.setEnabled(false);
-                           textId.setEnabled(false);
-                           textFecha_Realizacion.setEnabled(false);
-                           
-                           
-                           jdFecha1.setDate(null);
-                           jdFecha2.setDate(null);
-                           textId.setText("");
-                           textFecha_Realizacion.setText("");
-                           textVendedor.setText("");
-                           textGarante.setText("");
-                           textDni.setText("");
-                           textTel.setText("");
-                           
-                           jdFecha1.requestFocus();
-                           vigenciaSi.setSelected(true);
-                           textVigencia.setText("True");
-                           }
-                           
-                           }else if(salida==2){
-                           JOptionPane.showMessageDialog(null,"Recuerde que si la cantidad de dias restantes es menor a 15, no podra realizar la Renovacion");    
-                           vigenciaSi.setSelected(true);
-                           textVigencia.setText("True");
-                           modificar.setEnabled(true);
-                           eliminar.setEnabled(true);
-                           nuevo.setEnabled(true);
-                           firmar.setEnabled(false);
-                           buscar.setEnabled(true);
-                           
-                           }
-                                        
-                           
-                    }else {
-                        vigenciaSi.setSelected(true);
-                        textVigencia.setText("True");
+
+                    } else if (dias > 0 && dias < 15 && cont.getVigencia() == true) {
+                        // vigenciaSi.setSelected(true);
+                        //  textVigencia.setText("True");
+                        JOptionPane.showMessageDialog(null, "Su contrato aun esta vigente, pero ya no se puede Renovar", " VIGENCIA ", JOptionPane.INFORMATION_MESSAGE);
+                        nuevo.setEnabled(true);
+                        modificar.setEnabled(true);
+                        buscar.setEnabled(true);
+                        firmar.setEnabled(false);
+                        eliminar.setEnabled(true);
+
+                    } else if (dias >= 15 && dias <= 30 && cont.getVigencia() == true) {
+
+                        int salida = JOptionPane.showConfirmDialog(null, "Presione Aceptar si desea renovar el contrato", "CONTRATO PRONTO A VENCER", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+                        if (salida == 0) {
+
+                            if (cont.getVigencia() == true) {
+                                cont.setVigencia(false);
+                                contData.modificarContratoVigencia(cont);
+                                vigenciaSi.setSelected(false);
+                                JOptionPane.showMessageDialog(null, "Complete los campos faltantes");
+
+                                comboInquilino.setEnabled(false);
+                                comboPropiedad.setEnabled(false);
+                                BotonRenovar.setVisible(true);
+                                textVigencia.setVisible(false);
+                                firmar.setEnabled(false);
+                                nuevo.setEnabled(false);
+                                modificar.setEnabled(false);
+                                eliminar.setEnabled(false);
+                                buscar.setEnabled(false);
+                                textMarca.setEnabled(false);
+                                textId.setEnabled(false);
+                                textFecha_Realizacion.setEnabled(false);
+
+                                jdFecha1.setDate(null);
+                                jdFecha2.setDate(null);
+                                textId.setText("");
+                                textFecha_Realizacion.setText("");
+                                textVendedor.setText("");
+                                textGarante.setText("");
+                                textDni.setText("");
+                                textTel.setText("");
+
+                                jdFecha1.requestFocus();
+                                //vigenciaSi.setSelected(true);
+                                //textVigencia.setText("True");
+                            }
+
+                        } else if (salida == 2) {
+                            JOptionPane.showMessageDialog(null, "Recuerde que si la cantidad de dias restantes es menor a 15, no podra realizar la Renovacion");
+                            //vigenciaSi.setSelected(true);
+                            //textVigencia.setText("True");
+                            modificar.setEnabled(true);
+                            eliminar.setEnabled(true);
+                            nuevo.setEnabled(true);
+                            firmar.setEnabled(false);
+                            buscar.setEnabled(true);
+
+                        }
+
+                    } else {
+                        //vigenciaSi.setSelected(true);
+                        //textVigencia.setText("True");
                         modificar.setEnabled(true);
                         eliminar.setEnabled(true);
                         nuevo.setEnabled(true);
@@ -677,10 +677,9 @@ public class contratoVista extends javax.swing.JInternalFrame {
                     break;
             }
 
-           
-        }catch(NullPointerException e){
+        } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(this, "No se selecciono");
-        }catch(NumberFormatException e1){
+        } catch (NumberFormatException e1) {
             JOptionPane.showMessageDialog(this, "No si ingreso ID");
         }
     }//GEN-LAST:event_buscarActionPerformed
