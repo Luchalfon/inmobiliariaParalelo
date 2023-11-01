@@ -194,7 +194,7 @@ public class PropiedadData {
 
         ArrayList<Propiedad> propiedades = new ArrayList<>();
 
-        String sql = "SELECT propiedadinmueble.id_Propiedad,propiedadinmueble.direccion,propiedadinmueble.precioTazado,propiedadinmueble.tipoDeLocal FROM propiedadinmueble WHERE propiedadinmueble.estado=1 AND propiedadinmueble.id_Propietario= ?";
+        String sql = "SELECT propiedadinmueble.id_Propiedad,propiedadinmueble.direccion,propiedadinmueble.precioTazado,propiedadinmueble.tipoDeLocal FROM propiedadinmueble WHERE propiedadinmueble.estado=1 AND propiedadinmueble.id_Propietario= ? AND propiedadinmueble.disponible=0";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -354,7 +354,7 @@ public List<Propiedad> obtenerPropiedadesPorPrecio(float precio) {
 
         List<Propiedad> propiedades = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM `propiedadinmueble` WHERE estado=1 AND disponibilidad=0";
+            String sql = "SELECT * FROM `propiedadinmueble` WHERE estado=1 AND disponible=0";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -374,7 +374,7 @@ public List<Propiedad> obtenerPropiedadesPorPrecio(float precio) {
                 propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
                 propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
                 propiedad.setTipoZona(rs.getString("zona"));
-                propiedad.setDisponible(rs.getBoolean("disponibilidad"));
+                propiedad.setDisponible(rs.getBoolean("disponible"));
                 propiedad.setEstado(true);
                
                 propiedades.add(propiedad);
@@ -410,4 +410,28 @@ public List<Propiedad> obtenerPropiedadesPorPrecio(float precio) {
         }
 
     }
+
+ public void modificarDisponibilidadPropiedad(Propiedad propiedad) {
+
+        String sql = "UPDATE `propiedadinmueble` SET `disponible`=? WHERE id_Propiedad=?";
+        PreparedStatement ps = null;
+
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setBoolean(1, propiedad.isDisponible());
+            ps.setInt(2, propiedad.getId_propiedad());
+            int exito = ps.executeUpdate();
+
+            if (exito == 1) {
+                System.out.println("Disponibilidad Modificada");
+            } else {
+                System.out.println("No existe");
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla Propiedad " + ex.getMessage());
+        }
+
+    }
+
 }

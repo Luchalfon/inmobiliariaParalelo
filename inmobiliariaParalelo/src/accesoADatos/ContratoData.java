@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package accesoADatos;
 
 import Entidades.Contrato;
@@ -231,6 +227,52 @@ public class ContratoData {
                 contrato = new Contrato();
                 
                 int inqId=rs.getInt("id_Inquilino");
+                
+                Inquilino inquilino= idata.buscarInquilinoPorID(inqId);
+                contrato.setInquilino(inquilino);
+                
+                int proId=rs.getInt("id_Propiedad");
+                
+                Propiedad propiedad= propiedata.buscarPropiedadPorID(proId);
+                contrato.setPropiedad(propiedad);
+                contrato.setId_contrato(rs.getInt("codContrato"));
+                contrato.setFecha_Final(rs.getDate("fecha_Final"));
+                contrato.setFecha_Inicio(rs.getDate("fecha_Inicio"));
+                contrato.setFecha_Realizacion(rs.getDate("fechaRealizacion"));
+                String marca = rs.getString("marca");
+                char marc=marca.charAt(0);
+                contrato.setMarca(marc);
+                contrato.setVendedor(rs.getString("vendedor"));
+                contrato.setEstado(rs.getBoolean("estado"));
+                contrato.setVigencia(rs.getBoolean("vigencia"));
+                contrato.setNombreGarante(rs.getString("nombre_garante"));
+                contrato.setDniGarante(rs.getString("dni_garante"));
+                contrato.setTelGarante(rs.getString("tel_garante"));
+              
+                contratos.add(contrato);
+                          
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla contrato" + ex.getMessage());
+        }
+        return contratos;
+    }
+          public List<Contrato> listarProyContrato(int Id) {
+
+        List<Contrato> contratos = new ArrayList<>();
+        try {
+            String sql = SELECT contratoalquiler.codContrato, inquilino.apellido, inquilino.nombre FROM `contratoalquiler`, inquilino, propiedadinmueble WHERE contratoalquiler.id_Inquilino=inquilino.id_Inquilino AND contratoalquiler.id_Propiedad=?;
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, Id);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+               Contrato contrato;
+               
+                contrato = new Contrato();
+                
+                int inqId=rs.getInt("id_Propiedad");
                 
                 Inquilino inquilino= idata.buscarInquilinoPorID(inqId);
                 contrato.setInquilino(inquilino);

@@ -187,7 +187,7 @@ public class consultaPropiedades extends javax.swing.JInternalFrame {
         idProSelect=propietarioSelect.getId_propietario();
         System.out.println(idProSelect);
         
-        // TODO add your handling code here:
+       
     }//GEN-LAST:event_comboPropietarioActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
