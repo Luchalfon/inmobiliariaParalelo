@@ -319,6 +319,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorio.repaint();
         propiedadVista propiedadV = new propiedadVista();
         propiedadV.setVisible(true);
+        propiedadV.getContentPane().setBackground(new Color(0,79,79));
         escritorio.add(propiedadV);
         escritorio.moveToFront(propiedadV);
 
