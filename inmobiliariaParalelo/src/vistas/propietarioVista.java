@@ -64,24 +64,31 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         setVerifyInputWhenFocusTarget(false);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("PROPIETARIO");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Id propietario");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellido");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("DNI");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Domicilio");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Telefono");
 
         textId.setEditable(false);
@@ -93,16 +100,28 @@ public class propietarioVista extends javax.swing.JInternalFrame {
         });
 
         textDNI.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        textDNI.setForeground(new java.awt.Color(0, 51, 51));
 
         textApe.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        textApe.setForeground(new java.awt.Color(0, 51, 51));
 
         textNom.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        textNom.setForeground(new java.awt.Color(0, 51, 51));
 
         textDomi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        textDomi.setForeground(new java.awt.Color(0, 51, 51));
 
         textTele.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        textTele.setForeground(new java.awt.Color(0, 51, 51));
+        textTele.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textTeleActionPerformed(evt);
+            }
+        });
 
+        nuevo.setBackground(new java.awt.Color(0, 51, 102));
         nuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nuevo.setForeground(new java.awt.Color(255, 255, 255));
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/nuevo1.png"))); // NOI18N
         nuevo.setText("Nuevo");
         nuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -115,7 +134,9 @@ public class propietarioVista extends javax.swing.JInternalFrame {
             }
         });
 
+        guardar.setBackground(new java.awt.Color(0, 51, 102));
         guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        guardar.setForeground(new java.awt.Color(255, 255, 255));
         guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/guardar.png"))); // NOI18N
         guardar.setText("Guardar");
         guardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -128,7 +149,9 @@ public class propietarioVista extends javax.swing.JInternalFrame {
             }
         });
 
+        modificar.setBackground(new java.awt.Color(0, 51, 102));
         modificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        modificar.setForeground(new java.awt.Color(255, 255, 255));
         modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/modificar.png"))); // NOI18N
         modificar.setText("Modificar");
         modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -141,7 +164,9 @@ public class propietarioVista extends javax.swing.JInternalFrame {
             }
         });
 
+        eliminar.setBackground(new java.awt.Color(0, 51, 102));
         eliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        eliminar.setForeground(new java.awt.Color(255, 255, 255));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/eliminar1.png"))); // NOI18N
         eliminar.setText("Eliminar");
         eliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -154,7 +179,9 @@ public class propietarioVista extends javax.swing.JInternalFrame {
             }
         });
 
+        salir.setBackground(new java.awt.Color(0, 51, 102));
         salir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        salir.setForeground(new java.awt.Color(255, 255, 255));
         salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/salir2.png"))); // NOI18N
         salir.setText("Salir");
         salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -167,7 +194,9 @@ public class propietarioVista extends javax.swing.JInternalFrame {
             }
         });
 
+        buscar.setBackground(new java.awt.Color(0, 51, 102));
         buscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        buscar.setForeground(new java.awt.Color(255, 255, 255));
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/buscar.png"))); // NOI18N
         buscar.setText("Buscar");
         buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -433,6 +462,10 @@ public class propietarioVista extends javax.swing.JInternalFrame {
 
         // TODO add your handling code here:
     }//GEN-LAST:event_eliminarActionPerformed
+
+    private void textTeleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textTeleActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textTeleActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

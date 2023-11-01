@@ -6,6 +6,7 @@
 package vistas;
 
 import accesoADatos.miConexion;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.sql.Connection;
@@ -85,7 +86,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addContainerGap(419, Short.MAX_VALUE)
+                .addContainerGap(425, Short.MAX_VALUE)
                 .addComponent(jlGrupo73, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -290,7 +291,6 @@ public class menuPrincipal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
                 .addComponent(escritorio)
                 .addContainerGap())
         );
@@ -308,6 +308,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorio.repaint();
         propietarioVista pv = new propietarioVista();
         pv.setVisible(true);
+        pv.getContentPane().setBackground(new Color(0,79,79));
         escritorio.add(pv);
         escritorio.moveToFront(pv);
 
