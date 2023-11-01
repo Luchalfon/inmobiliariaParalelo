@@ -41,7 +41,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     private boolean si;
     private int seleccion;
     private int seleccion1;
-    private String tipoPropiedad;
+    private String tipoPropiedad1,tipoPropiedad;
     private String tipoZona;
 
     @SuppressWarnings("unchecked")
@@ -342,6 +342,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         }else{
         crearPropiedad();
         PropiedadData pd = new PropiedadData();
+            System.out.println(propiedad1);
         pd.guardarPropiedad(propiedad1);
         
         limpiarTextos();
@@ -506,22 +507,26 @@ public class propiedadVista extends javax.swing.JInternalFrame {
 
     private void comboTipoPropiedadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoPropiedadActionPerformed
             // TODO add your handling code here:
+            
         seleccion=comboTipoPropiedad.getSelectedIndex();
+       
+            
+        
         switch (seleccion) {
         case 0:
-        tipoPropiedad = "Casa";
+        tipoPropiedad1 = "Casa";
         break;
         case 1:
-        tipoPropiedad = "Departamento";
+        tipoPropiedad1 = "Departamento";
         break;
         case 2:
-        tipoPropiedad = "Comercio";
+        tipoPropiedad1 = "Comercio";
         break;
         case 3:
-        tipoPropiedad = "Deposito";
+        tipoPropiedad1 = "Deposito";
         break;
         case 4:
-        tipoPropiedad = "Campo";
+        tipoPropiedad1 = "Campo";
         break;
     }
         
@@ -531,6 +536,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
 
     private void comboTipoZonaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoZonaActionPerformed
     // TODO add your handling code here:
+   
           seleccion1=comboTipoZona.getSelectedIndex();
         switch (seleccion1) {
         case 0:
@@ -587,19 +593,20 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     }
 
     public Propiedad crearPropiedad() {
-        System.out.println("tiopPropiedad "+tipoPropiedad+" tipozona "+tipoZona);
+        //System.out.println("tiopPropiedad "+tipoPropiedad+" tipozona "+tipoZona);
         String acceso = textAcce.getText();
         String direcion = textDire.getText();
         String forma = textForma.getText();
         float precio = Float.parseFloat(textPrecio.getText());
         String revisor = textRevisor.getText();
         int superficieMinima = Integer.parseInt(textSuper.getText());
-        // String tipoPropiedad = textTipoPropiedad.getText();
-        // String zona = textZona.getText();
+         String tipoPropiedad =tipoPropiedad1 ;
+         String zona = tipoZona;
+         System.out.println(zona);
         boolean disponible =false;
         boolean estado = true;
 
-        propiedad1 = new Propiedad(acceso, direcion, propietarioSelect, forma, precio, revisor, superficieMinima, tipoPropiedad, tipoZona, disponible, estado);
+        propiedad1 = new Propiedad(acceso, direcion, propietarioSelect, forma, precio, revisor, superficieMinima, tipoPropiedad, zona, disponible, estado);
         System.out.println(propiedad1);
         return propiedad1;
     }

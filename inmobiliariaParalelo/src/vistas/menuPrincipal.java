@@ -44,10 +44,10 @@ public class menuPrincipal extends javax.swing.JFrame {
         };
         jlGrupo73 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -85,7 +85,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, escritorioLayout.createSequentialGroup()
-                .addContainerGap(417, Short.MAX_VALUE)
+                .addContainerGap(419, Short.MAX_VALUE)
                 .addComponent(jlGrupo73, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23))
         );
@@ -93,29 +93,6 @@ public class menuPrincipal extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(0, 102, 255));
         jMenuBar1.setAlignmentX(1.5F);
         jMenuBar1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/propiedad - mp.png"))); // NOI18N
-        jMenu2.setText("Propiedad");
-        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jMenu2.setPreferredSize(new java.awt.Dimension(150, 55));
-        jMenu2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                jMenu2MouseMoved(evt);
-            }
-        });
-
-        jMenuItem3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jMenuItem3.setText("Formulario de Propiedad");
-        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu2);
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/propietario - mp.png"))); // NOI18N
         jMenu1.setText("Propietario");
@@ -139,6 +116,29 @@ public class menuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
+
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/propiedad - mp.png"))); // NOI18N
+        jMenu2.setText("Propiedad");
+        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu2.setPreferredSize(new java.awt.Dimension(150, 55));
+        jMenu2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jMenu2MouseMoved(evt);
+            }
+        });
+
+        jMenuItem3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jMenuItem3.setText("Formulario de Propiedad");
+        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu2);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/inquilino1 - mp.png"))); // NOI18N
         jMenu6.setText("Inquilino");
