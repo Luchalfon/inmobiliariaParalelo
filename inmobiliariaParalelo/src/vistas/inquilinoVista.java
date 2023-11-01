@@ -70,40 +70,66 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(1080, 630));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("INQUILINO");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Id_inquilino");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Apellido");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Nombre");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("DNI");
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Detalle");
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Tipo");
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("CUIT");
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Telefono");
 
         textId.setEditable(false);
+        textId.setForeground(new java.awt.Color(0, 51, 51));
         textId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textIdActionPerformed(evt);
             }
         });
 
+        textApe.setForeground(new java.awt.Color(0, 51, 51));
+
+        textNom.setForeground(new java.awt.Color(0, 51, 51));
+
+        textDni.setForeground(new java.awt.Color(0, 51, 51));
+
+        textDetalle.setForeground(new java.awt.Color(0, 51, 51));
+
+        textTipo.setForeground(new java.awt.Color(0, 51, 51));
+
+        textCuit.setForeground(new java.awt.Color(0, 51, 51));
+
+        textTel.setForeground(new java.awt.Color(0, 51, 51));
+
+        buscar.setBackground(new java.awt.Color(0, 51, 102));
         buscar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        buscar.setForeground(new java.awt.Color(255, 255, 255));
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/buscar.png"))); // NOI18N
         buscar.setText("Buscar");
         buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -113,7 +139,9 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        nuevo.setBackground(new java.awt.Color(0, 51, 102));
         nuevo.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        nuevo.setForeground(new java.awt.Color(255, 255, 255));
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/nuevo1.png"))); // NOI18N
         nuevo.setText("Nuevo");
         nuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -123,7 +151,9 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        guardar.setBackground(new java.awt.Color(0, 51, 102));
         guardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        guardar.setForeground(new java.awt.Color(255, 255, 255));
         guardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/guardar.png"))); // NOI18N
         guardar.setText("Guardar");
         guardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -133,7 +163,9 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        modificar.setBackground(new java.awt.Color(0, 51, 102));
         modificar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        modificar.setForeground(new java.awt.Color(255, 255, 255));
         modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/modificar.png"))); // NOI18N
         modificar.setText("Modificar");
         modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -143,7 +175,9 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        eliminar.setBackground(new java.awt.Color(0, 51, 102));
         eliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        eliminar.setForeground(new java.awt.Color(255, 255, 255));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/eliminar1.png"))); // NOI18N
         eliminar.setText("Eliminar");
         eliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -153,7 +187,9 @@ public class inquilinoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        salir.setBackground(new java.awt.Color(0, 51, 102));
         salir.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        salir.setForeground(new java.awt.Color(255, 255, 255));
         salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/salir2.png"))); // NOI18N
         salir.setText("Salir");
         salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
