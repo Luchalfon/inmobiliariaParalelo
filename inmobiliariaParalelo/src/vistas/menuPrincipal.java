@@ -345,6 +345,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorio.repaint();
         consultaPropiedades cpro= new consultaPropiedades();
         cpro.setVisible(true);
+        cpro.getContentPane().setBackground(new Color(0,79,79));
          escritorio.add(cpro);
          escritorio.moveToFront(cpro);
 
@@ -384,6 +385,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorio.repaint();
         consultaVariasPropiedades cvp = new consultaVariasPropiedades();
         cvp.setVisible(true);
+        cvp.getContentPane().setBackground(new Color(0,79,79));
         escritorio.add(cvp);
         escritorio.moveToFront(cvp);
         // TODO add your handling code here:
@@ -395,6 +397,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorio.repaint();
         consultaListaPropietarios cvp = new consultaListaPropietarios();
         cvp.setVisible(true);
+        cvp.getContentPane().setBackground(new Color(0,79,79));
         escritorio.add(cvp);
         escritorio.moveToFront(cvp);
 
@@ -411,6 +414,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorio.repaint();
         consultaListaInquilinos cvi = new consultaListaInquilinos();
         cvi.setVisible(true);
+        cvi.getContentPane().setBackground(new Color(0,79,79));
         escritorio.add(cvi);
         escritorio.moveToFront(cvi);
         
@@ -427,6 +431,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorio.repaint();
         consultaListaContratos cvc = new consultaListaContratos();
         cvc.setVisible(true);
+        cvc.getContentPane().setBackground(new Color(0,79,79));
         escritorio.add(cvc);
         escritorio.moveToFront(cvc);
         
@@ -438,6 +443,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorio.repaint();
         consultarVigenciaContrato cvic = new consultarVigenciaContrato();
         cvic.setVisible(true);
+        cvic.getContentPane().setBackground(new Color(0,79,79));
         escritorio.add(cvic);
         escritorio.moveToFront(cvic);
         
@@ -450,6 +456,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorio.repaint();
         consultaPropiedadyContrato cpyc = new consultaPropiedadyContrato();
         cpyc.setVisible(true);
+        cpyc.getContentPane().setBackground(new Color(0,79,79));
         escritorio.add(cpyc);
         escritorio.moveToFront(cpyc);
         

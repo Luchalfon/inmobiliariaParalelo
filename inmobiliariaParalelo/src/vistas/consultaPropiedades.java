@@ -73,6 +73,8 @@ public class consultaPropiedades extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton1.setBackground(new java.awt.Color(0, 51, 102));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/consulta - mp.png"))); // NOI18N
         jButton1.setText("Ver Propiedades");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -109,6 +111,7 @@ public class consultaPropiedades extends javax.swing.JInternalFrame {
                 .addGap(22, 22, 22))
         );
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createTitledBorder(""), "Propiedades"));
 
         jScrollPane1.setViewportView(tablaPropiedades);
@@ -130,6 +133,8 @@ public class consultaPropiedades extends javax.swing.JInternalFrame {
                 .addGap(39, 39, 39))
         );
 
+        salir.setBackground(new java.awt.Color(0, 51, 102));
+        salir.setForeground(new java.awt.Color(255, 255, 255));
         salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/salir1.png"))); // NOI18N
         salir.setText("Salir");
         salir.setPreferredSize(new java.awt.Dimension(165, 50));
@@ -140,6 +145,7 @@ public class consultaPropiedades extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CONSULTA DE PROPIEDADES POR PROPIETARIO");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

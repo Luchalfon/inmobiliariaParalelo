@@ -41,6 +41,7 @@ public class consultaListaContratos extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("LISTADO DE CONTRATOS");
 
         TablaBusqueda.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
@@ -66,7 +67,9 @@ public class consultaListaContratos extends javax.swing.JInternalFrame {
         TablaBusqueda.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         jScrollPane1.setViewportView(TablaBusqueda);
 
+        jButton1.setBackground(new java.awt.Color(0, 51, 102));
         jButton1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/salir1.png"))); // NOI18N
         jButton1.setText("Salir");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));

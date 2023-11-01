@@ -62,6 +62,8 @@ public class consultaVariasPropiedades extends javax.swing.JInternalFrame {
             }
         });
 
+        buscar.setBackground(new java.awt.Color(0, 51, 102));
+        buscar.setForeground(new java.awt.Color(255, 255, 255));
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/consulta2 - mp.png"))); // NOI18N
         buscar.setText("Buscar");
         buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -79,7 +81,7 @@ public class consultaVariasPropiedades extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+                .addContainerGap(98, Short.MAX_VALUE)
                 .addComponent(comboPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, 368, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(99, 99, 99))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -94,10 +96,11 @@ public class consultaVariasPropiedades extends javax.swing.JInternalFrame {
                 .addComponent(comboPropiedad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(buscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Resultados"));
+        jPanel2.setForeground(new java.awt.Color(255, 255, 255));
 
         tablaBusqueda.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -126,6 +129,8 @@ public class consultaVariasPropiedades extends javax.swing.JInternalFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
+        salir.setBackground(new java.awt.Color(0, 51, 102));
+        salir.setForeground(new java.awt.Color(255, 255, 255));
         salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/salir1.png"))); // NOI18N
         salir.setText("Salir");
         salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -137,6 +142,7 @@ public class consultaVariasPropiedades extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CONSULTAS VARIAS - PROPIEDADES");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
