@@ -41,8 +41,8 @@ public class propiedadVista extends javax.swing.JInternalFrame {
     private boolean si;
     private int seleccion;
     private int seleccion1;
-    private String tipoPropiedad1,tipoPropiedad;
-    private String tipoZona;
+    private String tipoPropiedad1="Casa",tipoPropiedad;
+    private String tipoZona="Centrica";
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -567,6 +567,8 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         case 4:
         tipoPropiedad1 = "Campo";
         break;
+        default:
+         tipoPropiedad1 = "Casa";
     }
         
         
@@ -584,6 +586,8 @@ public class propiedadVista extends javax.swing.JInternalFrame {
         case 1:
         tipoZona = "Rural";
         break;
+        default:
+          tipoZona = "Centrica";
         }
         
     }//GEN-LAST:event_comboTipoZonaActionPerformed
