@@ -44,10 +44,10 @@ public class menuPrincipal extends javax.swing.JFrame {
         };
         jlGrupo73 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
@@ -94,6 +94,29 @@ public class menuPrincipal extends javax.swing.JFrame {
         jMenuBar1.setAlignmentX(1.5F);
         jMenuBar1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/propiedad - mp.png"))); // NOI18N
+        jMenu2.setText("Propiedad");
+        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu2.setPreferredSize(new java.awt.Dimension(150, 55));
+        jMenu2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                jMenu2MouseMoved(evt);
+            }
+        });
+
+        jMenuItem3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jMenuItem3.setText("Formulario de Propiedad");
+        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu2);
+
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/propietario - mp.png"))); // NOI18N
         jMenu1.setText("Propietario");
         jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -116,24 +139,6 @@ public class menuPrincipal extends javax.swing.JFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuBar1.add(jMenu1);
-
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/propiedad - mp.png"))); // NOI18N
-        jMenu2.setText("Propiedad");
-        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jMenu2.setPreferredSize(new java.awt.Dimension(150, 55));
-
-        jMenuItem3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jMenuItem3.setText("Formulario de Propiedad");
-        jMenuItem3.setCursor(new java.awt.Cursor(java.awt.Cursor.WAIT_CURSOR));
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
-
-        jMenuBar1.add(jMenu2);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/inquilino1 - mp.png"))); // NOI18N
         jMenu6.setText("Inquilino");
@@ -232,7 +237,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem11);
 
+        jMenuItem12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jMenuItem12.setText("Consulta Vigencia de Contrato");
+        jMenuItem12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem12ActionPerformed(evt);
@@ -240,7 +247,9 @@ public class menuPrincipal extends javax.swing.JFrame {
         });
         jMenu4.add(jMenuItem12);
 
+        jMenuItem13.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jMenuItem13.setText("Consulta Propiedades y Contratos");
+        jMenuItem13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem13ActionPerformed(evt);
@@ -444,6 +453,11 @@ public class menuPrincipal extends javax.swing.JFrame {
         
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem13ActionPerformed
+
+    private void jMenu2MouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseMoved
+        // TODO add your handling code here:
+        jMenu2.getBackground().getRed();
+    }//GEN-LAST:event_jMenu2MouseMoved
 
     /**
      * @param args the command line arguments
