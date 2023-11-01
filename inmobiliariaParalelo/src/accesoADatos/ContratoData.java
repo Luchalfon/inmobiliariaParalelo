@@ -263,7 +263,7 @@ public class ContratoData {
 
         List<Contrato> contratos = new ArrayList<>();
         try {
-            String sql = SELECT contratoalquiler.codContrato, inquilino.apellido, inquilino.nombre FROM `contratoalquiler`, inquilino, propiedadinmueble WHERE contratoalquiler.id_Inquilino=inquilino.id_Inquilino AND contratoalquiler.id_Propiedad=?;
+            String sql = "SELECT contratoalquiler.codContrato, contratoalquiler.id_Inquilino, contratoalquiler.id_Propiedad, inquilino.apellido, inquilino.nombre FROM `contratoalquiler`, inquilino, propiedadinmueble WHERE contratoalquiler.id_Inquilino=inquilino.id_Inquilino AND contratoalquiler.id_Propiedad=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, Id);
             ResultSet rs = ps.executeQuery();
@@ -272,28 +272,28 @@ public class ContratoData {
                
                 contrato = new Contrato();
                 
-                int inqId=rs.getInt("id_Propiedad");
+                 int inqId=rs.getInt("id_Inquilino");
                 
                 Inquilino inquilino= idata.buscarInquilinoPorID(inqId);
                 contrato.setInquilino(inquilino);
-                
+                 
                 int proId=rs.getInt("id_Propiedad");
                 
-                Propiedad propiedad= propiedata.buscarPropiedadPorID(proId);
+                Propiedad propiedad= propiedata.buscarPropiedadPorID(Id);
                 contrato.setPropiedad(propiedad);
                 contrato.setId_contrato(rs.getInt("codContrato"));
-                contrato.setFecha_Final(rs.getDate("fecha_Final"));
-                contrato.setFecha_Inicio(rs.getDate("fecha_Inicio"));
-                contrato.setFecha_Realizacion(rs.getDate("fechaRealizacion"));
-                String marca = rs.getString("marca");
-                char marc=marca.charAt(0);
-                contrato.setMarca(marc);
-                contrato.setVendedor(rs.getString("vendedor"));
-                contrato.setEstado(rs.getBoolean("estado"));
-                contrato.setVigencia(rs.getBoolean("vigencia"));
-                contrato.setNombreGarante(rs.getString("nombre_garante"));
-                contrato.setDniGarante(rs.getString("dni_garante"));
-                contrato.setTelGarante(rs.getString("tel_garante"));
+//                contrato.setFecha_Final(rs.getDate("fecha_Final"));
+//                contrato.setFecha_Inicio(rs.getDate("fecha_Inicio"));
+//                contrato.setFecha_Realizacion(rs.getDate("fechaRealizacion"));
+//                String marca = rs.getString("marca");
+//                char marc=marca.charAt(0);
+//                contrato.setMarca(marc);
+//                contrato.setVendedor(rs.getString("vendedor"));
+//                contrato.setEstado(rs.getBoolean("estado"));
+//                contrato.setVigencia(rs.getBoolean("vigencia"));
+//                contrato.setNombreGarante(rs.getString("nombre_garante"));
+//                contrato.setDniGarante(rs.getString("dni_garante"));
+//                contrato.setTelGarante(rs.getString("tel_garante"));
               
                 contratos.add(contrato);
                           

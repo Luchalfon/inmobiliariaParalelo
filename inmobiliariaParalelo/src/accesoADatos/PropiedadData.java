@@ -433,5 +433,42 @@ public List<Propiedad> obtenerPropiedadesPorPrecio(float precio) {
         }
 
     }
+ public List<Propiedad> listarPropiedadTodos() {
+
+        List<Propiedad> propiedades = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM `propiedadinmueble` WHERE estado=1";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+               Propiedad propiedad;
+               
+                propiedad = new Propiedad();
+                propiedad.setId_propiedad(rs.getInt("id_Propiedad"));
+                Propietario propie=pd.buscarPropietarioPorID(rs.getInt("id_Propietario"));
+                
+                propiedad.setPropietario(propie);
+                
+                propiedad.setAccesibilidad(rs.getString("accesibilidad"));
+                propiedad.setDireccion(rs.getString("direccion"));
+                propiedad.setForma(rs.getString("forma"));
+                propiedad.setPrecio(rs.getFloat("precioTazado"));
+                propiedad.setRevisor(rs.getString("revisor"));
+                propiedad.setSuperficieMinima(rs.getInt("superficieMinima"));
+                propiedad.setTipoPropiedad(rs.getString("tipoDeLocal"));
+                propiedad.setTipoZona(rs.getString("zona"));
+                propiedad.setDisponible(rs.getBoolean("disponible"));
+                propiedad.setEstado(true);
+               
+                propiedades.add(propiedad);
+                          
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla propiedad" + ex.getMessage());
+        }
+        return propiedades;
+    }
 
 }

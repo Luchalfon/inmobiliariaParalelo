@@ -1,14 +1,15 @@
 
 package vistas;
 
+import Entidades.Contrato;
 import Entidades.Propiedad;
+import accesoADatos.ContratoData;
 import accesoADatos.PropiedadData;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
-
-
 import javax.swing.table.DefaultTableModel;
+
 
 public class consultaPropiedadyContrato extends javax.swing.JInternalFrame {
 
@@ -17,6 +18,8 @@ public class consultaPropiedadyContrato extends javax.swing.JInternalFrame {
     public consultaPropiedadyContrato() {
         initComponents();
         llenarCombo();
+        armarCabecera();
+        llenarTabla();
         
         
         
@@ -72,7 +75,7 @@ public class consultaPropiedadyContrato extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(299, 299, 299)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(289, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -92,11 +95,12 @@ public class consultaPropiedadyContrato extends javax.swing.JInternalFrame {
         propiedadSelect = (Propiedad) comboPropiedades.getSelectedItem();
         idProSelect=propiedadSelect.getId_propiedad();
         System.out.println(idProSelect);
+        
     }//GEN-LAST:event_comboPropiedadesActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> comboPropiedades;
+    private javax.swing.JComboBox<Propiedad> comboPropiedades;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tablaConsulta;
     // End of variables declaration//GEN-END:variables
@@ -105,13 +109,30 @@ public class consultaPropiedadyContrato extends javax.swing.JInternalFrame {
             List<Propiedad> propiedades = new ArrayList<>();
 
             PropiedadData pd = new PropiedadData();
-            propiedades = pd.listarPropiedad();
+            propiedades = pd.listarPropiedadTodos();
 
             for (Propiedad p1 : propiedades) {
                 comboPropiedades.addItem(p1);
 
             }
         }
+    private void armarCabecera() {
+        modelo.addColumn("Codigo Contrato");
+        modelo.addColumn("Apellido Inquilino");
+        modelo.addColumn("Nombre Inquilino");
+       
+
+        tablaConsulta.setModel(modelo);
+    }
+    
+     private void llenarTabla() {
+        ContratoData conData = new ContratoData();
+        for (Contrato contra : conData.listarProyContrato(idProSelect)) {
+            modelo.addRow(new Object[]{contra.getId_contrato(),contra.getInquilino().getApellido(),contra.getInquilino().getNombre()});
+
+        }
+
+    }
     
     
     
