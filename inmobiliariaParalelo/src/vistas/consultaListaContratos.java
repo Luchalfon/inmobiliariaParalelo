@@ -144,7 +144,16 @@ public class consultaListaContratos extends javax.swing.JInternalFrame {
         private void llenarTabla() {
         ContratoData conData = new ContratoData();
         for (Contrato contr : conData.listarContratos()) {
-            modelo.addRow(new Object[]{contr.getInquilino().getApellido(),contr.getInquilino().getNombre(),contr.getPropiedad().getTipoPropiedad(),contr.getPropiedad().getDireccion(),contr.getFecha_Inicio(),contr.getFecha_Final(),contr.getVendedor(),contr.getVigencia(),contr.getNombreGarante(),contr.getDniGarante()});
+            modelo.addRow(new Object[]{contr.getInquilino().getApellido(),
+                contr.getInquilino().getNombre(),
+                contr.getPropiedad().getTipoPropiedad(),
+                contr.getPropiedad().getDireccion(),
+                contr.getFecha_Inicio(),
+                contr.getFecha_Final(),
+                contr.getVendedor(),
+                (contr.getVigencia())? "no vigente":"vigente",
+                contr.getNombreGarante(),
+                contr.getDniGarante()});
 
         }
 

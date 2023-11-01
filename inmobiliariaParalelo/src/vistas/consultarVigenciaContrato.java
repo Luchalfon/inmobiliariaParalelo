@@ -156,7 +156,7 @@ private void armarCabecera() {
                                          contr.getPropiedad().getDireccion(),
                                          contr.getFecha_Inicio(),
                                          contr.getFecha_Final(),
-                                         contr.getVigencia(),
+                                         (contr.getVigencia())? "no vigente":"vigente",
                                          dias= (int) ((( contr.getFecha_Final().getTime() - fechaactual.getTime()) / milisecondsByDay) + 1)
                                          });
 
