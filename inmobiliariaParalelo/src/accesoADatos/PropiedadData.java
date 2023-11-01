@@ -224,7 +224,7 @@ public List<Propiedad> obtenerPropiedadesPorZona(String zona) {
 
         ArrayList<Propiedad> propiedades = new ArrayList<>();
 
-        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponibilidad=0 AND zona= ?";
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponible=0 AND zona= ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -258,7 +258,7 @@ public List<Propiedad> obtenerPropiedadesPorTipo(String tipo) {
 
         ArrayList<Propiedad> propiedades = new ArrayList<>();
 
-        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponibilidad=0 AND tipoDeLocal= ?";
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponible=0 AND tipoDeLocal= ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -290,7 +290,7 @@ public List<Propiedad> obtenerPropiedadesPorSup(int superf) {
 
         ArrayList<Propiedad> propiedades = new ArrayList<>();
 
-        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponibilidad=0 AND superficieMinima > ?";
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponible=0 AND superficieMinima > ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
@@ -322,7 +322,7 @@ public List<Propiedad> obtenerPropiedadesPorPrecio(float precio) {
 
         ArrayList<Propiedad> propiedades = new ArrayList<>();
 
-        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponibilidad=0 AND precioTazado < ?";
+        String sql = "SELECT id_Propiedad,tipoDeLocal,direccion,precioTazado,zona,superficieMinima FROM propiedadinmueble WHERE estado=1 AND disponible=0 AND precioTazado < ?";
         
         try {
             PreparedStatement ps = con.prepareStatement(sql);
