@@ -116,58 +116,86 @@ public class contratoVista extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(1080, 630));
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Codigo de contrato");
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Inquilino");
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Propiedad");
 
         jLabel4.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Fecha Inicio");
 
         jLabel5.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Fecha Final");
 
         jLabel6.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Fecha de Realizacion");
 
         jLabel7.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Marca");
 
         jLabel8.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Vendedor");
 
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Vigencia");
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Garante");
 
         jLabel11.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("DNI Garante");
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Tel. Garante");
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("CONTRATO");
 
         textId.setEditable(false);
+        textId.setForeground(new java.awt.Color(0, 51, 51));
 
+        textTel.setForeground(new java.awt.Color(0, 51, 51));
+
+        textVendedor.setForeground(new java.awt.Color(0, 51, 51));
+
+        textGarante.setForeground(new java.awt.Color(0, 51, 51));
+
+        textDni.setForeground(new java.awt.Color(0, 51, 51));
+
+        textMarca.setForeground(new java.awt.Color(0, 51, 51));
+
+        comboInquilino.setForeground(new java.awt.Color(0, 51, 51));
         comboInquilino.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboInquilinoActionPerformed(evt);
             }
         });
 
+        comboPropiedad.setForeground(new java.awt.Color(0, 51, 51));
         comboPropiedad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboPropiedadActionPerformed(evt);
             }
         });
 
+        buscar.setBackground(new java.awt.Color(0, 51, 102));
+        buscar.setForeground(new java.awt.Color(255, 255, 255));
         buscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/buscar.png"))); // NOI18N
         buscar.setText("Buscar");
         buscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -177,7 +205,9 @@ public class contratoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        nuevo.setBackground(new java.awt.Color(0, 51, 102));
         nuevo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        nuevo.setForeground(new java.awt.Color(255, 255, 255));
         nuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/nuevo1.png"))); // NOI18N
         nuevo.setText("Nuevo");
         nuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -187,6 +217,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        firmar.setBackground(new java.awt.Color(0, 51, 102));
+        firmar.setForeground(new java.awt.Color(255, 255, 255));
         firmar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/firmar.png"))); // NOI18N
         firmar.setText("Firmar");
         firmar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -196,6 +228,8 @@ public class contratoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        modificar.setBackground(new java.awt.Color(0, 51, 102));
+        modificar.setForeground(new java.awt.Color(255, 255, 255));
         modificar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/modificar.png"))); // NOI18N
         modificar.setText("Modificar");
         modificar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -205,10 +239,14 @@ public class contratoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        eliminar.setBackground(new java.awt.Color(0, 51, 102));
+        eliminar.setForeground(new java.awt.Color(255, 255, 255));
         eliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/eliminar1.png"))); // NOI18N
         eliminar.setText("Eliminar");
         eliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
+        salir.setBackground(new java.awt.Color(0, 51, 102));
+        salir.setForeground(new java.awt.Color(255, 255, 255));
         salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/diseño/salir2.png"))); // NOI18N
         salir.setText("Salir");
         salir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -218,11 +256,14 @@ public class contratoVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jdFecha1.setForeground(new java.awt.Color(0, 51, 51));
         jdFecha1.setDateFormatString("yyyy-MM-dd");
 
+        jdFecha2.setForeground(new java.awt.Color(0, 51, 51));
         jdFecha2.setDateFormatString("yyyy-MM-dd");
 
         textFecha_Realizacion.setEditable(false);
+        textFecha_Realizacion.setForeground(new java.awt.Color(0, 51, 51));
         textFecha_Realizacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textFecha_RealizacionActionPerformed(evt);
@@ -231,20 +272,26 @@ public class contratoVista extends javax.swing.JInternalFrame {
 
         buttonGroup1.add(vigenciaSi);
         vigenciaSi.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        vigenciaSi.setForeground(new java.awt.Color(255, 255, 255));
         vigenciaSi.setText("Vigente");
 
         buttonGroup1.add(vigenciaNo);
         vigenciaNo.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        vigenciaNo.setForeground(new java.awt.Color(255, 255, 255));
         vigenciaNo.setText("No Vigente");
 
         textDias.setEditable(false);
         textDias.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        textDias.setForeground(new java.awt.Color(0, 51, 51));
         textDias.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textDias.setCaretColor(new java.awt.Color(0, 255, 255));
 
         jLabel14.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Dias Restantes de Contrato");
 
+        BotonRenovar.setBackground(new java.awt.Color(0, 51, 102));
+        BotonRenovar.setForeground(new java.awt.Color(255, 255, 255));
         BotonRenovar.setText("Renovar");
         BotonRenovar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

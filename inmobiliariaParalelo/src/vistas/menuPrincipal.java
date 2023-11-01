@@ -333,6 +333,7 @@ public class menuPrincipal extends javax.swing.JFrame {
         escritorio.repaint();
         contratoVista cv= new contratoVista();
         cv.setVisible(true);
+        cv.getContentPane().setBackground(new Color(0,79,79));
         escritorio.add(cv);
         escritorio.moveToFront(cv);
 
