@@ -263,7 +263,7 @@ public class ContratoData {
 
         List<Contrato> contratos = new ArrayList<>();
         try {
-            String sql = "SELECT contratoalquiler.codContrato, contratoalquiler.id_Inquilino, contratoalquiler.id_Propiedad, inquilino.apellido, inquilino.nombre FROM `contratoalquiler`, inquilino, propiedadinmueble WHERE contratoalquiler.id_Inquilino=inquilino.id_Inquilino AND contratoalquiler.id_Propiedad=?";
+            String sql = "SELECT contratoalquiler.codContrato, contratoalquiler.id_Inquilino, contratoalquiler.id_Propiedad, inquilino.apellido, inquilino.nombre FROM `contratoalquiler`, inquilino WHERE contratoalquiler.id_Inquilino=inquilino.id_Inquilino AND contratoalquiler.id_Propiedad=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, Id);
             ResultSet rs = ps.executeQuery();

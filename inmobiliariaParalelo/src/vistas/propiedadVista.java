@@ -476,7 +476,7 @@ public class propiedadVista extends javax.swing.JInternalFrame {
             propie1.setPrecio(Float.parseFloat(textPrecio.getText()));
             propie1.setRevisor(textRevisor.getText());
             propie1.setSuperficieMinima(Integer.parseInt(textSuper.getText()));
-            propie1.setTipoPropiedad(tipoPropiedad);
+            propie1.setTipoPropiedad(tipoPropiedad1);
             propie1.setTipoZona(tipoZona);
 
             pd.modificarPropiedad(propie1);

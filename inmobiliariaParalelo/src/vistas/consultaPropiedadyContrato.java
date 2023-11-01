@@ -21,7 +21,7 @@ public class consultaPropiedadyContrato extends javax.swing.JInternalFrame {
         initComponents();
         llenarCombo();
         armarCabecera();
-        llenarTabla();
+        //llenarTabla();
           // Obtén las dimensiones de la pantalla
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 

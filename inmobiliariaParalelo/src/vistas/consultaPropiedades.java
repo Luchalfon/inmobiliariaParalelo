@@ -36,7 +36,7 @@ public class consultaPropiedades extends javax.swing.JInternalFrame {
     // Establece la ubicación del internal frame en el centro de la pantalla
     setLocation(centerX, getY());
         
-        
+       
         
     }
 
